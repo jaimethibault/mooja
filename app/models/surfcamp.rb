@@ -1,0 +1,2 @@
+class Surfcamp < ApplicationRecord
+end
