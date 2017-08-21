@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
+require 'nokogiri'
+
 puts "Destroying Bookings"
 Booking.destroy_all
 puts "Destroying Surfcamps"
@@ -30,10 +33,13 @@ users = [
 #   "Michel",
 #   "Micheline"
 # ]
+
+
 3.times do
   user = User.new
   user.email = users[i]
   user.password = 'password'
+
   # user.first_name = first_names[i]
   # user.last_name = Faker::Name.last_name
   # urls = [
@@ -47,10 +53,42 @@ users = [
 end
 puts "Users created"
 
+puts "Creating Surfcamps"
+url = "https://www.surfholidays.com/property-search?country=all&town=all&checkin=&checkout=&guests=2&suitable_for=0"
+base_url = "https://www.surfholidays.com"
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file)
+html_doc.search(".name-location a").each do |element|
+  page_url = element.attribute('href').value
+  complete_url = "#{base_url}#{page_url}"
 
+  html_file = open(complete_url).read
+  html_doc = Nokogiri::HTML(html_file)
+  images_surfcamp = []
+  surfcamp = Surfcamp.new
+  html_doc.search("#custom-slider ul li").each do |element|
+    images_surfcamp << element['style'][/url\((.+)\)/, 1]
+  end
+   html_doc.search("h1.sh-navy").each do |element|
+    name = element.text
+    surfcamp.name = name
+  end
 
+  surfcamp.description = Faker::Lorem.paragraph
 
+   html_doc.search("#accom-detail-location").each do |element|
+    address = element.text.strip
+    surfcamp.address = address
+  end
+  ratings = []
+  html_doc.search("p.bolder.sh-orange span.bigger-font18").each do |element|
+    ratings << element.text.strip
+    surfcamp.rating = ratings[0]
+  end
 
+  surfcamp.save!
+end
+puts "Done creating surfcamps"
 
 
 
