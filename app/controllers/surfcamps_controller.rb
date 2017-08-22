@@ -17,19 +17,6 @@ class SurfcampsController < ApplicationController
   def show
   end
 
-  def new
-    @surfcamp = Surfcamp.new
-  end
-
-  def create
-    @surfcamp = Surfcamp.new(set_params)
-     if @surfcamp
-      redirect_to surfcamps_path(@surfcamp)
-    else
-      render :new
-    end
-  end
-
   private
 
   def set_surfcamp
