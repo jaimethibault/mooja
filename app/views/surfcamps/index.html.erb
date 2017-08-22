@@ -34,7 +34,9 @@
               <% end %>
             </div>
             <div class="surfcamp-card-text">
-              <p>Todo: price | <%= surfcamp.name %> | <%= surfcamp.rating %></p>
+              <!-- TODO: replace by min price -->
+              <p>From <%= surfcamp.rooms.first.price_per_night %> € | TODO: Save XX€</p>
+              <p><%= surfcamp.name %> | <%= surfcamp.rating %> stars</p>
             </div>
             <a class="surfcamp-card-link" href="#" ></a>
           </div>
