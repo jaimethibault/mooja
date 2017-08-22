@@ -1,5 +1,6 @@
 class SurfcampsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_surfcamp, only: [:show]
 
   def index
     if params[:maxprice].nil?
@@ -11,5 +12,14 @@ class SurfcampsController < ApplicationController
 
   def surfcamp_params
     params.require(:surfcamp).permit(:name, :description, :photo)
+  end
+
+  def show
+  end
+
+  private
+
+  def set_surfcamp
+    @surfcamp = Surfcamp.find(params[:id])
   end
 end
