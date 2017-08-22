@@ -96,11 +96,11 @@ surfcamps = Surfcamp.all
 surfcamps.each do |surfcamp|
   rand(2..10).times do
       room = Room.new
-      room.category = ['dormitory', 'single bedroom', 'twin bedroom'].sample
+      room.category = ['dormitory', 'private room'].sample
       if room.category == 'dormitory'
         room.capacity = rand(1..8)
         room.price_per_night = rand(50..70)
-      elsif room.category == 'twin bedroom'
+      elsif room.category == 'private room'
         room.capacity = 2
         room.price_per_night = rand(70..99)
       else
