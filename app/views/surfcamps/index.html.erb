@@ -1,0 +1,46 @@
+<div class="main-container">
+  <div class="cards-container">
+    <div class="row row-no-margin">
+      <!-- search box -->
+      <div class="search-box col-xs-12">
+        <%= form_tag surfcamps_path, method: :get, class: "form-inline form-group" do %>
+          <%= label_tag "where", "where:" %>
+          <%= text_field_tag 'address', nil, placeholder: '30 rue de Paradis, Paris, France', class: "form-control search-box-font-size", id: "surfcamp_address" %>
+
+          <%= label_tag "waves", "waves quality:" %>
+          <%= check_box_tag 'wave-good', value = nil, class: "form-control", id: "wave_good" %>
+          <%= label_tag "wave-good", "good waves" %>
+          <%= check_box_tag 'wave-ok', value = 40, class: "form-control", id: "wave_ok" %>
+          <%= label_tag "wave-ok", "ok waves" %>
+          <br>
+
+          <%= label_tag "budget", "budget:" %>
+          <%= text_field_tag 'max-price', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "max_price" %>
+          <%= check_box_tag 'discount-50', value = 50, class: "form-control", id: "discount_50" %>
+          <%= label_tag "discount-50", "> 50% discount" %>
+          <%= check_box_tag 'discount-40', value = 40, class: "form-control", id: "discount_40" %>
+          <%= label_tag "discount-30", "> 30% discount" %>
+          <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
+        <% end %>
+      </div>
+    <!-- surfcamps cards -->
+    <% @surfcamps.each do |surfcamp| %>
+      <div class="col-xs-12 col-sm-6">
+        <div class="surfcamp-card">
+          <div class="surfcamp-card-pic">
+            <img src="https://unsplash.it/250/150" alt="">
+          </div>
+          <div class="surfcamp-card-text">
+            <p>Todo: price | <%= surfcamp.name %> | <%= surfcamp.rating %></p>
+          </div>
+          <a class="surfcamp-card-link" href="#" ></a>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <!-- map -->
+  <div id="map">
+    Todo: map
+  </div>
+</div>
