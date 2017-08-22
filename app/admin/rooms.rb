@@ -1,5 +1,4 @@
-ActiveAdmin.register Surfcamp do
-  permit_params :name, :description, :rating, :address
+ActiveAdmin.register Room do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,15 +11,6 @@ ActiveAdmin.register Surfcamp do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  permit_params :category, :price_per_night, :category, :surfcamp_id
 
-form(:html => { :multipart => true }) do |f|
-    f.inputs "Surfcamp" do
-      f.input :name
-      f.input :description
-      f.input :image, :as => :file
-      f.input :rating
-      f.input :address
-    end
-    f.actions
-  end
 end
