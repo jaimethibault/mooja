@@ -54,7 +54,7 @@ end
 puts "Users created"
 
 puts "Creating Surfcamps"
-url = "https://www.surfholidays.com/property-search?country=all&town=all&checkin=&checkout=&guests=2&suitable_for=0"
+url = "https://www.surfholidays.com/property-search?country=all&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
 base_url = "https://www.surfholidays.com"
 html_file = open(url).read
 html_doc = Nokogiri::HTML(html_file)
@@ -90,6 +90,29 @@ html_doc.search(".name-location a").each do |element|
 end
 puts "Done creating surfcamps"
 
+puts "Creating Random Rooms"
+
+surfcamps = Surfcamp.all
+surfcamps.each do |surfcamp|
+  rand(2..10).times do
+      room = Room.new
+      room.category = ['dormitory', 'single bedroom', 'twin bedroom'].sample
+      if room.category == 'dormitory'
+        room.capacity = rand(1..8)
+        room.price_per_night = rand(50..70)
+      elsif room.category == 'twin bedroom'
+        room.capacity = 2
+        room.price_per_night = rand(70..99)
+      else
+        room.capacity = 1
+        room.price_per_night = rand(100..120)
+      end
+    room.surfcamp_id = surfcamp.id
+    room.save!
+  end
+end
+
+puts "Done Creating Rooms"
 
 
 
