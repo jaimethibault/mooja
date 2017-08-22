@@ -16,7 +16,10 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'nokogiri', '~> 1.6', '>= 1.6.6.2'
+gem 'faker', '~> 1.8', '>= 1.8.4'
 gem 'cloudinary'
+
 
 group :development, :test do
   gem 'pry-byebug'
