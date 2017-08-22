@@ -68,6 +68,10 @@ GEM
       multipart-post (>= 1.2, < 3)
     faker (1.8.4)
       i18n (~> 0.5)
+    faker (1.8.4)
+      i18n (~> 0.5)
+    faraday (0.12.2)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -235,6 +239,8 @@ DEPENDENCIES
   listen (~> 3.0.5)
   omniauth-facebook
   nokogiri (~> 1.6, >= 1.6.6.2)
+  nokogiri (~> 1.6, >= 1.6.6.2)
+  omniauth-facebook
   pg
   pry-byebug
   pry-rails

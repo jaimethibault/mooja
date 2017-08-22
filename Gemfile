@@ -19,8 +19,8 @@ gem 'uglifier'
 gem 'omniauth-facebook'
 gem 'nokogiri', '~> 1.6', '>= 1.6.6.2'
 gem 'faker', '~> 1.8', '>= 1.8.4'
+gem 'omniauth-facebook'
 gem 'cloudinary'
-
 
 group :development, :test do
   gem 'pry-byebug'
