@@ -23,20 +23,23 @@
           <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
         <% end %>
       </div>
-    <!-- surfcamps cards -->
-    <% @surfcamps.each do |surfcamp| %>
-      <div class="col-xs-12 col-sm-6">
-        <div class="surfcamp-card">
-          <div class="surfcamp-card-pic">
-            <img src="https://unsplash.it/250/150" alt="">
+      <!-- surfcamps cards -->
+      <% @surfcamps.each do |surfcamp| %>
+        <div class="col-xs-12 col-sm-6">
+          <div class="surfcamp-card">
+            <div class="surfcamp-card-pic">
+              <!-- <img src="https://unsplash.it/250/150" alt=""> -->
+              <% if surfcamp.photo? %>
+                <%= cl_image_tag surfcamp.photo.path, width: 250, height: 150, crop: :fill %>
+              <% end %>
+            </div>
+            <div class="surfcamp-card-text">
+              <p>Todo: price | <%= surfcamp.name %> | <%= surfcamp.rating %></p>
+            </div>
+            <a class="surfcamp-card-link" href="#" ></a>
           </div>
-          <div class="surfcamp-card-text">
-            <p>Todo: price | <%= surfcamp.name %> | <%= surfcamp.rating %></p>
-          </div>
-          <a class="surfcamp-card-link" href="#" ></a>
         </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
   </div>
   <!-- map -->

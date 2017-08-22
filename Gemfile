@@ -20,7 +20,10 @@ gem 'omniauth-facebook'
 gem 'nokogiri', '~> 1.6', '>= 1.6.6.2'
 gem 'faker', '~> 1.8', '>= 1.8.4'
 gem 'omniauth-facebook'
-gem 'cloudinary'
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
 
 group :development, :test do
   gem 'pry-byebug'
