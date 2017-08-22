@@ -14,5 +14,5 @@ class SurfcampsController < ApplicationController
 
   def set_surfcamp
     @surfcamp = Surfcamp.find(params[:id])
-
+  end
 end
