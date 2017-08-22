@@ -15,7 +15,7 @@
           <br>
 
           <%= label_tag "budget", "budget:" %>
-          <%= text_field_tag 'max-price', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "max_price" %>
+          <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "maxprice" %>
           <%= check_box_tag 'discount-50', value = 50, class: "form-control", id: "discount_50" %>
           <%= label_tag "discount-50", "> 50% discount" %>
           <%= check_box_tag 'discount-40', value = 40, class: "form-control", id: "discount_40" %>
@@ -34,8 +34,8 @@
               <% end %>
             </div>
             <div class="surfcamp-card-text">
-              <!-- TODO: replace by min price -->
-              <p>From <%= surfcamp.rooms.first.price_per_night %> € | TODO: Save XX€</p>
+              <!-- get the min price out of all rooms -->
+              <p>From <%= surfcamp.rooms.order(price_per_night: :asc).first.price_per_night %> € | TODO: Save XX€</p>
               <p><%= surfcamp.name %> | <%= surfcamp.rating %> stars</p>
             </div>
             <a class="surfcamp-card-link" href="#" ></a>
