@@ -1,2 +1,17 @@
-<h1>Mooja</h1>
-<p>Book last minute deals for surfcamps</p>
+<div class="banner" style="background-image: linear-gradient(-170deg, rgba(0,101,168,0.5) 0%, rgba(0,36,61,0.23) 50%), url('<%= asset_path "surfcamps.jpg" %>') " >
+  <div class="row full-width">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="banner-content">
+        <h1>Mooja</h1>
+        <p>Find last minute deals for surfcamps everywhere</p>
+        <div class="search-square">
+          <%= form_tag '#', method: :get, class: "form-inline form-group" do %>
+            <%= text_field_tag 'Where', nil, placeholder: 'Hawaii', class: "form-control", id: "address", style: "width: 40%;" %>
+            <%= number_field_tag("When", value = nil, placeholder: "03/09/2017", class: "form-control", style: "width: 30%;") %>
+            <%= button_tag(content = "Check at deals", class: "btn btn-primary") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
