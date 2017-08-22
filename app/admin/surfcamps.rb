@@ -13,4 +13,15 @@ ActiveAdmin.register Surfcamp do
 #   permitted
 # end
 
+form(:html => { :multipart => true }) do |f|
+    f.inputs "Surfcamp" do
+      f.input :name
+      f.input :description
+      f.input :image, :as => :file
+      f.input :rating
+      f.input :address
+    end
+    f.actions
+  end
+
 end
