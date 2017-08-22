@@ -1,5 +1,5 @@
 class SurfcampsController < ApplicationController
-<<<<<<< HEAD
+
   skip_before_action :authenticate_user!, only: [:show]
   before_action :set_surfcamp, only: [:show]
 
