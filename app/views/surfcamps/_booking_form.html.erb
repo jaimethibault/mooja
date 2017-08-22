@@ -1,6 +1,6 @@
 <%= simple_form_for [@surfcamp, @booking] do |f| %>
-  <%= f.input :starts_at, placeholder: "Checkin date", class: "col-xs-6" %>
-  <%= f.input :ends_at, placeholder: "Checkout date", class: "col-xs-6" %>
+  <%= f.input :starts_at, as: :string, placeholder: "02/09/2017", class: "col-xs-6", input_html: {class: 'datepicker'},label: "Check in" %>
+  <%= f.input :ends_at, as: :string, placeholder: "12/09/2017", class: "col-xs-6", input_html: {class: 'datepicker'}, label: "Check out"  %>
   <%= f.label "Price per Day: **TBD**" %>
   <%= f.submit "Book it!", class: "btn btn-danger btn-block" %>
 <% end %>
@@ -34,3 +34,8 @@
     </form>
   </div> -->
 
+<% content_for(:after_js) do %>
+  <script>
+      $(".datepicker").datepicker();
+  </script>
+<% end %>
