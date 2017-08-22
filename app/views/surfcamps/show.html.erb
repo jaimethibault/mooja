@@ -1,0 +1,39 @@
+<div class="banner-show">
+  <%= image_tag "surfcamp_biarritz.jpg", class: "banner-surfcamp" %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-1">
+      <div class="surfcamp-details">
+        <h2> <%= @surfcamp.name %></h2>
+        <div class="rating">
+          <% @surfcamp.rating.to_i.times do  %>
+            <i class="fa fa-star" style="color: black"></i>
+          <% end %>
+          <% (5 - @surfcamp.rating).to_i.times do  %>
+            <i class="fa fa-star-o";"></i>
+          <% end %>
+        </div>
+        <hr>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i>
+        <%= @surfcamp.address %></p>
+        <hr>
+        <h4>Description</h4>
+        <p><%= @surfcamp.description %></p>
+      </div>
+      <hr>
+      <h4>Where to find us ?</h4>
+      <div class="map">
+        <p>Map to be delivered soon !</p>
+      </div>
+      <hr>
+      <h4>Reviews</h4>
+      <div class="reviews">
+        <p> Reviews to be seeded !</p>
+      </div>
+    </div>
+     </div>
+     <div class="col-md-3 booking_square">
+      <%= render 'booking_form' %>
+  </div>
+</div>
