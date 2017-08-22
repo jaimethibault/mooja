@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/god', as: 'rails_admin'
   ActiveAdmin.routes(self)
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
