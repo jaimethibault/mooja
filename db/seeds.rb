@@ -8,18 +8,19 @@
 require 'open-uri'
 require 'nokogiri'
 
-puts "Destroying Bookings"
-Booking.destroy_all
-puts "Destroying Rooms"
-Room.destroy_all
-puts "Destroying Surfcamps"
-Surfcamp.destroy_all
-puts "Destroying Discounts"
-Discount.destroy_all
-puts "Destroying Users"
-User.destroy_all
 puts "Destroying Occupancies"
 Occupancy.destroy_all
+puts "Destroying Discounts"
+Discount.destroy_all
+puts "Destroying Rooms"
+Room.destroy_all
+puts "Destroying Bookings"
+Booking.destroy_all
+puts "Destroying Surfcamps"
+Surfcamp.destroy_all
+puts "Destroying Users"
+User.destroy_all
+
 
 puts "Creating Users"
 i = 0
@@ -145,13 +146,25 @@ end
 puts "Done Creating Discounted Prices"
 
 
-# puts "Creating Occupancies"
-# #Je recupere tous les surfcamps
-# #Dans les surfcamps je recupere les rooms
-# #J'établis un nombre de personnes random
-# #
+puts "Creating Bookings"
+surfcamps = Surfcamp.all
+surfcamps.each do |surfcamp|
+  rand(2..10).times do
+    booking = Booking.new
+    sept_first = Date.parse("September 1st")
+    booking.starts_at = sept_first
+    booking.ends_at = (sept_first..(sept_first + 12.months)).to_a.sample
+    booking.status = ['pending', 'declined', 'accepted'].sample
+    booking.surfcamp_id = surfcamp.id
+    users = User.all
+    user = users.sample
+    booking.user_id = user.id
+    booking.save!
+    puts "successfully saved a booking for #{surfcamp.name}"
+  end
+end
 
-# puts "Done Creating Occupancies"
+puts "Done Creating Bookings"
 
 
 
