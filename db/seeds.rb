@@ -10,14 +10,14 @@ require 'nokogiri'
 
 puts "Destroying Bookings"
 Booking.destroy_all
+puts "Destroying Rooms"
+Room.destroy_all
 puts "Destroying Surfcamps"
 Surfcamp.destroy_all
 puts "Destroying Discounts"
 Discount.destroy_all
 puts "Destroying Users"
 User.destroy_all
-puts "Destroying Rooms"
-Room.destroy_all
 puts "Destroying Occupancies"
 Occupancy.destroy_all
 
@@ -114,10 +114,41 @@ end
 
 puts "Done Creating Rooms"
 
+puts "Creating Discounted Prices"
+sept_first = Date.parse("September 1st")
+
+Room.all.each do |room|
+
+  discount_occurence_probability = 30
+  apply_discount = (1..100).to_a.sample > (100 - discount_occurence_probability)
+
+  if apply_discount
+    discount = Discount.new
+    discount_rate = [10, 20, 30, 40, 50, 60, 70].sample.to_f/100
+    discount.discounted_price = discount_rate * room.price_per_night
+
+    #Between September 1st and September 15th
+    discount.limit_offer_date = (sept_first..(sept_first + 15.days)).to_a.sample
+
+    discount.discount_starts_at = (sept_first..(sept_first + 2.months)).to_a.sample
+    discount.discount_ends_at = discount.discount_starts_at + (3..15).to_a.sample.days
+
+    discount.room_id = room.id
+    discount.save!
+  end
+end
 
 
+puts "Done Creating Discounted Prices"
 
 
+# puts "Creating Occupancies"
+# #Je recupere tous les surfcamps
+# #Dans les surfcamps je recupere les rooms
+# #J'établis un nombre de personnes random
+# #
+
+# puts "Done Creating Occupancies"
 
 
 
