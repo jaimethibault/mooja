@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
   end
   resources :bookings, only: [:show]
+  mount Attachinary::Engine => "/attachinary"
 end

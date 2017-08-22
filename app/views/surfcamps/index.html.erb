@@ -15,7 +15,7 @@
           <br>
 
           <%= label_tag "budget", "budget:" %>
-          <%= text_field_tag 'max-price', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "max_price" %>
+          <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "maxprice" %>
           <%= check_box_tag 'discount-50', value = 50, class: "form-control", id: "discount_50" %>
           <%= label_tag "discount-50", "> 50% discount" %>
           <%= check_box_tag 'discount-40', value = 40, class: "form-control", id: "discount_40" %>
@@ -23,20 +23,25 @@
           <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
         <% end %>
       </div>
-    <!-- surfcamps cards -->
-    <% @surfcamps.each do |surfcamp| %>
-      <div class="col-xs-12 col-sm-6">
-        <div class="surfcamp-card">
-          <div class="surfcamp-card-pic">
-            <img src="https://unsplash.it/250/150" alt="">
+      <!-- surfcamps cards -->
+      <% @surfcamps.each do |surfcamp| %>
+        <div class="col-xs-12 col-sm-6">
+          <div class="surfcamp-card">
+            <div class="surfcamp-card-pic">
+              <!-- <img src="https://unsplash.it/250/150" alt=""> -->
+              <% if surfcamp.photo? %>
+                <%= cl_image_tag surfcamp.photo.path, width: 250, height: 150, crop: :fill %>
+              <% end %>
+            </div>
+            <div class="surfcamp-card-text">
+              <!-- get the min price out of all rooms -->
+              <p>From <%= surfcamp.rooms.order(price_per_night: :asc).first.price_per_night %> € | TODO: Save XX€</p>
+              <p><%= surfcamp.name %> | <%= surfcamp.rating %> stars</p>
+            </div>
+            <a class="surfcamp-card-link" href="#" ></a>
           </div>
-          <div class="surfcamp-card-text">
-            <p>Todo: price | <%= surfcamp.name %> | <%= surfcamp.rating %></p>
-          </div>
-          <a class="surfcamp-card-link" href="#" ></a>
         </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
   </div>
   <!-- map -->
