@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title><%= yield(:title_tag).blank? ? "Mooja - Last Minute Surfcamps" : yield(:title_tag) %></title>
+    <meta name="description" content="<%= (yield(:description) || "Book last minute deals for surfcamps").squish %>">
+    <meta property="og:title" content="Mooja - Book Last Minute Surfcamps">
+    <meta property="og:image" content="facebook-card.jpg">
+    <meta property="og:description" content="Perfect weather & waves to go surfing? Book Last Minute Surfcamps with Mooja !">
+    <meta property="og:site_name" content="Mooja"/>
+
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -11,7 +17,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div id="main-wrapper">
+      <%= yield %>
+    </div>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
