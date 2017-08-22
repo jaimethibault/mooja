@@ -1,6 +1,16 @@
+
 .banner-surfcamp {
-  width:100%;
-  background-position: center;
+  height: 60vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  width:auto;
+  background-position: center !important;
+}
+
+@media(max-width: 720px) {
+  .banner-surfcamp {
+    height: 50vh;
+    background-position: center !important;
+  }
 }
 
 .container {

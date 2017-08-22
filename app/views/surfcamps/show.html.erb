@@ -1,5 +1,7 @@
 <div class="banner-show">
-  <%= image_tag "surfcamp_biarritz.jpg", class: "banner-surfcamp" %>
+  <% if @surfcamp.photo? %>
+    <%= cl_image_tag @surfcamp.photo.path, crop: :fill, class: "banner-surfcamp" %>
+  <% end %>
 </div>
 <div class="container">
   <div class="row">
