@@ -1,0 +1,84 @@
+.booking-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.booking-confirmation-title {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #4a484a;
+    font-weight: 300;
+  }
+}
+
+.booking-confirmation-details {
+  border: solid 1px #cfcbcb;
+  width: 472px;
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-title h3 {
+  font-size: 24px;
+  color: #4a484a;
+  text-align: left!important;
+  font-weight: 300;
+
+}
+
+.card-booking-details {
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
+.card-booking-details-address {
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+.card-booking-details-discount {
+  width: 245px;
+  height: 75px;
+  position: absolute;
+  bottom: 2.5em;
+  background-color: #ffffff;
+  border: solid 1px #00cecb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00cecb;
+    margin: 0;
+  }
+}
+
+.card-booking-details-price {
+  margin-top: 18px;
+}
+
+.original-price {
+  font-size: 30px;
+  text-decoration: line-through;
+  font-weight: 300!important;
+  text-align: right!important;
+  color: #909090;
+}
+
+.price-paid {
+  font-size: 36px;
+  font-weight: 400!important;
+  color: #4a4a4a;
+}
