@@ -17,8 +17,8 @@
           <div class="card-booking-details">
             <div class="card-booking-details-address">
               <p><%= @surfcamp.address %></p>
-              <p><%= @booking.starts_at %></p>
-              <p><%= @booking.ends_at %></p>
+              <p>From <%= @booking.starts_at.strftime("%A, %b %d") %></p>
+              <p>To <%= @booking.ends_at.strftime("%A, %b %d") %></p>
             </div>
             <div class="card-booking-details-price">
               <p><%= original_price %></p>
@@ -26,9 +26,11 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="booking-confirmation-final-discount">
-
+        <div class="card-booking-details-discount">
+          <div class="text">
+            <p><%= ((1 - price_paid.to_f / original_price.to_f) * 100).to_i %>% OFF</p>
+          </div>
+        </div>
       </div>
      </div>
   </div>

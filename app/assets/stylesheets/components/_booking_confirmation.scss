@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .booking-confirmation-title {
@@ -11,6 +12,7 @@
     font-size: 28px;
     text-align: center;
     color: #4a484a;
+    font-weight: 300;
   }
 }
 
@@ -27,14 +29,39 @@
   font-size: 24px;
   color: #4a484a;
   text-align: left!important;
+  font-weight: 300;
 
 }
 
 .card-booking-details {
   display: flex;
   justify-content: space-between;
+  p {
+    font-weight: 300;
+    margin: 0;
+  }
 }
 
 .card-booking-details-address {
   max-width: 220px;
+}
+
+
+
+.card-booking-details-discount {
+  width: 245px;
+  height: 75px;
+  position: absolute;
+  bottom: 30px;
+  background-color: #ffffff;
+  border: solid 1px #00cecb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00cecb;
+    margin: 0;
+  }
 }
