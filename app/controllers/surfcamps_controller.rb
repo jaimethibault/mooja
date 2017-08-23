@@ -17,6 +17,8 @@ class SurfcampsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+    @occupancy = Occupancy.new
   end
 
   private

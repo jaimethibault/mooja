@@ -1,4 +1,33 @@
-<div class="booking_form">
+<%# simple_form_for [@surfcamp, @booking, @occupancy_] do |f| %>
+  <%# f.input :starts_at, as: :string, placeholder: "02/09/2017", class: "col-xs-6", input_html: {class: 'datepicker'},label: "Check in" %>
+  <%# f.input :ends_at, as: :string, placeholder: "12/09/2017", class: "col-xs-6", input_html: {class: 'datepicker'}, label: "Check out"  %>
+  <%# f.label "Dormitory" %>
+  <%# f.input :occupancy.pax_nb, placeholder: "1" %>
+  <%# f.label "Private Room" %>
+  <%# f.input :occupancy.pax_nb, placeholder: "1" %>
+  <%# f.label "Price per Day: **TBD**" %>
+  <%# f.submit "Book it!", class: "btn btn-danger btn-block" %>
+<%# end %>
+
+<%= form_tag surfcamp_bookings_path(@surfcamp) do %>
+  <%= label_tag 'booking[starts_at]', 'Checkin' %>
+  <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017" %>
+  <%= label_tag 'booking[ends_at]', 'Checkout' %>
+  <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017" %>
+  <%#room[type] = 'dormitory' %>
+  <%= label_tag 'occupancy[pax_nb]', 'Dormitory' %>
+  <%= number_field_tag 'occupancy[pax_nb]', '1' %>
+  <%#room[type] = 'private room' %>
+  <%= label_tag 'occupancy[pax_nb]', 'Private Room' %>
+  <%= number_field_tag 'occupancy[pax_nb]', '1' %>
+  <%= hidden_field_tag 'booking[user_id]', current_user.id %>
+  <%= hidden_field_tag 'booking[status]', 'unpaid' %>
+  <%= submit_tag "Book now", class: "btn btn-danger", style: "width: 100%" %>
+
+<% end %>
+
+
+<!-- <div class="booking_form">
     <form action="#" >
       <div class="form-group">
         <div class="row">
@@ -24,5 +53,13 @@
       </div>
       <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
     </form>
-  </div>
+  </div> -->
 
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(".datepicker").datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: '-1d'
+    });
+  <% end %>
+<% end %>

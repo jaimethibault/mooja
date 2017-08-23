@@ -8,18 +8,19 @@
 require 'open-uri'
 require 'nokogiri'
 
-puts "Destroying Bookings"
-Booking.destroy_all
-puts "Destroying Rooms"
-Room.destroy_all
-puts "Destroying Surfcamps"
-Surfcamp.destroy_all
-puts "Destroying Discounts"
-Discount.destroy_all
-puts "Destroying Users"
-User.destroy_all
 puts "Destroying Occupancies"
 Occupancy.destroy_all
+puts "Destroying Discounts"
+Discount.destroy_all
+puts "Destroying Rooms"
+Room.destroy_all
+puts "Destroying Bookings"
+Booking.destroy_all
+puts "Destroying Surfcamps"
+Surfcamp.destroy_all
+puts "Destroying Users"
+User.destroy_all
+
 
 puts "Creating Users"
 i = 0
@@ -119,7 +120,7 @@ surfcamps.each do |surfcamp|
       if room.category == 'dormitory'
         room.capacity = rand(1..8)
         room.price_per_night = rand(50..70)
-      else room.category == 'private room'
+      else
         room.capacity = rand(1..2)
         if room.capacity == 1
           room.price_per_night = rand(70..99)
@@ -164,21 +165,52 @@ end
 puts "Done Creating Discounted Prices"
 
 
+puts "Creating Bookings"
+surfcamps = Surfcamp.all
+surfcamps.each do |surfcamp|
+  rand(2..10).times do
+    booking = Booking.new
+    sept_first = Date.parse("September 1st")
+    booking.starts_at = sept_first + rand(2.months)
+    booking.ends_at = booking.starts_at + rand(3..14).days
+    booking.status = "paid"
+    booking.surfcamp_id = surfcamp.id
+    users = User.all
+    user = users.sample
+    booking.user_id = user.id
+    booking.save!
+    puts "successfully saved a booking for #{surfcamp.name}"
+  end
+end
 
-puts "Seed is done"
-puts "Happy coding!!!"
+puts "Done Creating Bookings"
+
 
 # puts "Creating Occupancies"
-# #Je recupere tous les surfcamps
-# #Dans les surfcamps je recupere les rooms
-# #J'établis un nombre de personnes random
-# #
+# rooms = Room.all
+# rooms.each do |room|
+#   occupancy = Occupancy.new
+#    if room.category == 'dormitory'
+#         room.capacity = rand(1..8)
+#         room.price_per_night = rand(50..70)
+#         room.pax_nb = rand(0..8)
+#         room.price = total(pax_nb) * price_per_night
+#       elsif room.category == 'twin bedroom'
+#         room.capacity = 2
+#         room.price_per_night = rand(70..99)
+#       else
+#         room.capacity =
+#         room.price_per_night = rand(100..120)
+#         room.pax_nb = rand(0..2)
+#         room.price = total(pax_nb) * price_per_night
+#       end
+#     occupancy.booking_id = booking.id
+#     occupancy.room_id = room.id
+#     occupancy.save!
 
 # puts "Done Creating Occupancies"
 
-
-
-
-
+puts "Seed is done"
+puts "Happy coding!!!"
 
 

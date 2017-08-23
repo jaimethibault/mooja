@@ -5,16 +5,29 @@ class BookingsController < ApplicationController
     @surfcamp = related_surfcamp
   end
 
+  def create
+    @booking = Booking.new(set_params)
+    @booking.surfcamp_id = params[:surfcamp_id]
+    @booking.save
+    #redirect to modify
+    redirect_to surfcamps_path
+  end
+
   private
+
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def set_params
+    params.require(:booking).permit(:starts_at, :ends_at, :status, :user_id, :surfcamp_id)
+  end
 
   def related_surfcamp
     @surfcamp_id = @booking.surfcamp_id
     @surfcamp = Surfcamp.find(@surfcamp_id)
     @surfcamp
-  end
-
-  def set_booking
-    @booking = Booking.find(params[:id])
   end
 
   def price_paid
