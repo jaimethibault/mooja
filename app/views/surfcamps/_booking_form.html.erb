@@ -14,15 +14,24 @@
   <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017" %>
   <%= label_tag 'booking[ends_at]', 'Checkout' %>
   <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017" %>
+
   <%#room[type] = 'dormitory' %>
-  <%= label_tag 'occupancy[pax_nb]', 'Dormitory' %>
+
+  <%= label_tag 'occupancy[pax_nb]', @surfcamp.rooms.first.category + " - flat price: " + @surfcamp.rooms.first.price_per_night.to_s + " €" %>
   <%= number_field_tag 'occupancy[pax_nb]', '1' %>
+  <%= hidden_field_tag 'occupancy[room_id]', @surfcamp.rooms.first.id %>
+
   <%#room[type] = 'private room' %>
-  <%= label_tag 'occupancy[pax_nb]', 'Private Room' %>
-  <%= number_field_tag 'occupancy[pax_nb]', '1' %>
+  <%#= label_tag 'occupancy[pax_nb]', 'Private Room' %>
+  <%#= number_field_tag 'occupancy[pax_nb]', '1' %>
+
   <%= hidden_field_tag 'booking[user_id]', current_user.id %>
   <%= hidden_field_tag 'booking[status]', 'unpaid' %>
+  <p>Total price = to do</p>
+  <%= @occupancy.price %>
+
   <%= submit_tag "Book now", class: "btn btn-danger", style: "width: 100%" %>
+
 
 <% end %>
 
