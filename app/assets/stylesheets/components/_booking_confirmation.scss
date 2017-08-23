@@ -6,8 +6,8 @@
 }
 
 .booking-confirmation-title {
-  margin-top: 77px;
-  margin-bottom: 45px;
+  margin-top: 40px;
+  margin-bottom: 25px;
   h2 {
     font-size: 28px;
     text-align: center;
@@ -19,7 +19,7 @@
 .booking-confirmation-details {
   border: solid 1px #cfcbcb;
   width: 472px;
-  height: 536px;
+  height: 580px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,10 +43,9 @@
 }
 
 .card-booking-details-address {
-  max-width: 220px;
+  max-width: 300px;
+  margin-top: 20px;
 }
-
-
 
 .card-booking-details-discount {
   width: 245px;
@@ -64,4 +63,21 @@
     color: #00cecb;
     margin: 0;
   }
+}
+
+.card-booking-details-price {
+  margin-top: 18px;
+}
+
+.original-price {
+  font-size: 36px;
+  text-decoration: line-through;
+  font-weight: 400!important;
+  color: #909090;
+}
+
+.price-paid {
+  font-size: 36px;
+  font-weight: 400!important;
+  color: #4a4a4a;
 }

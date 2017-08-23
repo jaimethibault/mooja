@@ -16,13 +16,13 @@
           </div>
           <div class="card-booking-details">
             <div class="card-booking-details-address">
-              <p><%= @surfcamp.address %></p>
-              <p>From <%= @booking.starts_at.strftime("%A, %b %d") %></p>
-              <p>To <%= @booking.ends_at.strftime("%A, %b %d") %></p>
+              <p><strong>Address</strong> <%= @surfcamp.address %></p>
+              <p><strong>From</strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
+              <p><strong>To</strong> <%= @booking.ends_at.strftime("%A, %b %d") %></p>
             </div>
             <div class="card-booking-details-price">
-              <p><%= original_price %></p>
-              <p><%= price_paid %></p>
+              <p class="original-price"><%= original_price %>€</p>
+              <p class="price-paid"><%= price_paid %>€</p>
             </div>
           </div>
         </div>
