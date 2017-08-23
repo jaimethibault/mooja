@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   def create
     @booking = Booking.new(set_params)
+    @booking.surfcamp_id = params[:surfcamp_id]
     @booking.save
     #redirect to modify
     redirect_to surfcamps_path
