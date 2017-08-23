@@ -38,9 +38,10 @@
             </div>
             <div class="surfcamp-card-text">
               <!-- get the min price out of all rooms -->
-              <% if surfcamp.rooms.nil? %>
-                <p>From <%= surfcamp.rooms.order(price_per_night: :asc).first.price_per_night %> € | TODO: Save XX€</p>
+              <% if cheapest_room_without_discount(surfcamp).discounts.blank? %>
+                <p>From <%= cheapest_room_without_discount(surfcamp).price_per_night %> €</p>
               <% else %>
+                <p>From <%= cheapest_room_price(surfcamp) %> € | Save <%= cheapest_room_without_discount(surfcamp).discounts.first.discounted_price %> €</p>
               <% end %>
               <p><%= surfcamp.name %> | <%= surfcamp.rating %> stars</p>
             </div>
