@@ -1,4 +1,12 @@
-<div class="booking_form">
+<%= simple_form_for [@surfcamp, @booking] do |f| %>
+  <%= f.input :starts_at, placeholder: "Checkin date", class: "col-xs-6" %>
+  <%= f.input :ends_at, placeholder: "Checkout date", class: "col-xs-6" %>
+  <%= f.label "Price per Day: **TBD**" %>
+  <%= f.submit "Book it!", class: "btn btn-danger btn-block" %>
+<% end %>
+
+
+<!-- <div class="booking_form">
     <form action="#" >
       <div class="form-group">
         <div class="row">
@@ -24,5 +32,5 @@
       </div>
       <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
     </form>
-  </div>
+  </div> -->
 
