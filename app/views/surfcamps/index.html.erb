@@ -3,24 +3,27 @@
     <div class="row row-no-margin">
       <!-- search box -->
       <div class="search-box col-xs-12">
-        <%= form_tag surfcamps_path, method: :get, class: "form-inline form-group" do %>
-          <%= label_tag "where", "where:" %>
-          <%= text_field_tag 'address', nil, placeholder: '30 rue de Paradis, Paris, France', class: "form-control search-box-font-size", id: "surfcamp_address" %>
-
-          <%= label_tag "waves", "waves quality:" %>
-          <%= check_box_tag 'wave-good', value = nil, class: "form-control", id: "wave_good" %>
-          <%= label_tag "wave-good", "good waves" %>
-          <%= check_box_tag 'wave-ok', value = 40, class: "form-control", id: "wave_ok" %>
-          <%= label_tag "wave-ok", "ok waves" %>
-          <br>
-
-          <%= label_tag "budget", "budget:" %>
-          <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "form-control search-box-font-size", id: "maxprice" %>
-          <%= check_box_tag 'discount-50', value = 50, class: "form-control", id: "discount_50" %>
-          <%= label_tag "discount-50", "> 50% discount" %>
-          <%= check_box_tag 'discount-40', value = 40, class: "form-control", id: "discount_40" %>
-          <%= label_tag "discount-30", "> 30% discount" %>
-          <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
+        <%= form_tag surfcamps_path, method: :get, class: "search-box-2lines" do %>
+          <!-- first line of search box -->
+          <div class="search-box-firstline">
+            <%= label_tag "where", "where:" %>
+            <%= text_field_tag 'address', nil, placeholder: '30 rue de Paradis, Paris, France', class: "search-box-font-size", id: "surfcamp_address" %>
+            <%= label_tag "waves", "waves quality:" %>
+            <%= check_box_tag 'wave-good', value = nil, id: "wave_good" %>
+            <%= label_tag "wave-good", "good waves" %>
+            <%= check_box_tag 'wave-ok', value = 40, id: "wave_ok" %>
+            <%= label_tag "wave-ok", "ok waves" %>
+          </div>
+          <!-- second line of search box -->
+          <div class="search-box-secondline">
+            <%= label_tag "budget", "budget:" %>
+            <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "search-box-font-size", id: "maxprice" %>
+            <%= check_box_tag 'discount-50', value = 50, id: "discount_50" %>
+            <%= label_tag "discount-50", "> 50% discount" %>
+            <%= check_box_tag 'discount-40', value = 40, id: "discount_40" %>
+            <%= label_tag "discount-30", "> 30% discount" %>
+            <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
+          </div>
         <% end %>
       </div>
       <!-- surfcamps cards -->
@@ -35,10 +38,13 @@
             </div>
             <div class="surfcamp-card-text">
               <!-- get the min price out of all rooms -->
-              <p>From <%= surfcamp.rooms.order(price_per_night: :asc).first.price_per_night %> € | TODO: Save XX€</p>
+              <% if surfcamp.rooms.nil? %>
+                <p>From <%= surfcamp.rooms.order(price_per_night: :asc).first.price_per_night %> € | TODO: Save XX€</p>
+              <% else %>
+              <% end %>
               <p><%= surfcamp.name %> | <%= surfcamp.rating %> stars</p>
             </div>
-            <a class="surfcamp-card-link" href="#" ></a>
+            <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
           </div>
         </div>
       <% end %>
@@ -46,6 +52,109 @@
   </div>
   <!-- map -->
   <div id="map">
-    Todo: map
   </div>
 </div>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var dima = [
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#5bbee1"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    }
+];
+
+      var handler = Gmaps.build('Google');
+      handler.buildMap({
+      provider: {
+        styles: dima
+      },
+      internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>

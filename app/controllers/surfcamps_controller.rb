@@ -4,9 +4,15 @@ class SurfcampsController < ApplicationController
 
   def index
     if params[:maxprice].nil?
-      @surfcamps = Surfcamp.all
+      @surfcamps = Surfcamp.all.where.not(latitude: nil, longitude: nil)
     else
       @surfcamps = Surfcamp.joins(:rooms).where("price_per_night < ?", params[:maxprice]).distinct
+    end
+
+    @hash = Gmaps4rails.build_markers(@surfcamps) do |surfcamp, marker|
+      marker.lat surfcamp.latitude
+      marker.lng surfcamp.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
     end
   end
 
@@ -22,4 +28,9 @@ class SurfcampsController < ApplicationController
   def set_surfcamp
     @surfcamp = Surfcamp.find(params[:id])
   end
+
+  def set_params
+    params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
+  end
+
 end
