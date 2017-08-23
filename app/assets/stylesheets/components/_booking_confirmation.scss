@@ -51,7 +51,7 @@
   width: 245px;
   height: 75px;
   position: absolute;
-  bottom: 30px;
+  bottom: 2.5em;
   background-color: #ffffff;
   border: solid 1px #00cecb;
   display: flex;
@@ -70,9 +70,10 @@
 }
 
 .original-price {
-  font-size: 36px;
+  font-size: 30px;
   text-decoration: line-through;
-  font-weight: 400!important;
+  font-weight: 300!important;
+  text-align: right!important;
   color: #909090;
 }
 
