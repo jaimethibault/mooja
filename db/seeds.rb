@@ -152,9 +152,9 @@ surfcamps.each do |surfcamp|
   rand(2..10).times do
     booking = Booking.new
     sept_first = Date.parse("September 1st")
-    booking.starts_at = sept_first
-    booking.ends_at = (sept_first..(sept_first + 12.months)).to_a.sample
-    booking.status = ['pending', 'declined', 'accepted'].sample
+    booking.starts_at = sept_first + rand(2.months)
+    booking.ends_at = booking.starts_at + rand(3..14).days
+    booking.status = "paid"
     booking.surfcamp_id = surfcamp.id
     users = User.all
     user = users.sample
@@ -167,7 +167,29 @@ end
 puts "Done Creating Bookings"
 
 
+# puts "Creating Occupancies"
+# rooms = Room.all
+# rooms.each do |room|
+#   occupancy = Occupancy.new
+#    if room.category == 'dormitory'
+#         room.capacity = rand(1..8)
+#         room.price_per_night = rand(50..70)
+#         room.pax_nb = rand(0..8)
+#         room.price = total(pax_nb) * price_per_night
+#       elsif room.category == 'twin bedroom'
+#         room.capacity = 2
+#         room.price_per_night = rand(70..99)
+#       else
+#         room.capacity =
+#         room.price_per_night = rand(100..120)
+#         room.pax_nb = rand(0..2)
+#         room.price = total(pax_nb) * price_per_night
+#       end
+#     occupancy.booking_id = booking.id
+#     occupancy.room_id = room.id
+#     occupancy.save!
 
+# puts "Done Creating Occupancies"
 
 
 
