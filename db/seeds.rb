@@ -70,7 +70,6 @@ html_doc.search(".name-location a").each do |element|
     images_surfcamp << element['style'][/url\((.+)\)/, 1].gsub("'","")
   end
   # ajout de la première image du surfcamp au surfcamp
-  p images_surfcamp[0]
   surfcamp.photo_url = images_surfcamp[0]
   html_doc.search("h1.sh-navy").each do |element|
     name = element.text
