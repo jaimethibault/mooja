@@ -1,6 +1,6 @@
 <div class="banner-show">
   <% if @surfcamp.photo? %>
-    <%= cl_image_tag @surfcamp.photo.path, width: 1600 , height: 400 , crop: :fill, class: "banner-surfcamp" %>
+    <%= cl_image_tag @surfcamp.photo.path, width: 1500 , height: 550, crop: :lfill, fetch_format: :auto, class: "banner-surfcamp"%>
   <% end %>
 </div>
 <div class="container">
@@ -18,7 +18,7 @@
         </div>
         <hr>
         <p><i class="fa fa-map-marker" aria-hidden="true"></i>
-        <%= @surfcamp.address %></p>
+        <%= @surfcamp.address.capitalize %></p>
         <hr>
         <h4>Description</h4>
         <p><%= @surfcamp.description %></p>
