@@ -28,4 +28,9 @@ class SurfcampsController < ApplicationController
   def set_surfcamp
     @surfcamp = Surfcamp.find(params[:id])
   end
+
+  def set_params
+    params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
+  end
+
 end
