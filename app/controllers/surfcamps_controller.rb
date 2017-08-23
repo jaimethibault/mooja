@@ -16,10 +16,6 @@ class SurfcampsController < ApplicationController
     end
   end
 
-  def surfcamp_params
-    params.require(:surfcamp).permit(:name, :description, :photo)
-  end
-
   def show
   end
 

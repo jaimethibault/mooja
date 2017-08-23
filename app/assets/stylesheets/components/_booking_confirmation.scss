@@ -1,0 +1,40 @@
+.booking-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-confirmation-title {
+  margin-top: 77px;
+  margin-bottom: 45px;
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #4a484a;
+  }
+}
+
+.booking-confirmation-details {
+  border: solid 1px #cfcbcb;
+  width: 472px;
+  height: 536px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-title h3 {
+  font-size: 24px;
+  color: #4a484a;
+  text-align: left!important;
+
+}
+
+.card-booking-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-booking-details-address {
+  max-width: 220px;
+}

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
+      <div class="booking-confirmation-title">
+        <h2>Thank you for your reservation!</h2>
+      </div>
+      <div class="booking-confirmation-details">
+        <div class="card">
+          <div class="card-title">
+            <h3>Booking confirmation</h3>
+          </div>
+          <div class="card-image">
+            <% if @surfcamp.photo? %>
+            <%= cl_image_tag @surfcamp.photo.path, width: 445, height: 220, crop: :fill %>
+            <% end %>
+          </div>
+          <div class="card-booking-details">
+            <div class="card-booking-details-address">
+              <p><%= @surfcamp.address %></p>
+              <p><%= @booking.starts_at %></p>
+              <p><%= @booking.ends_at %></p>
+            </div>
+            <div class="card-booking-details-price">
+              <p><%= original_price %></p>
+              <p><%= price_paid %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="booking-confirmation-final-discount">
+
+      </div>
+     </div>
+  </div>
+</div>
