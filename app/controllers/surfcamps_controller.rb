@@ -12,7 +12,7 @@ class SurfcampsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@surfcamps) do |surfcamp, marker|
       marker.lat surfcamp.latitude
       marker.lng surfcamp.longitude
-      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+      marker.infowindow render_to_string(partial: "/surfcamps/map_box", locals: { surfcamp: surfcamp })
     end
   end
 
