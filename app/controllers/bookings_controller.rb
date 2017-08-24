@@ -30,27 +30,27 @@ class BookingsController < ApplicationController
     @surfcamp
   end
 
-  def price_paid
-    @price_paid = 0
+  # def price_paid
+  #   @price_paid = 0
 
-    @booking.occupancies.each do |occupancy|
-      @price = occupancy.price
-      @price_paid += @price
-    end
-    @price_paid
-  end
+  #   @booking.occupancies.each do |occupancy|
+  #     @price = occupancy.price
+  #     @price_paid += @price
+  #   end
+  #   @price_paid
+  # end
 
-  def original_price
-    @original_price = 0
+  # def original_price
+  #   @original_price = 0
 
-    @booking.occupancies.each do |occupancy|
-      @room_id = occupancy.room_id
-      @room = Room.find(@room_id)
-      @price_per_night = @room.price_per_night
-      @original_price += @price_per_night
-    end
-    @original_price
-  end
+  #   @booking.occupancies.each do |occupancy|
+  #     @room_id = occupancy.room_id
+  #     @room = Room.find(@room_id)
+  #     @price_per_night = @room.price_per_night
+  #     @original_price += @price_per_night
+  #   end
+  #   @original_price
+  # end
 
   helper_method :price_paid, :original_price
 end
