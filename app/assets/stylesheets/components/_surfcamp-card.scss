@@ -1,14 +1,32 @@
 .surfcamp-card {
   position: relative;
-  margin-bottom: 30px;
+  margin: 30px 30px 30px 30px;
+  width: auto;
 }
-.surfcamp-card-pic {
+.surfcamp-card-pic img {
+  border-radius: 2px;
 
 }
-.surfcamp-card-text p {
-  font-size: 14px;
-  margin: 0px;
+.surfcamp-card-text {
+  margin-top: 30px;
+  p {
+    font-size: 14px;
+    margin: 0px;
+  }
 }
+.surfcamp-cart-text-price {
+  font-weight: bold;
+  text-align: left;
+  color: #1a1919;
+}
+
+.surfcamp-card-text-stars {
+  font-size: 16px;
+  font-weight: 300!important;
+  text-align: left;
+  color: #242323;
+}
+
 .surfcamp-card-link {
   position: absolute;
   top: 0;
@@ -21,4 +39,9 @@
 }
 .card-link:hover {
   opacity: 0.1;
+}
+
+.fa-star {
+  font-size: 20px;
+  margin-top: 20px;
 }
