@@ -2,7 +2,14 @@
   opacity:1;
   border-radius: 2px;
   border: 1px solid lightgrey;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  position:relative;
+}
 
+.submit-btn {
+  margin: 20px;
 }
 
 label {

@@ -9,25 +9,33 @@
   <%# f.submit "Book it!", class: "btn btn-danger btn-block" %>
 <%# end %>
 
-<%= form_tag surfcamp_bookings_path(@surfcamp) do %>
-  <%= label_tag 'booking[starts_at]', 'Checkin' %>
-  <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017" %>
-  <%= label_tag 'booking[ends_at]', 'Checkout' %>
-  <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017" %>
-  <%#room[type] = 'dormitory' %>
-  <%= label_tag 'occupancy[pax_nb]', 'Dormitory' %>
-  <%= number_field_tag 'occupancy[pax_nb]', '1' %>
-  <%#room[type] = 'private room' %>
-  <%= label_tag 'occupancy[pax_nb]', 'Private Room' %>
-  <%= number_field_tag 'occupancy[pax_nb]', '1' %>
-  <%= hidden_field_tag 'booking[user_id]', current_user.id %>
-  <%= hidden_field_tag 'booking[status]', 'unpaid' %>
-  <%= submit_tag "Book now", class: "btn btn-danger", style: "width: 100%" %>
+<div class="booking-form">
+  <div class="booking-input">
+    <%= form_tag surfcamp_bookings_path(@surfcamp) do %>
+      <%= label_tag 'booking[starts_at]', 'Checkin' %>
+      <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017" %>
 
-<% end %>
+      <%= label_tag 'booking[ends_at]', 'Checkout' %>
+      <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017" %>
 
+      <%= label_tag 'booking[ends_at]', 'Surfers' %>
+      <%= number_field_tag 'booking[pax_nb]', '1' %>
+      <% if current_user.nil? %>
+      <% else %>
+      <%= hidden_field_tag 'booking[user_id]', current_user.id %>
+      <% end %>
+      <%= hidden_field_tag 'booking[status]', 'unpaid' %>
 
-<!-- <div class="booking_form">
+      <hr>
+      <p> Total Price:</p>
+      <div class="submit-btn">
+      <%= submit_tag "Book now", class: "btn btn-primary", style: "width: 100%" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<!--
     <form action="#" >
       <div class="form-group">
         <div class="row">
@@ -53,7 +61,7 @@
       </div>
       <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
     </form>
-  </div> -->
+  -->
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
