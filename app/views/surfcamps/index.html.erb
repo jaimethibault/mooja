@@ -37,11 +37,13 @@
               <% end %>
             </div>
             <div class="surfcamp-card-text">
-              <!-- get the min price out of all rooms -->
               <div class="surfcamp-cart-text-price">
-                  <p>From XXX € | Save XX % |<%= surfcamp.name %></p>
-
-
+                <!-- check if this surfcamp has a discount -->
+                <% if surfcamp.discounts.blank? %>
+                  <p>From <%= surfcamp.price_per_night_per_person %> € | <%= surfcamp.name %></p>
+                <% else %>
+                  <p>From <%= surfcamp.discounts.first.discounted_price %> € <strike><%= surfcamp.price_per_night_per_person %> €</strike> | Save <%= percentage_of_savings(surfcamp) %> % | <%= surfcamp.name %></p>
+                <% end %>
               </div>
               <div class="surfcamp-card-text-stars">
                 <% surfcamp.rating.times do %>

@@ -30,22 +30,13 @@ class SurfcampsController < ApplicationController
     params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
   end
 
-  def cheapest_room_price(surfcamp)
-    # récupérer les rooms avec leur price
-    rooms = surfcamp.rooms
-    # checker s'il y a des discounts sur les rooms / pendant les dates choisies
-    discounted_rooms_prices = []
-    rooms.each do |room|
-      !room.discounts.blank? ? discount = room.discounts.first.discounted_price : discount = 0
-      final_room_price = room.price_per_night - discount
-      discounted_rooms_prices << final_room_price
-    end
-    discounted_rooms_prices.sort.first
+  def percentage_of_savings(surfcamp)
+    discounted_price = surfcamp.discounts.first.discounted_price
+    original_price = surfcamp.price_per_night_per_person
+    percentage_of_saving = 1 - (discounted_price).fdiv(original_price)
+    # multiply by 100 and round it for display
+    (percentage_of_saving * 100).round
   end
 
-  # def cheapest_room_without_discount(surfcamp)
-  #   surfcamp.rooms.order(price_per_night: :asc).first
-  # end
-
-  helper_method :cheapest_room_without_discount, :cheapest_room_price
+  helper_method :percentage_of_savings
 end

@@ -131,9 +131,10 @@ Surfcamp.all.each do |surfcamp|
 
   if apply_discount
     discount = Discount.new
-    # creating discount between 30 and 70% reduction
+    # creating discount between 20 and 50% reduction
     discount_rate = [20, 30, 40, 50].sample.to_f/100
-    discount.discounted_price = discount_rate * surfcamp.price_per_night_per_person
+    discounted_price = (1 - discount_rate) * surfcamp.price_per_night_per_person
+    discount.discounted_price = discounted_price
 
     # Between September 1st and September 15th
     discount.limit_offer_date = (sept_first..(sept_first + 15.days)).to_a.sample
@@ -207,7 +208,7 @@ surfcamps.each do |surfcamp|
     booking.total_discounted_price = total_discounted_price
 
     booking.save!
-    puts "successfully saved a booking for #{surfcamp.name}"
+    # puts "successfully saved a booking for #{surfcamp.name}"
   end
 end
 
