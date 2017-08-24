@@ -1,5 +1,5 @@
 class Discount < ApplicationRecord
-  belongs_to :room
+  belongs_to :surfcamp
 
   validates :discounted_price, presence: true
   validates :limit_offer_date, presence: true
