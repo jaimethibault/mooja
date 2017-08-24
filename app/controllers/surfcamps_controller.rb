@@ -3,7 +3,7 @@ class SurfcampsController < ApplicationController
   before_action :set_surfcamp, only: [:show]
 
   def index
-    if params[:maxprice].nil? || params[:address].nil?
+    if params[:maxprice].blank? && params[:address].blank?
       @surfcamps = Surfcamp.all.where.not(latitude: nil, longitude: nil)
     else
       # @surfcamps = Surfcamp.where("price_per_night_per_person <= ?", params[:maxprice]).or(Surfcamp.near(params[:address], 500))
