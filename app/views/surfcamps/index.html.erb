@@ -13,16 +13,17 @@
           <div class="search-box-waves-title text-center">
             <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Waves <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-          </div>
-          <div class="collapse" id="collapseExample">
-            <div class="search-box-waves-filters">
-              <%= label_tag "waves", "waves quality:" %>
-              <%= check_box_tag 'wave-good', value = nil, id: "wave_good" %>
-              <%= label_tag "wave-good", "good waves" %>
-              <%= check_box_tag 'wave-ok', value = 40, id: "wave_ok" %>
-              <%= label_tag "wave-ok", "ok waves" %>
+             <div class="collapse" id="collapseExample">
+              <div class="search-box-waves-filters">
+                <%= label_tag "waves", "waves quality:" %>
+                <%= check_box_tag 'wave-good', value = nil, id: "wave_good" %>
+                <%= label_tag "wave-good", "good waves" %>
+                <%= check_box_tag 'wave-ok', value = 40, id: "wave_ok" %>
+                <%= label_tag "wave-ok", "ok waves" %>
+              </div>
             </div>
           </div>
+
         </div>
         <!-- second line of search box -->
         <div class="search-box-budget">
