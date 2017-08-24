@@ -25,7 +25,7 @@
       </div>
       <hr>
       <h4>Where to find us ?</h4>
-      <div id="map">
+      <div id="map-show">
       </div>
       <hr>
       <h4>Reviews</h4>
@@ -44,7 +44,7 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
   var handler = Gmaps.build('Google', { markers: { clusterer: undefined } });
-  handler.buildMap({ internal: { id: 'map' } }, function() {
+  handler.buildMap({ internal: { id: 'map-show' } }, function() {
     markers = handler.addMarkers(
       [
         {
