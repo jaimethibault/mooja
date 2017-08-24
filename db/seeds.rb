@@ -186,29 +186,30 @@ end
 puts "Done Creating Bookings"
 
 
-# puts "Creating Occupancies"
-# rooms = Room.all
-# rooms.each do |room|
-#   occupancy = Occupancy.new
-#    if room.category == 'dormitory'
-#         room.capacity = rand(1..8)
-#         room.price_per_night = rand(50..70)
-#         room.pax_nb = rand(0..8)
-#         room.price = total(pax_nb) * price_per_night
-#       elsif room.category == 'twin bedroom'
-#         room.capacity = 2
-#         room.price_per_night = rand(70..99)
-#       else
-#         room.capacity =
-#         room.price_per_night = rand(100..120)
-#         room.pax_nb = rand(0..2)
-#         room.price = total(pax_nb) * price_per_night
-#       end
-#     occupancy.booking_id = booking.id
-#     occupancy.room_id = room.id
-#     occupancy.save!
+puts "Creating Occupancies"
+rooms = Room.all
+rooms.each do |room|
+  occupancy = Occupancy.new
+    if room.category == 'dormitory'
+      room.capacity = rand(1..8)
+      occupancy.pax_nb = rand(0..8)
+      occupancy.price = occupancy.pax_nb * room.price_per_night
+    else
+      room.capacity == 'private room'
+      if room.capacity == 1
+        occupancy.pax_nb = rand(0..1)
+        occupancy.price = occupancy.pax_nb * room.price_per_night
+      else
+        occupancy.pax_nb = rand(0..2)
+        occupancy.price = occupancy.pax_nb * room.price_per_night
+      end
+    end
+    occupancy.booking_id = rand(Booking.first.id..Booking.last.id)
+    occupancy.room_id = room.id
+    occupancy.save!
+end
 
-# puts "Done Creating Occupancies"
+puts "Done Creating Occupancies"
 
 puts "Seed is done"
 puts "Happy coding!!!"
