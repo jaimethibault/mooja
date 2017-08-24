@@ -44,9 +44,5 @@ class SurfcampsController < ApplicationController
     params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
   end
 
-  def real_price
-
-  end
-
   helper_method :cheapest_room_without_discount, :cheapest_room_price
 end
