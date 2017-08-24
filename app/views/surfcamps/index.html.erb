@@ -41,7 +41,7 @@
                 <% if surfcamp.discounts.blank? %>
                   <p>From <%= surfcamp.price_per_night_per_person %> € | <%= surfcamp.name %></p>
                 <% else %>
-                  <p>From <%= surfcamp.discounts.first.discounted_price %> € <strike><%= surfcamp.price_per_night_per_person %> €</strike> | <%= surfcamp.name %></p>
+                  <p>From <%= surfcamp.discounts.first.discounted_price %> € <strike style="color: grey;"><%= surfcamp.price_per_night_per_person %> €</strike> | <%= surfcamp.name %></p>
                 <% end %>
               </div>
               <div class="surfcamp-card-text-stars">
