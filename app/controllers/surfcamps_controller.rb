@@ -8,7 +8,19 @@ class SurfcampsController < ApplicationController
     else
       # @surfcamps = Surfcamp.where("price_per_night_per_person <= ?", params[:maxprice]).or(Surfcamp.near(params[:address], 500))
       @surfcamps_location = Surfcamp.near(params[:address], 500)
-      @surfcamps = @surfcamps_location.where("price_per_night_per_person <= ?", params[:maxprice])
+      if params[:maxprice].blank?
+        @surfcamps = @surfcamps_location
+      elsif params[:address].blank?
+        @discounted_surfcamps = Surfcamp.joins(:discounts).where("discounted_price <= ?", params[:maxprice])
+        @normal_price_surfcamps = Surfcamp.where("price_per_night_per_person <= ?", params[:maxprice])
+        @matching_surfcamps = @discounted_surfcamps + @normal_price_surfcamps
+        @surfcamps = @matching_surfcamps.uniq
+      else
+        @discounted_surfcamps = @surfcamps_location.joins(:discounts).where("discounted_price <= ?", params[:maxprice])
+        @normal_price_surfcamps = @surfcamps_location.where("price_per_night_per_person <= ?", params[:maxprice])
+        @matching_surfcamps = @discounted_surfcamps + @normal_price_surfcamps
+        @surfcamps = @matching_surfcamps.uniq
+      end
     end
 
     @hash = Gmaps4rails.build_markers(@surfcamps) do |surfcamp, marker|
@@ -32,22 +44,9 @@ class SurfcampsController < ApplicationController
     params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
   end
 
-  def cheapest_room_price(surfcamp)
-    # récupérer les rooms avec leur price
-    rooms = surfcamp.rooms
-    # checker s'il y a des discounts sur les rooms / pendant les dates choisies
-    discounted_rooms_prices = []
-    rooms.each do |room|
-      !room.discounts.blank? ? discount = room.discounts.first.discounted_price : discount = 0
-      final_room_price = room.price_per_night - discount
-      discounted_rooms_prices << final_room_price
-    end
-    discounted_rooms_prices.sort.first
-  end
+  def real_price
 
-  # def cheapest_room_without_discount(surfcamp)
-  #   surfcamp.rooms.order(price_per_night: :asc).first
-  # end
+  end
 
   helper_method :cheapest_room_without_discount, :cheapest_room_price
 end

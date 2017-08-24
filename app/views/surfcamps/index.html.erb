@@ -7,7 +7,7 @@
         <!-- first line of search box -->
         <div class="search-box-where">
           <i class="fa fa-search" aria-hidden="true"></i>
-          <%= text_field_tag 'address', nil, placeholder: 'Lisbonne, Portugal', class: "search-box-input", id: "surfcamp_address" %>
+          <%= text_field_tag 'address', nil, value: params[:address], placeholder: 'Ex: Lisbonne, Portugal', class: "search-box-input", id: "surfcamp_address" %>
         </div>
         <div class="search-box-waves">
           <div class="search-box-waves-title text-center">
@@ -27,7 +27,7 @@
         <!-- second line of search box -->
         <div class="search-box-budget">
           <i class="fa fa-money" aria-hidden="true"></i>
-          <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "search-box-input", id: "maxprice" %>
+          <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Ex: 120€', class: "search-box-input", id: "maxprice" %>
         </div>
       </div>
       <div class="col-xs-12 search-action">
