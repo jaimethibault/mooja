@@ -32,8 +32,8 @@ class BookingsController < ApplicationController
     #Calculate night per night if there is an active discount
       nights.each do |night|
         #Check if night is inside the discount dates
-          if night >= @surfcamp.discounts.first.discount_starts_at && night <= @surfcamp.discounts.first.discount_ends_at
-            night_price = @surfcamp.discounts.first.discounted_price
+          if night >= @surfcamp.discounts.first.discount_starts_at.to_date && night <= @surfcamp.discounts.first.discount_ends_at.to_date
+            night_price = @surfcamp.discounts.first.discounted_price * @booking.pax_nb
           else
             # price per night with the discount
             night_price = @surfcamp.price_per_night_per_person * @booking.pax_nb
@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
   end
 
   def set_params
-    params.require(:booking).permit(:starts_at, :ends_at, :pax_nb, :status, :user_id, :surfcamp_id)
+    params.require(:booking).permit(:starts_at, :ends_at, :pax_nb, :status, :user_id)
   end
 
   def related_surfcamp
@@ -66,5 +66,5 @@ class BookingsController < ApplicationController
     @surfcamp
   end
 
-    helper_method :price_paid, :original_price
+  helper_method :price_paid, :original_price
 end
