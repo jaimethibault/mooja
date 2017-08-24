@@ -6,7 +6,7 @@ class SurfcampsController < ApplicationController
     if params[:maxprice].nil?
       @surfcamps = Surfcamp.all.where.not(latitude: nil, longitude: nil)
     else
-      @surfcamps = Surfcamp.joins(:rooms).where("price_per_night <= ?", params[:maxprice]).distinct
+      @surfcamps = Surfcamp.where("price_per_night_per_person <= ?", params[:maxprice]).distinct
     end
 
     @hash = Gmaps4rails.build_markers(@surfcamps) do |surfcamp, marker|
@@ -18,7 +18,6 @@ class SurfcampsController < ApplicationController
 
   def show
     @booking = Booking.new
-    @occupancy = Occupancy.new
   end
 
   private
@@ -44,9 +43,9 @@ class SurfcampsController < ApplicationController
     discounted_rooms_prices.sort.first
   end
 
-  def cheapest_room_without_discount(surfcamp)
-    surfcamp.rooms.order(price_per_night: :asc).first
-  end
+  # def cheapest_room_without_discount(surfcamp)
+  #   surfcamp.rooms.order(price_per_night: :asc).first
+  # end
 
   helper_method :cheapest_room_without_discount, :cheapest_room_price
 end

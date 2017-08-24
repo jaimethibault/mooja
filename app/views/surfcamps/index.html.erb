@@ -39,11 +39,9 @@
             <div class="surfcamp-card-text">
               <!-- get the min price out of all rooms -->
               <div class="surfcamp-cart-text-price">
-                <% if cheapest_room_without_discount(surfcamp).discounts.blank? %>
-                  <p>From <%= cheapest_room_without_discount(surfcamp).price_per_night %> € | <%= surfcamp.name %></p>
-                <% else %>
-                  <p>From <%= cheapest_room_price(surfcamp) %> € | Save <%= cheapest_room_without_discount(surfcamp).discounts.first.discounted_price %> € | <%= surfcamp.name %></p>
-                <% end %>
+                  <p>From XXX € | Save XX % |<%= surfcamp.name %></p>
+
+
               </div>
               <div class="surfcamp-card-text-stars">
                 <% surfcamp.rating.times do %>
