@@ -2,29 +2,42 @@
   <div class="cards-container">
     <div class="row row-no-margin">
       <!-- search box -->
-      <div class="search-box col-xs-12">
-        <%= form_tag surfcamps_path, method: :get, class: "search-box-2lines" do %>
-          <!-- first line of search box -->
-          <div class="search-box-firstline">
-            <%= label_tag "where", "where:" %>
-            <%= text_field_tag 'address', nil, placeholder: '30 rue de Paradis, Paris, France', class: "search-box-font-size", id: "surfcamp_address" %>
-            <%= label_tag "waves", "waves quality:" %>
-            <%= check_box_tag 'wave-good', value = nil, id: "wave_good" %>
-            <%= label_tag "wave-good", "good waves" %>
-            <%= check_box_tag 'wave-ok', value = 40, id: "wave_ok" %>
-            <%= label_tag "wave-ok", "ok waves" %>
+      <div class="col-xs-12">
+        <%= form_tag surfcamps_path, method: :get, class: "search-box" do %>
+        <!-- first line of search box -->
+        <div class="search-box-where">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <%= text_field_tag 'address', nil, placeholder: 'Lisbonne, Portugal', class: "search-box-input", id: "surfcamp_address" %>
+        </div>
+        <div class="search-box-waves">
+          <div class="search-box-waves-title text-center">
+            <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Waves <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
           </div>
-          <!-- second line of search box -->
-          <div class="search-box-secondline">
-            <%= label_tag "budget", "budget:" %>
-            <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "search-box-font-size", id: "maxprice" %>
-            <%= check_box_tag 'discount-50', value = 50, id: "discount_50" %>
-            <%= label_tag "discount-50", "> 50% discount" %>
-            <%= check_box_tag 'discount-40', value = 40, id: "discount_40" %>
-            <%= label_tag "discount-30", "> 30% discount" %>
+          <div class="collapse" id="collapseExample">
+            <div class="search-box-waves-filters">
+              <%= label_tag "waves", "waves quality:" %>
+              <%= check_box_tag 'wave-good', value = nil, id: "wave_good" %>
+              <%= label_tag "wave-good", "good waves" %>
+              <%= check_box_tag 'wave-ok', value = 40, id: "wave_ok" %>
+              <%= label_tag "wave-ok", "ok waves" %>
+            </div>
+          </div>
+        </div>
+        <!-- second line of search box -->
+        <div class="search-box-budget">
+          <i class="fa fa-money" aria-hidden="true"></i>
+          <%= text_field_tag 'maxprice', nil, placeholder: 'your maximum budget', class: "search-box-input", id: "maxprice" %>
+        </div>
+      </div>
+      <div class="col-xs-12 search-action">
+          <div class="result">
+            <p><%= pluralize(@surfcamps.size, 'result')%> matching your criterias </p>
+          </div>
+          <div class="button">
             <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
           </div>
-        <% end %>
+          <% end %>
       </div>
       <!-- surfcamps cards -->
       <% @surfcamps.each do |surfcamp| %>
