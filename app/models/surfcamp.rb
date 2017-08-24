@@ -1,5 +1,5 @@
 class Surfcamp < ApplicationRecord
-  has_many :rooms, dependent: :nullify
+  has_many :discounts, dependent: :nullify
   has_many :bookings, dependent: :nullify
   has_attachment :photo
   geocoded_by :address
