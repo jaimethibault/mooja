@@ -60,7 +60,9 @@
                 <% end %>
               </div>
               <div class="surfcamp-card-text-stars">
-                <% surfcamp.rating.times do %>
+                <% unless surfcamp.rating.blank? %>
+                  <% surfcamp.rating.times do %>
+                <% end %>
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <% end %>
               </div>
