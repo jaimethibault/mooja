@@ -64,7 +64,7 @@
 
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
+  <script>
     $(document).ready(function() {
       var dima = [
     {
@@ -154,14 +154,19 @@
       },
       internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        marker.forEach(marker => marker.addEventListener("mouseover", fuction {
+
+        }))
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
+        // debugger
         if (markers.length == 0) {
           handler.getMap().setZoom(2);
+          console.log('hello');
         } else if (markers.length == 1) {
           handler.getMap().setZoom(14);
         }
       });
     });
-  <% end %>
+  </script>
 <% end %>

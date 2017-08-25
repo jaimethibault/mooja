@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:show]
   mount Attachinary::Engine => "/attachinary"
+
+  get '/components', to: 'pages#components'
 end
+
+

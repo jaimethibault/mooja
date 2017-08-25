@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def components
+    @surfcamp = Surfcamp.last
+  end
 end
