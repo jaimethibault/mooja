@@ -62,6 +62,7 @@ class SurfcampsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @errors = {}
   end
 
   private
