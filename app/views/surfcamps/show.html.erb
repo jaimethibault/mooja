@@ -8,6 +8,7 @@
     <div class="col-md-8">
       <div class="surfcamp-details">
         <h2> <%= @surfcamp.name %></h2>
+        <% unless @surfcamp.rating.blank? %>
         <div class="rating">
           <% @surfcamp.rating.to_i.times do  %>
             <i class="fa fa-star" style="color: black"></i>
@@ -16,6 +17,7 @@
             <i class="fa fa-star-o";"></i>
           <% end %>
         </div>
+        <% end %>
         <hr>
         <p><i class="fa fa-map-marker" aria-hidden="true"></i>
         <%= @surfcamp.address.capitalize %></p>
