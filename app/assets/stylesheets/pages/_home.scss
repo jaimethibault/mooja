@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.banner-content h3 {
+  color:white;
+}
+
 .banner-content {
   margin-bottom: 150px;
 }
@@ -36,4 +40,10 @@
 .search-home-btn {
   border-radius: 20px;
   margin: 25px 15px;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
+
