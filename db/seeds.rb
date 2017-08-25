@@ -61,6 +61,9 @@ puts "Admin created"
 
 puts "Creating Surfcamps"
 # all the countries available on the website
+# If you are in development and do not want to scrapp all the crountries,
+# just comment the countries that are'nt necessary.
+# After seed uncomment, that way whe can have the proper seed on master
 countries = [
   "portugal",
   "morocco",
