@@ -44,5 +44,13 @@ class SurfcampsController < ApplicationController
     params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
   end
 
-  helper_method :cheapest_room_without_discount, :cheapest_room_price
+  def percentage_of_savings(surfcamp)
+    discounted_price = surfcamp.discounts.first.discounted_price
+    original_price = surfcamp.price_per_night_per_person
+    percentage_of_saving = 1 - (discounted_price).fdiv(original_price)
+    # multiply by 100 and round it for display
+    (percentage_of_saving * 100).round
+  end
+
+  helper_method :percentage_of_savings
 end

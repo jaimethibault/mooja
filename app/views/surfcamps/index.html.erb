@@ -46,23 +46,32 @@
         <div class="col-xs-12 col-lg-10 col-lg-offset-1">
           <div class="surfcamp-card">
             <div class="surfcamp-card-pic">
-              <!-- <img src="https://unsplash.it/250/150" alt=""> -->
               <% if surfcamp.photo? %>
-                <%= cl_image_tag surfcamp.photo.path, width: 510, height: 350, crop: :fill, fetch_format: :auto %>
+                <%= cl_image_tag surfcamp.photo.path, width: 510, height: 350, crop: :lfill, fetch_format: :auto %>
               <% end %>
             </div>
             <div class="surfcamp-card-text">
-              <!-- get the min price out of all rooms -->
               <div class="surfcamp-cart-text-price">
-                  <p>From XXX € | Save XX % |<%= surfcamp.name %></p>
-
-
+                <!-- check if this surfcamp has a discount -->
+                <% if surfcamp.discounts.blank? %>
+                  <p>From <%= surfcamp.price_per_night_per_person %> € | <%= surfcamp.name %></p>
+                <% else %>
+                  <p>From <%= surfcamp.discounts.first.discounted_price %> € <strike style="color: grey;"><%= surfcamp.price_per_night_per_person %> €</strike> | <%= surfcamp.name %></p>
+                <% end %>
               </div>
               <div class="surfcamp-card-text-stars">
                 <% surfcamp.rating.times do %>
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <% end %>
               </div>
+              <!-- div showing the percentage of savings -->
+              <% unless surfcamp.discounts.blank? %>
+                <div class="surfcamp-card-text-disc">
+                  <div class="text">
+                    <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
+                  </div>
+                </div>
+              <% end %>
             </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
           </div>
