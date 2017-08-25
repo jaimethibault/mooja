@@ -1,1 +1,39 @@
 // Specific CSS for your home-page
+.banner-content {
+  margin-bottom: 150px;
+}
+.search-home-square {
+  display: flex;
+  justify-content: space-around;
+}
+.search-home-box {
+  opacity: 0.42;
+  margin: 1px;
+  background-color: #f6f5f5;
+  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
+  border: solid 2px #ffffff;
+}
+
+.search-home-input {
+  text-align: left;
+  border: none;
+  font-size: 19px;
+}
+  input::placeholder {
+    // color: $blue;
+    // opacity: 1 !important;
+  font-weight: lighter;
+  }
+
+.search-home-label {
+  text-align: left;
+  display: block;
+  padding: 5px 10px 0;
+  font-weight: lighter;
+  font-size: 15px;
+}
+
+.search-home-btn {
+  border-radius: 20px;
+  margin: 25px 15px;
+}
