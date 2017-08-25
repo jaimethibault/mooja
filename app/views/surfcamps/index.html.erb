@@ -86,7 +86,8 @@
 
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
+  <%#= javascript_tag do %>
+  <script>
     $(document).ready(function() {
       var dima = [
     {
@@ -186,8 +187,6 @@
       });
     });
 
- <!-- ici c'est la merde -->
-
 document.addEventListener("DOMContentLoaded", function() {
   var flatAddress = document.getElementById('surfcamp_address');
 
@@ -197,7 +196,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-  <% end %>
+  <%# end %>
+  </script>
 <% end %>
 
 
