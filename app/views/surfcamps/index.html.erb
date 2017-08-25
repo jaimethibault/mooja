@@ -87,8 +87,7 @@
 
 
 <% content_for(:after_js) do %>
-  <%#= javascript_tag do %>
-  <script>
+  <%= javascript_tag do %>
     $(document).ready(function() {
       var dima = [
     {
@@ -197,8 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-  <%# end %>
-  </script>
+  <% end %>
 <% end %>
 
 
