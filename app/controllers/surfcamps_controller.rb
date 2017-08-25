@@ -30,11 +30,11 @@ class SurfcampsController < ApplicationController
       marker.lat surfcamp.latitude
       marker.lng surfcamp.longitude
       marker.infowindow render_to_string(partial: "/surfcamps/map_box", locals: { surfcamp: surfcamp })
-      marker.picture({
-        :url => "http://maps.google.com/mapfiles/ms/icons/#{marker_color(surfcamp)}.png",
-        :width   => 40,
-        :height  => 40
-      })
+      # marker.picture({
+      #   :url => "http://maps.google.com/mapfiles/ms/icons/#{marker_color(surfcamp)}.png",
+      #   :width   => 40,
+      #   :height  => 40
+      # })
     end
 
     # # Parsing weather conditions for all surfcamps - FULL

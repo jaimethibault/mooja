@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.banner-content h3 {
+  color:white;
+}
+
 .banner-content {
   margin-bottom: 150px;
 }
@@ -12,6 +16,10 @@
   background-color: #f6f5f5;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
   border: solid 2px #ffffff;
+
+  .date-input {
+    display: inline-flex;
+  }
 }
 
 .search-home-input {
@@ -36,4 +44,16 @@
 .search-home-btn {
   border-radius: 20px;
   margin: 25px 15px;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
+
+.search-where {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  position: relative;
+}
+
