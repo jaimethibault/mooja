@@ -87,7 +87,7 @@ countries.each do |country|
   s = 0
   puts "    Iterating over #{country}"
   # The url we are scrapping
-  url = "https://www.surfholidays.com/property-search?country=#{country}all&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
+  url = "https://www.surfholidays.com/property-search?country=#{country}&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
   base_url = "https://www.surfholidays.com"
   html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
