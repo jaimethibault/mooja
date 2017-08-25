@@ -16,20 +16,18 @@
 }
 
 .booking_square {
-  position: absolute;
+
   background-color: white;
-  top: 0px;
-  right: 0px;
   padding: 18px 12px;
 }
 
-.map {
+#map-show {
   display: flex;
-  width: 90%;
+  width: 98%;
   justify-content:center;
   background: white;
   height: 350px;
-  margin: 25px;
+  margin:auto;
 }
 
 hr {

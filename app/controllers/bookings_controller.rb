@@ -8,20 +8,56 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(set_params)
     @booking.surfcamp_id = params[:surfcamp_id]
+
+    #Calculate booking period in number of days
+    nb_days = (@booking.ends_at - @booking.starts_at).to_i/86400
+
+    @surfcamp = related_surfcamp
+    #Calculate total price without discount
+    total_original_price = nb_days * @booking.pax_nb * @surfcamp.price_per_night_per_person
+
+    #Create an array of nights
+    nights = []
+    night = @booking.starts_at.to_date
+    nb_days.to_i.times do |_n|
+      nights << night
+      night += 1
+    end
+
+    #Check if there is a discount on the surfcamp
+    if @surfcamp.discounts.blank?
+      total_discounted_price = total_original_price
+    else
+      total_discounted_price = 0
+    #Calculate night per night if there is an active discount
+      nights.each do |night|
+        #Check if night is inside the discount dates
+          if night >= @surfcamp.discounts.first.discount_starts_at.to_date && night <= @surfcamp.discounts.first.discount_ends_at.to_date
+            night_price = @surfcamp.discounts.first.discounted_price * @booking.pax_nb
+          else
+            # price per night with the discount
+            night_price = @surfcamp.price_per_night_per_person * @booking.pax_nb
+          end
+          # sum each price per night with discount
+          total_discounted_price += night_price
+      end
+    end
+    @booking.total_discounted_price = total_discounted_price
+    @booking.total_original_price = total_original_price
     @booking.save
-    #redirect to modify
-    redirect_to surfcamps_path
+
+    #redirect to booking confirmation page
+    redirect_to booking_path(@booking)
   end
 
   private
-
 
   def set_booking
     @booking = Booking.find(params[:id])
   end
 
   def set_params
-    params.require(:booking).permit(:starts_at, :ends_at, :status, :user_id, :surfcamp_id)
+    params.require(:booking).permit(:starts_at, :ends_at, :pax_nb, :status, :user_id)
   end
 
   def related_surfcamp
@@ -29,28 +65,6 @@ class BookingsController < ApplicationController
     @surfcamp = Surfcamp.find(@surfcamp_id)
     @surfcamp
   end
-
-  # def price_paid
-  #   @price_paid = 0
-
-  #   @booking.occupancies.each do |occupancy|
-  #     @price = occupancy.price
-  #     @price_paid += @price
-  #   end
-  #   @price_paid
-  # end
-
-  # def original_price
-  #   @original_price = 0
-
-  #   @booking.occupancies.each do |occupancy|
-  #     @room_id = occupancy.room_id
-  #     @room = Room.find(@room_id)
-  #     @price_per_night = @room.price_per_night
-  #     @original_price += @price_per_night
-  #   end
-  #   @original_price
-  # end
 
   helper_method :price_paid, :original_price
 end
