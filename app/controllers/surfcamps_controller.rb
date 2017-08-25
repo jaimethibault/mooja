@@ -94,12 +94,16 @@ class SurfcampsController < ApplicationController
     return @weekly_weather_datas
   end
 
+  def caching_wave_period_hash
+    @weekly_weather_datas ||= build_wave_period_hash
+  end
+
   def marker_color(surfcamp)
     # ['green', 'red'].sample
     # check si on a des infos météo pour ce surf camp
-    if build_wave_period_hash.key?(surfcamp.id.to_s)
+    if caching_wave_period_hash.key?(surfcamp.id.to_s)
       # chercher le wave info pour le surfcamp
-      wave_period = build_wave_period_hash[surfcamp.id.to_s].to_f
+      wave_period = caching_wave_period_hash[surfcamp.id.to_s].to_f
       # check s'il est inférieur à 10s >> red
       if wave_period >= 10
         return 'green'
