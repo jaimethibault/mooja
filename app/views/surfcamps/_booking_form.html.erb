@@ -11,13 +11,17 @@
 
 <div class="booking-form">
   <div class="booking-input">
-    <%= form_tag surfcamp_bookings_path(@surfcamp) do %>
+    <%= form_tag surfcamp_bookings_path(surfcamp) do %>
       <%= label_tag 'booking[starts_at]', 'Checkin' %>
       <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017" %>
-
+      <% if errors[:starts_at] %>
+        <%= errors[:starts_at] %>
+      <% end %>
       <%= label_tag 'booking[ends_at]', 'Checkout' %>
       <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017" %>
-
+      <% if errors[:ends_at] %>
+        <%= errors[:ends_at] %>
+      <% end %>
       <%= label_tag 'booking[ends_at]', 'Surfers' %>
       <%= number_field_tag 'booking[pax_nb]', '1' %>
       <% if current_user.nil? %>
