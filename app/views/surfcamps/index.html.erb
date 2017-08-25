@@ -62,8 +62,9 @@
               <div class="surfcamp-card-text-stars">
                 <% unless surfcamp.rating.blank? %>
                   <% surfcamp.rating.times do %>
-                <% end %>
-                <i class="fa fa-star" aria-hidden="true"></i>
+
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <% end %>
                 <% end %>
               </div>
               <!-- div showing the percentage of savings -->
