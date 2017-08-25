@@ -12,9 +12,14 @@
   width: 100%;
   font-size: 14px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  // justify-content: space-between;
 }
 
+.search-box-form {
+  display: flex;
+  justify-content: left;
+}
 .search-box-where {
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
   border: solid 1px #e9e4e4;
@@ -75,7 +80,7 @@
 .search-action {
     margin: 15px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     p {
       font-size: 14px;
       color: #6d6d6d;
@@ -83,7 +88,14 @@
     }
   }
 
-.result a {
-  font-size: 14px;
-  text-decoration: none;
+.result {
+  margin-left: 20px;
+  a {
+    font-size: 14px;
+    text-decoration: none;
+  }
+}
+
+.button {
+  margin-left: 20px;
 }
