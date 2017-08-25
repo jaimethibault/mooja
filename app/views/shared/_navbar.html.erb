@@ -39,6 +39,8 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
+      <%= link_to "Explore Surfcamps", surfcamps_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Last Minute Deals", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
