@@ -66,18 +66,6 @@ class SurfcampsController < ApplicationController
 
   private
 
-  def build_wave_period_hash
-    # Parsing weather conditions for all surfcamps - SIMPLIFIED
-    weekly_weather_datas = {}
-    @surfcamps.each do |surfcamp|
-      url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
-      weather_serialized = open(url).read
-      weather = JSON.parse(weather_serialized)
-      weekly_weather_datas["#{surfcamp.id}"] = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
-    end
-    @all_weathers = weekly_weather_datas
-  end
-
   def set_surfcamp
     @surfcamp = Surfcamp.find(params[:id])
   end
@@ -92,6 +80,18 @@ class SurfcampsController < ApplicationController
     percentage_of_saving = 1 - (discounted_price).fdiv(original_price)
     # multiply by 100 and round it for display
     (percentage_of_saving * 100).round
+  end
+
+  def build_wave_period_hash
+    # Parsing weather conditions for all surfcamps - SIMPLIFIED
+    @weekly_weather_datas = {}
+    @surfcamps.each do |surfcamp|
+      url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
+      weather_serialized = open(url).read
+      weather = JSON.parse(weather_serialized)
+      @weekly_weather_datas["#{surfcamp.id}"] = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
+    end
+    return @weekly_weather_datas
   end
 
   def marker_color(surfcamp)
