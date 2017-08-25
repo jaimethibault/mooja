@@ -1,0 +1,3 @@
+<% if surfcamp.photo? %>
+  <%= cl_image_tag surfcamp.photo.path, width: 350, height: 200, crop: :fill, fetch_format: :auto %>
+<% end %>

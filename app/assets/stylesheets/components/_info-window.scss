@@ -1,0 +1,14 @@
+.gm-style>div:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:first-child>div:first-child>div:nth-child(2),.gm-style>div:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:first-child>div:first-child>div:nth-child(4){
+  display: none !important;
+}
+
+// selecting the right div for the X for closing the google maps infowindow
+.gm-style>div:nth-child(1)>div:nth-child(4)>div:nth-child(4)>div:first-child>div:nth-child(3){
+  top: 19px !important;
+  right: 40px !important;
+}
+
+// selecting the right div for the image of the google maps infowindow
+.gm-style-iw{
+  top: 17px !important;
+}

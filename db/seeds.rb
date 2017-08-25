@@ -184,12 +184,12 @@ surfcamps.each do |surfcamp|
       night += 1
     end
 
-    # for each night
     total_discounted_price = 0
-    # check if night has a discount
+    # check if surfcamp has a discount
     if discount.nil?
       total_discounted_price = booking.total_original_price
     else
+      # for each night
       nights.each do |night|
         # check for each night if a discount is applicable
         if night >= discount.discount_starts_at.to_date && night <= discount.discount_ends_at.to_date
