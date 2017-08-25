@@ -73,7 +73,20 @@ countries = [
   "barbados",
   "spain",
   "france",
-  "ireland"
+  "ireland",
+  "sri-lanka",
+  "dominican-republic",
+  "mexico",
+  "australia",
+  "el-salvador",
+  "peru",
+  "south-africa",
+  "nicaragua",
+  "philippines",
+  "brazil",
+  "new-zealand",
+  "india",
+  "maldives"
   ]
 # Showcasing the countries we will scrapp
 puts ""
