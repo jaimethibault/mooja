@@ -1,4 +1,3 @@
-<%= @all_weathers %>
 <div class="main-container">
   <div class="cards-container">
     <div class="row row-no-margin">
@@ -62,9 +61,11 @@
               </div>
               <div class="surfcamp-card-text-stars">
                 <% unless surfcamp.rating.blank? %>
-                  <% surfcamp.rating.times do %>
-
-                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <% surfcamp.rating.to_i.times do  %>
+                    <i class="fa fa-star" style="color: black"></i>
+                  <% end %>
+                  <% (5 - surfcamp.rating).to_i.times do  %>
+                    <i class="fa fa-star-o";"></i>
                   <% end %>
                 <% end %>
               </div>
