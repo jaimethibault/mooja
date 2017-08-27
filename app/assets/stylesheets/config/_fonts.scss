@@ -1,42 +1,43 @@
 // Import Google fonts
 // @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900");
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+// @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
 
 // Define fonts for body and headers
-$body-font: "Lato", "Helvetica", "sans-serif";
-$headers-font: "Lato", "Helvetica", "sans-serif";
+// $body-font: "Lato", "Helvetica", "sans-serif";
+// $headers-font: "Lato", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 
-// @font-face {
-//   font-family: "LeanOSansFY";
-//   src: font-url('LeanOSansFY/LeanOSansFY-Regular.eot');
-//   src: font-url('LeanOSansFY/LeanOSansFY-Regular.eot?#iefix') format('embedded-opentype'),
-//        font-url('LeanOSansFY/LeanOSansFY-Regular.woff') format('woff'),
-//        font-url('LeanOSansFY/LeanOSansFY-Regular.ttf') format('truetype');
-//   font-weight: normal;
+@font-face {
+  font-family: "leanosansfy";
+  src: font-url('leanosansfy/LeanOSansFY-Regular.eot');
+  src: font-url('leanosansfy/LeanOSansFY-Regular.eot?#iefix') format('embedded-opentype'),
+       font-url('leanosansfy/LeanOSansFY-Regular.woff') format('woff'),
+       font-url('leanosansfy/LeanOSansFY-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "leanosansfy";
+  src: font-url('leanosansfy/LeanOSansFY-Bold.eot');
+  src: font-url('leanosansfy/LeanOSansFY-Bold.eot?#iefix') format('embedded-opentype'),
+       font-url('leanosansfy/LeanOSansFY-Bold.woff') format('woff'),
+       font-url('leanosansfy/LeanOSansFY-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "leanosansfy";
+  src: font-url('leanosansfy/LeanOSansFY-Light.eot');
+  src: font-url('leanosansfy/LeanOSansFY-Light.eot?#iefix') format('embedded-opentype'),
+       font-url('leanosansfy/LeanOSansFY-Light.woff') format('woff'),
+       font-url('leanosansfy/LeanOSansFY-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
 
-// }
-// @font-face {
-//   font-family: "LeanOSansFY";
-//   src: font-url('LeanOSansFY/LeanOSansFY-Bold.eot');
-//   src: font-url('LeanOSansFY/LeanOSansFY-Bold.eot?#iefix') format('embedded-opentype'),
-//        font-url('LeanOSansFY/LeanOSansFY-Bold.woff') format('woff'),
-//        font-url('LeanOSansFY/LeanOSansFY-Bold.ttf') format('truetype');
-//   font-weight: bold;
-// }
-
-// @font-face {
-//   font-family: "LeanOSansFY";
-//   src: font-url('LeanOSansFY/LeanOSansFY-Light.eot');
-//   src: font-url('LeanOSansFY/LeanOSansFY-Light.eot?#iefix') format('embedded-opentype'),
-//        font-url('LeanOSansFY/LeanOSansFY-Light.woff') format('woff'),
-//        font-url('LeanOSansFY/LeanOSansFY-Light.ttf') format('truetype');
-//   font-weight: lighter;
-// }
-
-// $my-font: "LeanOSansFY";
+$my-font: "leanosansfy";
 
 // Define fonts for body and headers
-// $body-font: $my-font;
-// $headers-font: $my-font;
+$body-font: $my-font;
+$headers-font: $my-font;
