@@ -130,7 +130,12 @@ countries.each do |country|
       surfcamp.name = name
     end
     # creating surfcamp description
-    surfcamp.description = Faker::Lorem.paragraph
+    elements = []
+    html_doc.search(".mt30 p.mt15").each do |element|
+      elements << element.text.delete("\r").delete("\n")
+    end
+    surfcamp.description = elements[0]
+
      html_doc.search("#accom-detail-location").each do |element|
       address = element.text.strip
       # creating surfcamp address
