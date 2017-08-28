@@ -84,16 +84,18 @@
       var right_start_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
       return right_start_date
     });
+
      $('#end_date').datepicker()
       .on("input change", function (e) {
       var end_date = e.target.value;
       var split_date = end_date.split('/');
       var right_end_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
-      var days = Math.floor((right_end_date - right_start_date) / (1000*60*60*24))
+      return right_end_date
     });
-    function computeDays() {
-
-    };
+      $(".datepicker").datepicker()
+      .on("input change", function (e) {
+      console.log(right_end_date)
+      });
     // let dates = []
     // for (i = 0; i <= days; i++) {
     //   dates.push(right_start_date.setDate(right_start_date.getDate() + i));
