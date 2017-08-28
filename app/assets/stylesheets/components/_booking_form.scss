@@ -68,7 +68,7 @@
   align-items: center;
   flex-grow: 1;
   height: 30px;
-  color: $medium-gray;
+  color: $dark-gray;
   i {
     padding: 0 5px;
   }
@@ -92,7 +92,7 @@
   flex-grow: 1;
   align-items: center;
   height: 30px;
-  color: $medium-gray;
+  color: $dark-gray;
   i {
     padding: 0 5px;
   }
@@ -110,14 +110,14 @@
   border: solid 1px $light-gray;
   display: flex;
   align-items: center;
-  color: $medium-gray;
+  color: $dark-gray;
   margin-bottom: 30px;
   input {
     border: none;
     box-shadow: none;
     outline:none;
     height: 25px;
-    color: $medium-gray;
+    color: $dark-gray;
 
   }
   input:focus {
