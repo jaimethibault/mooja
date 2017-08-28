@@ -26,7 +26,7 @@
   display:flex;
   align-items: center;
   font-size: 18px;
-  color: #6d6d6d;
+  color: $medium-grey;
   i {
     margin-left: 5px;
   }
@@ -34,11 +34,11 @@
 
 .search-box-budget {
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px #e9e4e4;
+  border: solid 1px $light-gray;
   display:flex;
   align-items: center;
   font-size: 18px;
-  color: #6d6d6d;
+  color: $medium-grey;
   i {
     margin-left: 5px;
   }
@@ -49,21 +49,21 @@
   &:hover {
     opacity: 0.47;
     border-radius: 2px;
-    background-color: #d8d8d8;
-    border: solid 1px #d8d8d8;
-    color: #6d6d6d;
+    background-color: $light-gray;
+    border: solid 1px $light-gray;
+    color: $medium-grey;
   }
 }
 .search-box-waves-title a {
   font-size: 15px;
   text-align: left;
-  color: #6d6d6d;
+  color: $medium-grey;
   text-decoration: none;
 }
 
 .search-box-input {
   font-size: 15px;
-  color: #6d6d6d;
+  color: $medium-grey;
   text-align: left;
   width: 185px;
   height: 30px;
@@ -83,7 +83,7 @@
     justify-content: left;
     p {
       font-size: 14px;
-      color: #6d6d6d;
+      color: $medium-grey;
       margin: 0;
     }
   }

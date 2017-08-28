@@ -21,7 +21,7 @@
 .surfcamp-cart-text-price {
   font-weight: bold;
   text-align: left;
-  color: #1a1919;
+  color: $black;
   margin-bottom: 15px;
   white-space: nowrap;
   overflow: hidden;
@@ -30,8 +30,13 @@
 .surfcamp-card-text-remaining-beds {
   font-size: 16px;
   text-align: left;
+<<<<<<< HEAD
+  color: $black;
+  padding: 14px 0px 7px;
+=======
   color: $blue;
   font-weight:bold;
+>>>>>>> master
 
 }
 .surfcamp-card-text-disc {

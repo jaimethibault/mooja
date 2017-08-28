@@ -52,15 +52,15 @@
   height: 75px;
   position: absolute;
   bottom: 2.5em;
-  background-color: #ffffff;
-  border: solid 1px #00cecb;
+  background-color: $white;
+  border: solid 1px $light-gray;
   display: flex;
   justify-content: center;
   align-items: center;
   p {
     font-size: 36px;
     font-weight: bold;
-    color: #00cecb;
+    color: $light-gray;
     margin: 0;
   }
 }
@@ -74,11 +74,11 @@
   text-decoration: line-through;
   font-weight: 300!important;
   text-align: right!important;
-  color: #909090;
+  color: $medium-grey;
 }
 
 .price-paid {
   font-size: 36px;
   font-weight: 400!important;
-  color: #4a4a4a;
+  color: $gray;
 }
