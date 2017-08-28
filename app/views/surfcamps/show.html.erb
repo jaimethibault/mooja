@@ -1,11 +1,11 @@
 <div class="banner-show">
   <% if @surfcamp.photo? %>
-    <%= cl_image_tag @surfcamp.photo.path, width: 1500 , height: 550, crop: :lfill, fetch_format: :auto, class: "banner-surfcamp"%>
+    <%= cl_image_tag @surfcamp.photo.path, width: 1500 , height: 450, crop: :lfill, fetch_format: :auto, class: "banner-surfcamp"%>
   <% end %>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="surfcamp-details">
         <h2> <%= @surfcamp.name %></h2>
         <% unless @surfcamp.rating.blank? %>
@@ -37,7 +37,7 @@
 
     </div>
 
-    <div class="col-md-3 col-md-offset-1 booking_square">
+    <div class="col-md-4 col-md-offset-1 booking_square">
       <%# unless @pimped_car.promo.blank? %>
       <%= render 'surfcamps/booking_form', errors: @errors, surfcamp: @surfcamp %>
       <%#end %>
