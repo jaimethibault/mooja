@@ -8,15 +8,18 @@
   <%# f.label "Price per Day: **TBD**" %>
   <%# f.submit "Book it!", class: "btn btn-danger btn-block" %>
 <%# end %>
-<div class="booking-promo">
-  <div class="booking-promo-percentage">
+
+<% unless @surfcamp.discounts.blank? %>
+  <div class="booking-promo">
     <% @pourcentage = ((1 - @surfcamp.discounts.first.discounted_price.to_f / @surfcamp.price_per_night_per_person.to_f) * 100).to_i %>
-    <p><%= @pourcentage %>% OFF</p>
+    <div class="booking-promo-percentage">
+      <p><%= @pourcentage %>% OFF</p>
+    </div>
+    <div class="booking-promo-date">
+      <p><%#= (@surfcamp.discounts.first.discount_ends_at.to_date - Date.today.to_date).to_i %> TODO</p>
+    </div>
   </div>
-  <div class="booking-promo-date">
-    <p><%#= (@surfcamp.discounts.first.discount_ends_at.to_date - Date.today.to_date).to_i %> TODO</p>
-  </div>
-</div>
+<% end %>
 <div class="booking-form">
   <div class="booking-input">
     <%= form_tag surfcamp_bookings_path(surfcamp) do %>
