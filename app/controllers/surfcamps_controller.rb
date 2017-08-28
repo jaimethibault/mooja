@@ -72,7 +72,7 @@ class SurfcampsController < ApplicationController
   end
 
   def set_params
-    params.require(:surfcamp).permit(:name, :description, :rating, :address, :photo)
+    params.require(:surfcamp).permit(:name, :description, :rating, :address, photos: [])
   end
 
   def percentage_of_savings(surfcamp)

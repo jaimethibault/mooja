@@ -16,6 +16,19 @@
 
 }
 
+.banner-show {
+  .slick-prev {
+  z-index: 5;
+  left: 25px;
+  };
+}
+
+.banner-show {
+  .slick-next {
+  z-index: 5;
+  right: 25px;
+  };
+}
 
 #map-show {
   display: flex;

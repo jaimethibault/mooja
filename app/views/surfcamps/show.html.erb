@@ -1,6 +1,6 @@
 <div class="banner-show">
-  <% if @surfcamp.photo? %>
-    <%= cl_image_tag @surfcamp.photo.path, width: 1500 , height: 450, crop: :lfill, fetch_format: :auto, class: "banner-surfcamp"%>
+  <% @surfcamp.photos.each do |photo| %>
+    <%= cl_image_tag photo.path, width: 1500 , height: 450, crop: :lfill, fetch_format: :auto, class: "banner-surfcamp"%>
   <% end %>
 </div>
 <div class="container">
@@ -46,6 +46,12 @@
 </div>
 
 <% content_for(:after_js) do %>
+  <script>
+    $('.banner-show').slick({
+      dots: true,
+      arrows: true
+  })
+  </script>
   <%= javascript_tag do %>
   var handler = Gmaps.build('Google', { markers: { clusterer: undefined } });
   handler.buildMap({ internal: { id: 'map-show' } }, function() {
