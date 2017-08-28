@@ -10,8 +10,8 @@
             <h3>Booking confirmation</h3>
           </div>
           <div class="card-image">
-            <% if @surfcamp.photo? %>
-            <%= cl_image_tag @surfcamp.photo.path, width: 445, height: 220, crop: :fill %>
+            <% unless @surfcamp.photos[0].blank? %>
+            <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
             <% end %>
           </div>
           <div class="card-booking-details">

@@ -1,4 +1,4 @@
-<% if surfcamp.photos[0]? %>
+<% unless surfcamp.photos[0].blank? %>
   <%= cl_image_tag surfcamp.photos[0].path, width: 350, height: 200, crop: :fill, fetch_format: :auto %>
   <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-infowindow-link" %>
 <% end %>
