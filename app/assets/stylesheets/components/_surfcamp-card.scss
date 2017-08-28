@@ -11,22 +11,32 @@
 .surfcamp-card-text {
   margin-top: 15px;
   position: relative;
+  max-height: 55px;
+  min-height: 55px;
+}
   p {
     font-size: 14px;
     margin: 0px;
-  }
 }
 .surfcamp-cart-text-price {
   font-weight: bold;
   text-align: left;
   color: $black;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip
 }
 .surfcamp-card-text-remaining-beds {
   font-size: 16px;
-  font-weight: 300!important;
   text-align: left;
+<<<<<<< HEAD
   color: $black;
   padding: 14px 0px 7px;
+=======
+  color: $blue;
+  font-weight:bold;
+>>>>>>> master
 
 }
 .surfcamp-card-text-disc {
