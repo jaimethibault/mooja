@@ -26,6 +26,9 @@ gem 'coffee-rails'
 gem "geocoder"
 gem "gmaps4rails"
 gem "jquery-slick-rails"
+gem 'money-rails'
+gem 'stripe'
+
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

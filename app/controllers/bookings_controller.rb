@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :related_surfcamp, :price_paid]
+  before_action :set_order
 
   def show
     @surfcamp = related_surfcamp
@@ -9,6 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(set_params)
     @booking.surfcamp_id = params[:surfcamp_id]
     @surfcamp = related_surfcamp
+
 
     if @booking.starts_at.present? && @booking.ends_at.present?
       #Calculate booking period in number of days
@@ -47,6 +49,7 @@ class BookingsController < ApplicationController
       @booking.total_original_price = total_original_price
       if @booking.save
         #redirect to booking confirmation page
+        order  = Order.create!(surfcamp_sku: surfcamp.sku, amount: surfcamp.price, state: 'pending')
         redirect_to booking_path(@booking)
       else
         @errors = {
@@ -62,6 +65,7 @@ class BookingsController < ApplicationController
       }
       render 'surfcamps/show'
     end
+    redirect_to new_order_payment_path(order)
   end
 
   private
@@ -80,4 +84,9 @@ class BookingsController < ApplicationController
     @surfcamp
   end
 
+   def set_order
+    @order = Order.where(state: 'pending').find(params[:order_id])
+  end
 end
+
+

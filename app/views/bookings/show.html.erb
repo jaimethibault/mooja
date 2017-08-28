@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
       <div class="booking-confirmation-title">
-        <h2>Thank you for your reservation!</h2>
+        <h2>Thank you for your reservation!<%= @order.surfcamp_sku %></h2>
       </div>
       <div class="booking-confirmation-details">
         <div class="card">
@@ -35,6 +35,26 @@
           </div>
         <% end %>
       </div>
+      <div class="stripe">
+        <%= form_tag order_payments_path(@order) do %>
+          <article>
+          <label class="amount">
+            <span>Amount: <%= humanized_money_with_symbol(@order.amount) %></span>
+          </label>
+          </article>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-name="My Teddy"
+            data-email="<%= current_user.email %>"
+            data-description="Teddy <%= @order.teddy_sku %>"
+            data-amount="<%= @order.amount_cents %>"
+            data-currency="<%= @order.amount.currency %>">
+          </script>
+
+        <% end %>
+      </div>
      </div>
   </div>
 </div>
+
+
