@@ -167,7 +167,7 @@
     }
 ];
 
-      var handler = Gmaps.build('Google');
+      var handler = Gmaps.build('Google', { markers: { clusterer: undefined  } });
       handler.buildMap({
       provider: {
         styles: dima

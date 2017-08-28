@@ -30,11 +30,11 @@ class SurfcampsController < ApplicationController
       marker.lat surfcamp.latitude
       marker.lng surfcamp.longitude
       marker.infowindow render_to_string(partial: "/surfcamps/map_box", locals: { surfcamp: surfcamp })
-      # marker.picture({
-      #   :url => "http://maps.google.com/mapfiles/ms/icons/#{marker_color(surfcamp)}.png",
-      #   :width   => 40,
-      #   :height  => 40
-      # })
+      marker.picture({
+        :url => "http://maps.google.com/mapfiles/ms/icons/#{marker_color(surfcamp)}.png",
+        :width   => 40,
+        :height  => 40
+      })
     end
 
     # # Parsing weather conditions for all surfcamps - FULL
@@ -83,30 +83,12 @@ class SurfcampsController < ApplicationController
     (percentage_of_saving * 100).round
   end
 
-  def build_wave_period_hash
-    # Parsing weather conditions for all surfcamps - SIMPLIFIED
-    @weekly_weather_datas = {}
-    @surfcamps.each do |surfcamp|
-      url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
-      weather_serialized = open(url).read
-      weather = JSON.parse(weather_serialized)
-      @weekly_weather_datas["#{surfcamp.id}"] = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
-    end
-    return @weekly_weather_datas
-  end
-
-  def caching_wave_period_hash
-    @weekly_weather_datas ||= build_wave_period_hash
-  end
-
   def marker_color(surfcamp)
     # ['green', 'red'].sample
     # check si on a des infos météo pour ce surf camp
-    if caching_wave_period_hash.key?(surfcamp.id.to_s)
-      # chercher le wave info pour le surfcamp
-      wave_period = caching_wave_period_hash[surfcamp.id.to_s].to_f
-      # check s'il est inférieur à 10s >> red
-      if wave_period >= 10
+    unless surfcamp.waves_period.blank?
+      # check si la période est inférieure à 10s >> red
+      if surfcamp.waves_period >= 10
         return 'green'
       else
         return 'red'
