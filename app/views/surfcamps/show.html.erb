@@ -48,8 +48,12 @@
 <% content_for(:after_js) do %>
   <script>
     $('.banner-show').slick({
-      dots: true,
-      arrows: true
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
   })
   </script>
   <%= javascript_tag do %>
