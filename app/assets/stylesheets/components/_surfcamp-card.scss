@@ -31,15 +31,15 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  width: 145px;
-  height: 45px;
+  width: 100px;
+  height: 35px;
   background-color: $white;
   border: solid 1px $blue;
   display: flex;
   justify-content: center;
   align-items: center;
   p {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: $blue;
     margin: 0;
