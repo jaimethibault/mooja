@@ -121,7 +121,6 @@ countries.each do |country|
     # We create surfcamp with the data that has been scrapped
     html_doc.search("#custom-slider ul li").take(5).each do |element|
       images_surfcamp << element['style'][/url\((.+)\)/, 1].gsub("'","")
-      p element['style'][/url\((.+)\)/, 1].gsub("'","")
     end
     # creating surfcamp image
     surfcamp.photo_urls = images_surfcamp
