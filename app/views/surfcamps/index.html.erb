@@ -60,7 +60,8 @@
                 <% end %>
               </div>
               <div class="surfcamp-card-text-remaining-beds">
-                <p> <%= rand(1..Surfcamp.first.capacity) %> beds remainings </p>
+
+                <p><%= (randcapacity = rand(1..surfcamp.capacity)) <= 5 ? "#{randcapacity} beds remainings" : "" %></p>
               </div>
               <!-- div showing the percentage of savings -->
               <% unless surfcamp.discounts.blank? %>
