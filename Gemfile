@@ -25,6 +25,7 @@ gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem "geocoder"
 gem "gmaps4rails"
+gem "jquery-slick-rails"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
