@@ -129,3 +129,12 @@
     padding: 0 5px;
   }
 }
+
+.booking-form-total {
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-weight: bold;
+    margin: 0;
+  }
+}

@@ -56,9 +56,11 @@
       <% end %>
       <%= hidden_field_tag 'booking[status]', 'unpaid' %>
     </div>
-      <hr>
-      <!--<p> Total Price:</p>  -->
-
+    <hr>
+    <div class="booking-form-total">
+      <p>Total:</p>
+      <p>125€</p>
+    </div>
       <%= submit_tag "Book now", class: "btn btn-primary", style: "width: 100%" %>
 
     <% end %>
