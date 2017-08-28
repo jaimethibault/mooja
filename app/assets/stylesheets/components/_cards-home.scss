@@ -1,0 +1,45 @@
+.surfcamp-card-pic-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 50px;
+}
+
+.surfcamp-card-pic {
+  flex-grow: 0 0 33%;
+  flex-flow: row-wrap;
+  height: 400px;
+  width: 500px;
+  // margin: 10px;
+  // padding: 5px;
+  // line-height: 150px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.surfcamp-card-location {
+  // position: relative;
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+    background: rgba(255,255,255, 0.5);
+    color: #000;
+    overflow: hidden;
+    // float: right;
+    // margin-bottom: -70px;
+    z-index: 10;
+    // padding: 10px;
+    padding-top: 0;
+    font-weight: bolder;
+    // vertical-align: baseline;
+    margin: 0;
+    border:0;
+    width: 200px;
+    padding: 25px;
+    border-radius: 1px;
+
+
+}

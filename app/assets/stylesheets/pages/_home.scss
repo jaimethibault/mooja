@@ -1,26 +1,15 @@
 // Specific CSS for your home-page
+.banner {
+  height: 100vh;
+}
 .banner-content h3 {
   color:white;
+  font-size: 48px;
+  font-weight: lighter;
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px  #696969;
 }
 
-.banner-content {
-  margin-bottom: 150px;
-}
-.search-home-square {
-  display: flex;
-  justify-content: space-around;
-}
-.search-home-box {
-  opacity: 0.42;
-  margin: 1px;
-  background-color: #f6f5f5;
-  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 2px #ffffff;
-
-  .date-input {
-    display: inline-flex;
-  }
-}
 
 .search-home-input {
   text-align: left;
@@ -42,15 +31,23 @@
 }
 
 .search-home-btn {
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 25px 15px;
+  padding: 10px;
+  transition: background-color 0.3s;
+  margin-top: 50px;
 
   a {
     color: white;
     text-decoration: none;
+    letter-spacing: 0.2em;
+    padding: 5px;
   }
 }
 
+// .search-home-btn:hover {
+//   transition: background-color 0.4s
+// }
 .search-where {
   display: table-cell !important;
   vertical-align: middle !important;
