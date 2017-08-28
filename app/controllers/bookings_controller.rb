@@ -80,5 +80,4 @@ class BookingsController < ApplicationController
     @surfcamp
   end
 
-  helper_method :price_paid, :original_price
 end

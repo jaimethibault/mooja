@@ -2,24 +2,20 @@
 .banner-surfcamp {
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   // background-position: center !important;
-}
-
-@media(max-width: 720px) {
-  .banner-surfcamp {
-    height: 50vh;
-    background-position: center !important;
-  }
+  // height: 75vh;
 }
 
 .container {
   position: relative;
 }
 
-.booking_square {
 
+.booking_square {
   background-color: white;
-  padding: 18px 12px;
+  padding: 0px 12px;
+
 }
+
 
 #map-show {
   display: flex;
@@ -37,4 +33,11 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
+}
+
+@media(max-width: 720px) {
+  .banner-surfcamp {
+    height: 50vh;
+    background-position: center !important;
+  }
 }

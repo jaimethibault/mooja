@@ -8,34 +8,54 @@
   <%# f.label "Price per Day: **TBD**" %>
   <%# f.submit "Book it!", class: "btn btn-danger btn-block" %>
 <%# end %>
-
+<div class="booking-promo">
+  <div class="booking-promo-percentage">
+    <% @pourcentage = ((1 - @surfcamp.discounts.first.discounted_price.to_f / @surfcamp.price_per_night_per_person.to_f) * 100).to_i %>
+    <p><%= @pourcentage %>% OFF</p>
+  </div>
+  <div class="booking-promo-date">
+    <p><%= (@surfcamp.discounts.first.discount_ends_at.to_date - Date.today.to_date).to_i %> days left</p>
+  </div>
+</div>
 <div class="booking-form">
   <div class="booking-input">
     <%= form_tag surfcamp_bookings_path(surfcamp) do %>
-      <%= label_tag 'booking[starts_at]', 'Checkin' %>
-
-      <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017", style: "width: 100%" %>
-      <% if errors[:starts_at] %>
-       <div class= "form_error_message">
-        <%= errors[:starts_at] %>
+    <div class="row">
+      <div class="col-xs-6 booking-form-start-date">
+        <%= label_tag 'booking[starts_at]', 'Checkin' %>
+        <div class="booking-form-start-date-input">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017", style: "width: 100%" %>
+          <% if errors[:starts_at] %>
+           <div class= "form_error_message">
+            <%= errors[:starts_at] %>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
-      <%= label_tag 'booking[ends_at]', 'Checkout' %>
-      <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017", style: "width: 100%" %>
-      <% if errors[:ends_at] %>
-      <div class= "form_error_message">
-        <%= errors[:ends_at] %>
+      <div class="col-xs-6 booking-form-end-date">
+        <%= label_tag 'booking[ends_at]', 'Checkout' %>
+        <div class="booking-form-end-date-input">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017", style: "width: 100%" %>
+          <% if errors[:ends_at] %>
+          <div class= "form_error_message">
+            <%= errors[:ends_at] %>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
-
-      <%= label_tag 'booking[ends_at]', 'Surfers' %>
+    </div>
+    <%= label_tag 'booking[pax_nb]', 'Surfers' %>
+    <div class="booking-form-pax-nb">
+      <i class="fa fa-male" aria-hidden="true"></i>
       <%= number_field_tag 'booking[pax_nb]', '1', style: "width: 100%", class: "form-control" %>
       <% if current_user.nil? %>
       <% else %>
       <%= hidden_field_tag 'booking[user_id]', current_user.id %>
       <% end %>
       <%= hidden_field_tag 'booking[status]', 'unpaid' %>
-
+    </div>
       <hr>
       <!--<p> Total Price:</p>  -->
 
