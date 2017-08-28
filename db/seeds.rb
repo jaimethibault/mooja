@@ -65,28 +65,28 @@ puts "Creating Surfcamps"
 # just comment the countries that are'nt necessary.
 # After seed uncomment, that way whe can have the proper seed on master
 countries = [
-  "portugal",
-  "morocco",
-  "canary-islands",
-  "costa-rica",
-  "indonesia",
-  "barbados",
-  "spain",
-  "france",
-  "ireland",
-  "sri-lanka",
-  "dominican-republic",
-  "mexico",
-  "australia",
-  "el-salvador",
-  "peru",
-  "south-africa",
-  "nicaragua",
-  "philippines",
+  # "portugal",
+  # "morocco",
+  # "canary-islands",
+  # "costa-rica",
+  # "indonesia",
+  # "barbados",
+  # "spain",
+  # "france",
+  # "ireland",
+  # "sri-lanka",
+  # "dominican-republic",
+  # "mexico",
+  # "australia",
+  # "el-salvador",
+  # "peru",
+  # "south-africa",
+  # "nicaragua",
+  # "philippines",
   "brazil",
-  "new-zealand",
-  "india",
-  "maldives"
+  # "new-zealand",
+  # "india",
+  # "maldives"
   ]
 # Showcasing the countries we will scrapp
 puts ""
@@ -119,11 +119,12 @@ countries.each do |country|
     surfcamp = Surfcamp.new
 
     # We create surfcamp with the data that has been scrapped
-    html_doc.search("#custom-slider ul li").each do |element|
+    html_doc.search("#custom-slider ul li").take(5).each do |element|
       images_surfcamp << element['style'][/url\((.+)\)/, 1].gsub("'","")
+      p element['style'][/url\((.+)\)/, 1].gsub("'","")
     end
     # creating surfcamp image
-    surfcamp.photo_url = images_surfcamp[0]
+    surfcamp.photo_urls = images_surfcamp
     html_doc.search("h1.sh-navy").each do |element|
       name = element.text
       # creating surfcamp name
@@ -152,6 +153,22 @@ countries.each do |country|
     # creating surfcamp price_per_night_per_person
     surfcamp.price_per_night_per_person = rand(30..70)
     surfcamp.save!
+
+    # getting today's weather forecast for each surfcamp
+    # checking if surfcamp address was geocoded correctly
+    unless surfcamp.latitude.blank?
+      url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
+      weather_serialized = open(url).read
+      weather = JSON.parse(weather_serialized)
+      # getting weather data for today at noon
+      waves_period = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
+      water_temp = weather['data']['weather'].first['hourly'][4]['waterTemp_C']
+      air_temp = weather['data']['weather'].first['hourly'][4]['tempC']
+      weather_desc = weather['data']['weather'].first['hourly'][4]['weatherDesc'][0]['value']
+
+      hash = {waves_period: waves_period, water_temp: water_temp, air_temp: air_temp, weather_desc: weather_desc}
+      surfcamp.update(hash)
+    end
     s += 1
     puts "    #{s}/#{surfcamp_total} scrapped in #{country}"
   end
