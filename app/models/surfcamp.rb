@@ -1,7 +1,7 @@
 class Surfcamp < ApplicationRecord
   has_many :discounts, dependent: :nullify
   has_many :bookings, dependent: :nullify
-  has_attachment :photo
+  has_attachment :photos
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
