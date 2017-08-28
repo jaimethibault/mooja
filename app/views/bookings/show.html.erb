@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
       <div class="booking-confirmation-title">
-        <h2>Thank you for your reservation!<%= @order.surfcamp_sku %></h2>
+        <h2>Thank you for your reservation! </h2>
       </div>
       <div class="booking-confirmation-details">
         <div class="card">
@@ -19,6 +19,7 @@
               <p><strong>Address</strong> <%= @surfcamp.address %></p>
               <p><strong>From</strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
               <p><strong>To</strong> <%= @booking.ends_at.strftime("%A, %b %d") %></p>
+              <p>Status : <%= @booking.status %></p>
             </div>
             <div class="card-booking-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
@@ -34,26 +35,20 @@
             </div>
           </div>
         <% end %>
-      </div>
       <div class="stripe">
-        <%= form_tag order_payments_path(@order) do %>
-          <article>
-          <label class="amount">
-            <span>Amount: <%= humanized_money_with_symbol(@order.amount) %></span>
-          </label>
-          </article>
+        <%= form_tag booking_payments_path(@booking) do %>
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-name="My Teddy"
+            data-name="<%= @surfcamp.name %>"
             data-email="<%= current_user.email %>"
-            data-description="Teddy <%= @order.teddy_sku %>"
-            data-amount="<%= @order.amount_cents %>"
-            data-currency="<%= @order.amount.currency %>">
+            data-description=" <%= @booking.starts_at.strftime("%d/%m/%Y") %>-<%= @booking.ends_at.strftime("%d/%m/%Y") %>"
+            data-amount="<%= (@booking.total_discounted_price * 100).to_i %>"
+            data-currency="EUR"> <%#= @booking.total_discounted_price.currency if we decide to monetize booking model%>
           </script>
-
         <% end %>
       </div>
-     </div>
+    </div>
+    </div>
   </div>
 </div>
 

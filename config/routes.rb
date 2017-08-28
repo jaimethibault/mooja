@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   resources :surfcamps, only: [:index, :show] do
     resources :bookings, only: [:create]
   end
-  resources :bookings, only: [:show]
-  resources :orders, only: [:show, :create] do
+  resources :bookings, only: [:show] do
     resources :payments, only: [:new, :create]
   end
   mount Attachinary::Engine => "/attachinary"
