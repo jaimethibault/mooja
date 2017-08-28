@@ -2,8 +2,8 @@
   position: relative;
   height: 60px;
   margin-top: -60px;
-  background-color: #00cecb;
-  border: solid 1px #00cecb;
+  background-color: $blue;
+  border: solid 1px $blue;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -29,7 +29,7 @@
     font-size: 20px;
     font-weight: bold;
     text-align: center;
-    color: #ffffff;
+    color: $white;
     flex-grow: 1;
   }
 }
@@ -38,7 +38,7 @@
 .booking-form {
   opacity:1;
   border-radius: 2px;
-  border: solid 1px #dce0e0;
+  border: solid 1px $light-gray;
   padding: 13px 20px;
   top: 0px;
   right: 0px;
@@ -61,9 +61,9 @@
 }
 
 .booking-form-start-date-input {
-  background-color: #ffffff;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px #e9e4e4;
+  border: solid 1px $light-gray;
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -85,9 +85,9 @@
 }
 
 .booking-form-end-date-input{
-  background-color: #ffffff;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px #e9e4e4;
+  border: solid 1px $light-gray;
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -105,9 +105,9 @@
 
 .booking-form-pax-nb {
   height: 30px;
-  background-color: #ffffff;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px #e9e4e4;
+  border: solid 1px $light-gray;
   display: flex;
   align-items: center;
   color: $medium-gray;
