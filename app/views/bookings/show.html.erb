@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-6 booking-confirmation">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
       <div class="booking-confirmation-title">
         <h2> Nearly there to go surfin' at : </h2>
       </div>
@@ -49,31 +49,6 @@
           </script>
         <% end %>
       </div>
-    </div>
-    <div class="col-xs-12 col-md-6">
-      <!--   displaying several flight -->
-      <div class="flight-date">You will be 🛫 on the: <%= @flight_date %></div>
-      <% @flights.each do |flight_hash| %>
-        <div class="flight-container">
-          <div class="flight-infos">
-            <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
-            <div class="flight-departure">
-              <div class="flight-departure-time"><%= flight_hash["flight_departure_time"] %></div>
-              <div class="flight-departure-airport"><%= flight_hash["flight_departure_airport"] %></div>
-            </div>
-            <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>  <%= flight_hash["flight_duration"] %>  <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
-            <div class="flight-arrival">
-              <div class="flight-arrival-time"><%= flight_hash["flight_arrival_time"] %></div>
-              <div class="flight-arrival-airport"><%= flight_hash["flight_arrival_airport"] %></div>
-            </div>
-            <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
-            <div class="flight-button">
-              <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <!--   end of flight div -->
     </div>
   </div>
 </div>
