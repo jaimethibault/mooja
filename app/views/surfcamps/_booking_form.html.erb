@@ -169,10 +169,16 @@
     <% if @surfcamp.discounts.empty? %>
       function totalPrice(night, dates, pax_nb){
         let price = 0
+        let standard_nights = 0;
+
         for (j = 0; j <= night; j++) {
           let date = dates[j]
           // prix du jour = prix normal * nb personne
+          standard_nights += 1;
           price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
+          };
+        if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p>${standard_nights} night(s)</p><p>${price}€</p>`;
           };
         return price;
       };
@@ -190,7 +196,6 @@
             if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date < <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
               // prix du jour = prix discount * nb personne
                 discounted_nights += 1;
-                console.log(discounted_price)
                 discounted_price += (<%= @surfcamp.discounts.first.discounted_price %> * pax_nb.value);
 
               } else {
