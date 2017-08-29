@@ -10,9 +10,9 @@ class BookingsController < ApplicationController
 
     # creating the request
     # need to get these infos from params from the form on the booking confirmation page
-    origin = "CDG"
+    origin = "PAR"
     destination = "AGA"
-    date = "2017-08-31" # need to add return then
+    date = "2017-09-14" # need to add return then
     max_stops = 0 # if direct
     adultCount = 1
     nb_results = 3
@@ -37,6 +37,9 @@ class BookingsController < ApplicationController
     # sending the request and receiving the answer
     response = RestClient.post("https://www.googleapis.com/qpxExpress/v1/trips/search?key=#{ENV['GOOGLE_FLIGHT_API_KEY']}", request.to_json, :content_type => :json)
     parsed_resp = JSON.parse(response)
+
+    # using the response to display flight info
+    # only works for the 1st flight so far
     @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
     @flight_number = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["carrier"] + parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["number"]
     @flight_departure_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
@@ -45,6 +48,21 @@ class BookingsController < ApplicationController
     @flight_arrival_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
     @flight_arrival_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["destination"]
     @flight_price = parsed_resp["trips"]["tripOption"].first["saleTotal"]
+
+    # attempt with 2 flights
+    @flights = []
+    parsed_resp["trips"]["tripOption"].each do |flight|
+      flight_hash = {}
+      flight_hash["flight_date"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
+      flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
+      flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
+      flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
+      flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%Hh%Mmin")
+      flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
+      flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
+      flight_hash["flight_price"] = flight["saleTotal"]
+      @flights << flight_hash
+    end
   end
 
   def create
