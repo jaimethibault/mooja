@@ -1,24 +1,19 @@
-<% content_for(:navbar_class, "navbar_home") %>
-
 <div class="banner">
-  <div class="row full-width">
-    <div class="col-xs-6 col-xs-offset-3">
-      <div class="banner-content">
-        <h3>SURF EVERYWHERE, CHEAPER</h3>
-
-
-            <div class= "search-home-btn btn btn-primary">
-                <%= link_to "Check deals", surfcamps_path %>
-            </div>
-
-        </div>
-    </div>
+  <video id="video" autoplay loop id="video-background" muted width="100%">
+    <source src="http://res.cloudinary.com/dlnmbo3ol/video/upload/v1504015579/S%C3%A9quence_01_4_cibxv6.mp4" type="video/mp4">
+  </video>
+  <div class="banner-content">
+    <h3>SURF EVERYWHERE, CHEAPER</h3>
+    <%= link_to "Check deals", surfcamps_path, class: "search-home btn btn-primary" %>
   </div>
 </div>
-</div>
+
+<% content_for(:navbar_class, "navbar_home") %>
+
 
 
 <div class="home-card-container">
+  <h3>Our best deals</h3>
   <div class="row">
     <% @surfcamps.each do |surfcamp| %>
       <% if surfcamp.photo? %>

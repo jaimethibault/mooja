@@ -1,56 +1,127 @@
 // Specific CSS for your home-page
+
+
 .banner {
   height: 100vh;
-}
-.banner-content h3 {
-  color:white;
-  font-size: 48px;
-  font-weight: lighter;
-  letter-spacing: 0.1em;
-  text-shadow: 1px 1px  #696969;
-}
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 
-.search-home-input {
-  text-align: left;
-  border: none;
-  font-size: 19px;
-}
-  input::placeholder {
-    // color: $blue;
-    // opacity: 1 !important;
-  font-weight: lighter;
+  video {
+    position: absolute;
+    z-index: -1;
+    width: 100vh;
+    height: 100vh;
+    object-fit: cover;
   }
 
-.search-home-label {
-  text-align: left;
-  display: block;
-  padding: 5px 10px 0;
-  font-weight: lighter;
-  font-size: 15px;
-}
 
-.search-home-btn {
-  border-radius: 15px;
-  margin: 25px 15px;
-  padding: 10px;
-  transition: background-color 0.3s;
-  margin-top: 50px;
+  .banner-content {
+    h3 {
+      color:white;
+      font-size: 48px;
+      font-weight: lighter;
+      letter-spacing: 0.1em;
+      text-shadow: 1px 1px  #696969;
+    }
 
-  a {
-    color: white;
-    text-decoration: none;
-    letter-spacing: 0.2em;
-    padding: 5px;
+    .search-home {
+      border-radius: 10px;
+    }
   }
 }
 
-// .search-home-btn:hover {
-//   transition: background-color 0.4s
-// }
-.search-where {
-  display: table-cell !important;
-  vertical-align: middle !important;
+
+
+.home-card-container {
+  min-height: 400px;
+  margin: 20px auto 0 !important;
+  position: relative !important;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: rgba(227, 248, 255, 0.4);
+  z-index: -2;
+}
+
+.surfcamp-card-location {
+  // position: relative;
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+    background: rgba(255,255,255, 0.5);
+    color: #000;
+    overflow: hidden;
+    // float: right;
+    // margin-bottom: -70px;
+    z-index: 10;
+    // padding: 10px;
+    padding-top: 0;
+    font-weight: bolder;
+    // vertical-align: baseline;
+    margin: 0;
+    border:0;
+    width: 200px;
+    padding: 25px;
+    border-radius: 1px;
+
+}
+
+.surfcamp-card-text-disc {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  width: 100px;
+  height: 35px;
+  background-color: $white;
+  border: solid 1px $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1px;
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    color: $blue;
+    margin: 0;
+  }
+}
+
+
+.surfcamp-card-home {
   position: relative;
+  margin: 20px;
+  padding: 10px 10px 70px 10px;
+  background-color: white;
+
+  & img {
+    width: 100%;
+  }
 }
+
+.surfcamp-card-home:before, .surfcamp-card-home:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+.surfcamp-card-home:after
+{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+
+
 
