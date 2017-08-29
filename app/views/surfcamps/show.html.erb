@@ -39,7 +39,7 @@
 
     <div class="col-md-4 col-md-offset-1 booking_square">
       <%# unless @pimped_car.promo.blank? %>
-      <%= render 'surfcamps/booking_form', errors: @errors, surfcamp: @surfcamp %>
+      <%= render 'surfcamps/booking_form', errors: @errors, surfcamp: @surfcamp, object: @discount %>
       <%#end %>
     </div>
    </div>
