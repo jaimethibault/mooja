@@ -37,12 +37,12 @@ class BookingsController < ApplicationController
     # sending the request and receiving the answer
     response = RestClient.post("https://www.googleapis.com/qpxExpress/v1/trips/search?key=#{ENV['GOOGLE_FLIGHT_API_KEY']}", request.to_json, :content_type => :json)
     parsed_resp = JSON.parse(response)
-    @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"]
+    @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
     @flight_number = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["carrier"] + parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["number"]
-    @flight_departure_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"]
+    @flight_departure_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
     @flight_departure_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["origin"]
     @flight_duration = Time.at(parsed_resp["trips"]["tripOption"].first["slice"].first["duration"]*60).utc.strftime("%Hh%Mmin")
-    @flight_arrival_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["arrivalTime"]
+    @flight_arrival_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
     @flight_arrival_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["destination"]
     @flight_price = parsed_resp["trips"]["tripOption"].first["saleTotal"]
   end
