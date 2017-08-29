@@ -44,7 +44,7 @@
 .booking-form {
   opacity:1;
   border-radius: 2px;
-  border: solid 1px $light-gray;
+  border: solid 1px $soft-gray;
   padding: 13px 20px;
   top: 0px;
   right: 0px;
@@ -69,7 +69,7 @@
 .booking-form-start-date-input {
   background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px $light-gray;
+  border: solid 1px $soft-gray;
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -93,7 +93,7 @@
 .booking-form-end-date-input{
   background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px $light-gray;
+  border: solid 1px $soft-gray;
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -113,7 +113,7 @@
   height: 30px;
   background-color: $white;
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px $light-gray;
+  border: solid 1px $soft-gray;
   display: flex;
   align-items: center;
   color: $dark-gray;
@@ -135,10 +135,25 @@
     padding: 0 5px;
   }
 }
-
+.booking-form-subtotal {
+  display: flex;
+  justify-content: space-between;
+  p {
+    margin: 0px 5px 0px 0px;
+    font-size: 16px;
+  }
+}
+.lined {
+  text-decoration: line-through;
+  color: $medium-grey;
+}
+.double-price{
+  display: flex;
+}
 .booking-form-total {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
   p {
     font-weight: bold;
     margin: 0;
@@ -149,4 +164,10 @@
 }
 .hr-booking-display {
   display: unset;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  border-color: $soft-gray;
+}
+#subtotal-discounted {
+  margin-bottom: 8px;
 }

@@ -19,9 +19,6 @@
       <div class="booking-promo-from-date">
         <p>From <strong><%= @surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %></strong> to <strong><%= @surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></strong></p>
       </div>
-      <div class="booking-promo-to-date">
-        <p></p>
-      </div>
     </div>
   </div>
 <% end %>
@@ -65,8 +62,17 @@
       <%= hidden_field_tag 'booking[status]', 'unpaid' %>
     </div>
     <div class="hr-booking-hidden"><hr></div>
-    <div class="booking-form-total", id= "total-price">
+    <div class="booking-form-informations">
+      <div class="booking-form-subtotal", id="subtotal-discounted">
 
+      </div>
+      <div class="booking-form-subtotal", id="subtotal-original">
+
+      </div>
+    <div class="hr-booking-hidden"><hr></div>
+      <div id= "total-price">
+
+      </div>
     </div>
       <%= submit_tag "Book now", class: "btn btn-primary", style: "width: 100%" %>
     <% end %>
@@ -88,6 +94,8 @@
     let pax_nb = document.getElementById("pax_nb")
     let total_price = document.getElementById("total-price")
     let hr_booking = document.getElementsByClassName("hr-booking-hidden")
+    let subtotal_discounted = document.getElementById("subtotal-discounted")
+    let subtotal_original = document.getElementById("subtotal-original")
 
     // Function to get the date to the right format
     function rightDate(date){
@@ -97,14 +105,15 @@
     };
 
     function numberOfNights(start_date, end_date) {
-      let night = ( Math.floor((end_date - start_date) / (1000*60*60*24)) - 1 )
+      let night = ( Math.floor((end_date - start_date) / (1000*60*60*24)))
       return night
     };
 
     function arrayOfDates(start_date, night) {
       let dates = [];
-      for (i = 0; i <= night; i++) {
-        dates.push(start_date.setDate(start_date.getDate() + i));
+      for (i = 0; i < night; i++) {
+        let ref_date = new Date(start_date);
+        dates.push(ref_date.setDate(ref_date.getDate() + i));
       };
       return dates
     };
@@ -128,8 +137,10 @@
           let finalPrice = totalPrice(night, dates, pax_nb)
 
           // Add the total price to the div Total-price in the HTML
-          total_price.innerHTML = `<p>Total:</p><p>${finalPrice}€</p>`;
-          hr_booking[0].classList.add("hr-booking-display")
+          total_price.innerHTML = `<div class="booking-form-total"><p>Total:</p><p>${finalPrice}€</p></div>`;
+          hr_booking[0].classList.add("hr-booking-display");
+          hr_booking[1].classList.add("hr-booking-display")
+
         } else {
           // Just to log if the condition is not respected
           console.log("no");
@@ -158,10 +169,16 @@
     <% if @surfcamp.discounts.empty? %>
       function totalPrice(night, dates, pax_nb){
         let price = 0
+        let standard_nights = 0;
+
         for (j = 0; j <= night; j++) {
           let date = dates[j]
           // prix du jour = prix normal * nb personne
+          standard_nights += 1;
           price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
+          };
+        if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${price}€</p>`;
           };
         return price;
       };
@@ -170,16 +187,30 @@
     <% else %>
       function totalPrice(night, dates, pax_nb){
         let price = 0
+        let discounted_price = 0;
+        let original_price = 0
+        let standard_nights = 0;
+        let discounted_nights = 0;
         for (j = 0; j <= night; j++) {
           let date = dates[j]
             if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date < <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
               // prix du jour = prix discount * nb personne
-                price += (<%= @surfcamp.discounts.first.discounted_price %> * pax_nb.value);
+                discounted_nights += 1;
+                discounted_price += (<%= @surfcamp.discounts.first.discounted_price %> * pax_nb.value);
+
               } else {
                   // prix du jour = prix normal * nb personne
-                  price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
+                  standard_nights += 1;
+                  original_price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
                 };
               };
+          if (discounted_nights > 0) {
+            subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
+          };
+          if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
+          };
+          price = discounted_price + original_price
           return price;
         };
       <% end %>
