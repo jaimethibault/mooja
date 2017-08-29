@@ -200,10 +200,10 @@
                 };
               };
           if (discounted_nights > 0) {
-            subtotal_discounted.innerHTML = `<p>${discounted_nights} night(s):</p><div class="double-price"><p>${discounted_price}€</p><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p></div>`;
+            subtotal_discounted.innerHTML = `<p>${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
           };
           if (standard_nights > 0) {
-            subtotal_original.innerHTML = `<p>${standard_nights} night(s):</p><p>${original_price}€</p>`;
+            subtotal_original.innerHTML = `<p>${standard_nights} night(s)</p><p>${original_price}€</p>`;
           };
           price = discounted_price + original_price
           return price;
