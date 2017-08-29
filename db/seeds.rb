@@ -65,10 +65,10 @@ puts "Creating Surfcamps"
 # just comment the countries that are'nt necessary.
 # After seed uncomment, that way whe can have the proper seed on master
 countries = [
-  # "portugal",
+  "portugal",
   # "morocco",
   # "canary-islands",
-  # "costa-rica",
+  "costa-rica",
   # "indonesia",
   # "barbados",
   # "spain",
@@ -83,10 +83,10 @@ countries = [
   # "south-africa",
   # "nicaragua",
   # "philippines",
-  "brazil",
-  # "new-zealand",
+  # "brazil",
+    "new-zealand",
   # "india",
-  # "maldives"
+  "maldives"
   ]
 # Showcasing the countries we will scrapp
 puts ""
