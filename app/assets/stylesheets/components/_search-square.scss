@@ -22,11 +22,13 @@
 }
 .search-box-where {
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px #e9e4e4;
+  border: solid 1px $medium-grey;
   display:flex;
   align-items: center;
   font-size: 18px;
   color: $medium-grey;
+  margin: 0 10px;
+  box-shadow: 1px 1px $light-gray;
   i {
     margin-left: 5px;
   }
@@ -34,11 +36,12 @@
 
 .search-box-budget {
   box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 1px $light-gray;
+  border: solid 1px $medium-grey;
   display:flex;
   align-items: center;
   font-size: 18px;
   color: $medium-grey;
+  box-shadow: 1px 1px $light-gray;
   i {
     margin-left: 5px;
   }
@@ -97,5 +100,11 @@
 }
 
 .button {
-  margin-left: 20px;
+  margin-left: 10px;
+  box-shadow: 1px 1px $light-gray;
+}
+
+.reset-filters {
+  color: $blue;
+  margin-left: 5px;
 }

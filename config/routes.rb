@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :surfcamps, only: [:index, :show] do
     resources :bookings, only: [:create]
   end
-  resources :bookings, only: [:show]
+  resources :bookings, only: [:show] do
+    resources :payments, only: [:new, :create]
+    get 'payment-thanks', to: 'payments#thanks', as: 'payment_thanks'
+  end
   mount Attachinary::Engine => "/attachinary"
 end
