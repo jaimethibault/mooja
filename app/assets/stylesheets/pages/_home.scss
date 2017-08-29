@@ -30,12 +30,17 @@
       letter-spacing: 0.1em;
       text-shadow: 1px 1px  #696969;
       text-align: center;
+      font-family: 'Pacifico', cursive;
     }
 
     .search-home {
-      border-radius: 10px;
-      top: calc(80vh - 30px);
-      left: 50%;
+      border-radius: 15px;
+      background: none;
+      color: #999999;
+      border: 3px solid white;
+      padding: 10px 15px;
+      font-weight: lighter;
+      opacity: 0.6;
     }
   }
 }
@@ -85,16 +90,16 @@
   right: 0px;
   width: 100px;
   height: 35px;
-  background-color: $white;
-  border: solid 1px $blue;
+  // background-color: $white;
+  // border: solid 1px $blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1px;
+  // border-radius: 1px;
   p {
-    font-size: 18px;
-    font-weight: bold;
-    color: $blue;
+    font-size: 24px;
+    font-family: 'Waiting for the Sunrise', cursive;
+    color: black;
     margin: 0;
   }
 }
