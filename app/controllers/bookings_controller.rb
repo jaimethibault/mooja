@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :related_surfcamp, :price_paid]
 
+
   def show
     @surfcamp = related_surfcamp
   end
@@ -9,6 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(set_params)
     @booking.surfcamp_id = params[:surfcamp_id]
     @surfcamp = related_surfcamp
+
 
     if @booking.starts_at.present? && @booking.ends_at.present?
       #Calculate booking period in number of days
@@ -81,3 +83,5 @@ class BookingsController < ApplicationController
   end
 
 end
+
+
