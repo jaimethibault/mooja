@@ -16,7 +16,12 @@
       <p><%= @pourcentage %>% OFF</p>
     </div>
     <div class="booking-promo-date">
-      <p><%#= (@surfcamp.discounts.first.discount_ends_at.to_date - Date.today.to_date).to_i %> TODO</p>
+      <div class="booking-promo-from-date">
+        <p>From <strong><%= @surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %></strong> to <strong><%= @surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></strong></p>
+      </div>
+      <div class="booking-promo-to-date">
+        <p></p>
+      </div>
     </div>
   </div>
 <% end %>

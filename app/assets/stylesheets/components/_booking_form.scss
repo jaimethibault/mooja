@@ -26,14 +26,20 @@
 .booking-promo-date {
    flex-grow: 1;
   p {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: normal;
     text-align: center;
     color: $white;
     flex-grow: 1;
   }
 }
+.booking-promo-from-date {
+  display: flex;
+  p {
+    text-align: center;
 
+  }
+}
 
 .booking-form {
   opacity:1;
