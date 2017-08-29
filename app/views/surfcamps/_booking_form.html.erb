@@ -77,25 +77,60 @@
     });
   <% end %>
   <script>
+
+    // Function to get the date to the right format
+    function rightDate(date){
+      var split_date = date.split('/');
+      var right_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
+      return right_date
+    };
+
+    function numberOfDate(start_date, end_date) {
+      let days = Math.floor((end_date - start_date) / (1000*60*60*24))
+      return days
+    };
+
+    function arrayOfDates(start_date, days) {
+      let dates = [];
+      for (i = 0; i <= days; i++) {
+        dates.push(right_start_date.setDate(right_start_date.getDate() + i));
+      };
+    };
+
+    function pricePerDay(){
+
+    };
+
+    // Function to test if all the necessary fields are filled (start, end, pax)
+    function fieldsFilled(field) {
+      if(Boolean(field)){
+        // execute code to get the number of days in a given period
+
+        // execute some code to get an array of date
+
+        // execute some code to check if there is a promotion and calculate price
+
+      }
+    };
+
+
     $('#start_date').datepicker()
       .on("input change", function (e) {
-      var start_date = e.target.value;
-      var split_date = start_date.split('/');
-      var right_start_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
-      return right_start_date
+      var date = e.target.value;
+
+
     });
 
      $('#end_date').datepicker()
       .on("input change", function (e) {
-      var end_date = e.target.value;
-      var split_date = end_date.split('/');
-      var right_end_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
-      return right_end_date
+      var date = e.target.value;
+
     });
-      $(".datepicker").datepicker()
-      .on("input change", function (e) {
-      console.log(right_end_date)
-      });
+    // Date picker Jquery event listener
+    // $(".datepicker").datepicker()
+    // .on("input change", function (e) {
+    // });
+
     // let dates = []
     // for (i = 0; i <= days; i++) {
     //   dates.push(right_start_date.setDate(right_start_date.getDate() + i));
