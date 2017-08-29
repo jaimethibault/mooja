@@ -18,16 +18,20 @@ class PaymentsController < ApplicationController
   )
 
   @booking.update(status: 'paid') # include in the bracket payment: charge.to_json after adding a new column in Booking
-  redirect_to booking_path(@booking)
+  redirect_to booking_payment_thanks_path(@booking)
 
 rescue Stripe::CardError => e
   flash[:alert] = e.message
   redirect_to new_booking_payment_path(@booking)
   end
 
+  def thanks
+    @surfcamp = @booking.surfcamp
+  end
+
 private
 
   def set_booking
-    @booking = Booking.where(status: 'unpaid').find(params[:booking_id])
+    @booking = Booking.find(params[:booking_id])
   end
 end

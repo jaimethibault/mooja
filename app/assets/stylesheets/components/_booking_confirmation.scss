@@ -7,19 +7,20 @@
 
 .booking-confirmation-title {
   margin-top: 40px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   h2 {
     font-size: 28px;
     text-align: center;
-    color: #4a484a;
+    color: $black;
     font-weight: 300;
   }
+
 }
 
 .booking-confirmation-details {
   border: solid 1px #cfcbcb;
   width: 472px;
-  height: 500px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,15 +28,20 @@
 
 .card-title h3 {
   font-size: 24px;
-  color: #4a484a;
-  text-align: left!important;
-  font-weight: 300;
+  color: $blue;
+  text-align: center!important;
+  font-weight: inherit;
+  padding-bottom: 20px;
+}
 
+.card-image {
+  height: 100px;
 }
 
 .card-booking-details {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-around;
+  text-align: center;
   p {
     font-weight: 300;
     margin: 0;
@@ -43,8 +49,11 @@
 }
 
 .card-booking-details-address {
-  max-width: 300px;
-  margin-top: 20px;
+  white-space: nowrap;
+  margin: 35px 0;
+  strong {
+    color: $blue;
+  }
 }
 
 .card-booking-details-discount {
@@ -80,5 +89,13 @@
 .price-paid {
   font-size: 36px;
   font-weight: 400!important;
-  color: $gray;
+  color: $blue;
+}
+
+.stripe-button-el  {
+  -webkit-box-shadow: none!important;
+  span {
+    background-image: none!important;
+    background: $blue!important;
+  }
 }

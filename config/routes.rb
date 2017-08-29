@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:show] do
     resources :payments, only: [:new, :create]
+    get 'payment-thanks', to: 'payments#thanks', as: 'payment_thanks'
   end
   mount Attachinary::Engine => "/attachinary"
 end
