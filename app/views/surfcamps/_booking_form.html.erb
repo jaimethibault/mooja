@@ -64,7 +64,7 @@
       <% end %>
       <%= hidden_field_tag 'booking[status]', 'unpaid' %>
     </div>
-    <hr>
+    <div class="hr-booking-hidden"><hr></div>
     <div class="booking-form-total", id= "total-price">
 
     </div>
@@ -87,8 +87,7 @@
     let end_date = document.getElementById("end_date")
     let pax_nb = document.getElementById("pax_nb")
     let total_price = document.getElementById("total-price")
-
-
+    let hr_booking = document.getElementsByClassName("hr-booking-hidden")
 
     // Function to get the date to the right format
     function rightDate(date){
@@ -130,6 +129,7 @@
 
           // Add the total price to the div Total-price in the HTML
           total_price.innerHTML = `<p>Total:</p><p>${finalPrice}€</p>`;
+          hr_booking[0].classList.add("hr-booking-display")
         } else {
           // Just to log if the condition is not respected
           console.log("no");
