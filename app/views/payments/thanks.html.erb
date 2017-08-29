@@ -10,18 +10,19 @@
             <h3>Booking confirmation</h3>
           </div>
           <div class="card-image">
-            <%# unless @surfcamp.photos[].blank? %>
-            <%#= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
-            <%= image_tag "giphy-surf.gif", id: "thanks-surf" %>
-            <%# end %>
+            <% unless @surfcamp.photos[0].blank? %>
+            <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
+            <%#= image_tag "giphy-surf.gif", id: "thanks-surf" %>
+            <% end %>
           </div>
           <div class="card-booking-details">
             <div class="card-booking-details-address">
              <div class="row">
-              <div class="col-xs-6"><p><strong>From  <%= @booking.starts_at.strftime("%A, %b %d") %></strong></p></div>
-              <div class="col-xs-6"><p><strong>To <%= @booking.ends_at.strftime("%A, %b %d") %></strong> </p></div>
+              <div class="col-xs-6"><p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p></div>
+              <div class="col-xs-6"><p><strong>To </strong><%= @booking.ends_at.strftime("%A, %b %d") %> </p></div>
             </div>
-              <p> <strong><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= @surfcamp.address %> </strong></p>
+            <br>
+              <p> <strong><i class="fa fa-location-arrow" aria-hidden="true"></i> </strong><%= @surfcamp.address %> </p>
             </div>
             <div class="card-booking-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
