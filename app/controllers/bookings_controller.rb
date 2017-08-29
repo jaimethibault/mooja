@@ -39,21 +39,13 @@ class BookingsController < ApplicationController
     parsed_resp = JSON.parse(response)
 
     # using the response to display flight info
-    # only works for the 1st flight so far
+    # getting the flights date
     @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
-    @flight_number = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["carrier"] + parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["number"]
-    @flight_departure_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
-    @flight_departure_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["origin"]
-    @flight_duration = Time.at(parsed_resp["trips"]["tripOption"].first["slice"].first["duration"]*60).utc.strftime("%Hh%Mmin")
-    @flight_arrival_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
-    @flight_arrival_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["destination"]
-    @flight_price = parsed_resp["trips"]["tripOption"].first["saleTotal"]
 
-    # attempt with 2 flights
+    # building an array of flight hashes to pass to the view
     @flights = []
     parsed_resp["trips"]["tripOption"].each do |flight|
       flight_hash = {}
-      flight_hash["flight_date"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
       flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
       flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
       flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
