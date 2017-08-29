@@ -26,6 +26,7 @@ gem 'coffee-rails'
 gem "geocoder"
 gem "gmaps4rails"
 gem "jquery-slick-rails"
+# gem 'google-api-client', '~> 0.11'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

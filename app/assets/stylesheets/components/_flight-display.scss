@@ -1,0 +1,28 @@
+.flight-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flight-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px $medium-grey;
+  padding: 10px;
+}
+
+.flight-departure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flight-arrival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vertical-line-right {
+  border-right: solid 1px $medium-grey;
+}

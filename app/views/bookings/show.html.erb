@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
+    <div class="col-xs-12 col-md-6 booking-confirmation">
       <div class="booking-confirmation-title">
         <h2>Thank you for your reservation!</h2>
       </div>
@@ -35,6 +35,28 @@
           </div>
         <% end %>
       </div>
-     </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <!--   testing to get the flight info from google flight api -->
+      <div class="flight-container">
+        <div class="flight-date">Fly on the: <%= @flight_date %></div>
+        <div class="flight-infos">
+          <div class="flight-number verticalLineRight">Flight Number</div>
+          <div class="flight-departure">
+            <div class="flight-departure-time">10:00</div>
+            <div class="flight-departure-airport">CDG</div>
+          </div>
+          <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>  2h15  <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+          <div class="flight-arrival">
+            <div class="flight-arrival-time">15:20</div>
+            <div class="flight-arrival-airport">AGA</div>
+          </div>
+          <div class="flight-price">Flight price</div>
+          <div class="flight-button">
+            <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

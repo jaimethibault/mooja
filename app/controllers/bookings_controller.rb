@@ -1,8 +1,50 @@
+require "json"
+require "rest-client"
+
+
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :related_surfcamp, :price_paid]
 
   def show
     @surfcamp = related_surfcamp
+
+    # creating the request
+    # need to get these infos from params from the form on the booking confirmation page
+    origin = "CDG"
+    destination = "AGA"
+    date = "2017-08-31" # need to add return then
+    max_stops = 0 # if direct
+    adultCount = 1
+    nb_results = 3
+
+    request = {
+      request: {
+        slice: [
+          {
+            origin: origin,
+            destination: destination,
+            date: date,
+            maxStops: max_stops
+          }
+        ],
+        passengers: {
+          adultCount: adultCount
+        },
+        solutions: nb_results
+      }
+    }
+
+    # sending the request and receiving the answer
+    response = RestClient.post("https://www.googleapis.com/qpxExpress/v1/trips/search?key=#{ENV['GOOGLE_FLIGHT_API_KEY']}", request.to_json, :content_type => :json)
+    parsed_resp = JSON.parse(response)
+    @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"]
+    @flight_number = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["carrier"] + parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["flight"]["number"]
+    @flight_departure_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"]
+    @flight_departure_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["origin"]
+    @flight_duration = Time.at(parsed_resp["trips"]["tripOption"].first["slice"].first["duration"]*60).utc.strftime("%Hh%Mmin")
+    @flight_arrival_time = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["arrivalTime"]
+    @flight_arrival_airport = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["destination"]
+    @flight_price = parsed_resp["trips"]["tripOption"].first["saleTotal"]
   end
 
   def create
