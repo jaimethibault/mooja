@@ -22,10 +22,10 @@
   <h3>Our best deals</h3>
   <div class="row">
     <% @surfcamps.each do |surfcamp| %>
-      <% if surfcamp.photo? %>
+      <% unless surfcamp.photos[0].blank? %>
         <div class="col-xs-12 col-sm-4">
           <div class="surfcamp-card-home">
-              <%= link_to cl_image_tag(surfcamp.photo.path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
+              <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
               <div class="surfcamp-card-text-disc">
                 <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
               </div>
