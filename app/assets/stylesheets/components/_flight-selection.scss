@@ -1,0 +1,43 @@
+.flight-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.flight-selection-title {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    color: $black;
+    font-weight: 300;
+  }
+}
+
+.flight-selection-details {
+  border: solid 1px #cfcbcb;
+  width: 472px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.info-for-departure h3 {
+  font-size: 24px;
+  color: $blue;
+  text-align: center!important;
+  font-weight: inherit;
+  margin-bottom: 0px;
+}
+
+.flying-from {
+  padding-bottom: 10px;
+}
+
+.radio-buttons {
+  padding-bottom: 10px;
+}
