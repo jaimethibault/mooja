@@ -113,10 +113,11 @@
 
 }
 
+
 .surfcamp-card-text-description {
   // background-color: $white;
   // border: solid 1px $blue;
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
@@ -124,7 +125,7 @@
   // border-radius: 1px;
   .surfcamp-card-text-discount{
     p {
-    font-size: 24px;
+    font-size: 18px;
     min-width: 100px;
     // font-family: 'Waiting for the Sunrise', cursive;
     color: $blue;
@@ -135,7 +136,7 @@
   .surfcamp-card-s-name {
     max-width: 180px;
     p {
-    font-size: 19px;
+    font-size: 18px;
     font-family: 'Pacifico', cursive;
     color: $gray;
     opacity: 0.7;
@@ -144,7 +145,7 @@
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: clip;
+    text-overflow: ellipsis;
     }
   }
 }
@@ -182,6 +183,28 @@
   left: auto;
 }
 
+.surfcamp-card-text-discount-date {
+    display: flex;
+    padding: 0 10px;
+   p {
+    font-size: 14px;
+    color: $gray;
+    margin: 0;
+    margin-right: 2px;
+    }
+  }
 
-
+.surfcamp-card-text-price {
+  padding: 0 10px;
+  p {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+.surfcamp-card-price-information {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
 
