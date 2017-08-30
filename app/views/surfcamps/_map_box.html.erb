@@ -1,4 +1,27 @@
 <% unless surfcamp.photos[0].blank? %>
-  <%= cl_image_tag surfcamp.photos[0].path, width: 350, height: 200, crop: :fill, fetch_format: :auto %>
-  <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-infowindow-link" %>
+    <%= cl_image_tag surfcamp.photos[0].path, width: 280, height: 150, crop: :fill, fetch_format: :auto %>
+    <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-infowindow-link" %>
+  <div class="banner-bottom-window">
+    <div class="banner-bottom-price">
+     <%= surfcamp.price_per_night_per_person %>€
+    </div>
+    <div class="banner-bottom-temperature text-center">
+      <p>air</p>
+      <h5><%= surfcamp.air_temp %>°C</h5>
+    </div>
+    <div class="banner-bottom-temperature text-center">
+      <p> sea</p>
+      <h5><%= surfcamp.water_temp %>°C</h5>
+    </div>
+    <div class="banner-bottom-weather">
+      <%=  image_tag "sun.png" if surfcamp.weather_desc == "Sunny" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Light rain shower" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Partly cloudy" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Patchy rain possible" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Cloudy" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Clear" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Light rain" %>
+      <%=  image_tag "" if surfcamp.weather_desc == "Overcast" %>
+    </div>
+  </div>
 <% end %>

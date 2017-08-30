@@ -23,3 +23,32 @@
   background: black;
   opacity: 0;
 }
+
+.banner-bottom-window {
+  width: 100%;
+  background-color: $blue;
+  height: 40px;
+  color:$white;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+}
+
+.banner-bottom-price {
+  font-size: 22px;
+}
+
+.banner-bottom-temperature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 12px;
+  h5 {
+    margin: auto!important;
+  }
+  p {
+    margin: auto!important;
+  }
+}
