@@ -1,3 +1,5 @@
+require "rest-client"
+
 class PaymentsController < ApplicationController
   before_action :set_booking
 
