@@ -62,217 +62,217 @@ admin.admin = true
 admin.save!
 puts "Admin created"
 
-# puts "Creating Surfcamps"
-# # all the countries available on the website
-# # If you are in development and do not want to scrapp all the crountries,
-# # just comment the countries that are'nt necessary.
-# # After seed uncomment, that way whe can have the proper seed on master
-# countries = [
-#   "portugal",
-#   "morocco",
-#   "canary-islands",
-#   "costa-rica",
-#   "indonesia",
-#   "barbados",
-#   "spain",
-#   "france",
-#   "ireland",
-#   "sri-lanka",
-#   "dominican-republic",
-#   "mexico",
-#   "australia",
-#   "el-salvador",
-#   "peru",
-#   "south-africa",
-#   "nicaragua",
-#   "philippines",
-#   "brazil",
-#   "new-zealand",
-#   "india",
-#   "maldives"
-#   ]
-# # Showcasing the countries we will scrapp
-# puts ""
-# puts "    This is all the countries we will scrapp"
-# countries.each_with_index do |country, index|
-#   puts "    #{index +1}- #{country}"
-# end
-# puts ""
-# # iterating over all the countries
-# countries.each do |country|
-#   s = 0
-#   puts "    Iterating over #{country}"
-#   # The url we are scrapping
-#   url = "https://www.surfholidays.com/property-search?country=#{country}&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
-#   base_url = "https://www.surfholidays.com"
-#   html_file = open(url).read
-#   html_doc = Nokogiri::HTML(html_file)
-#   surfcamp_total = html_doc.search(".name-location a").count
-#   # We look for all the a in the div that match our criterias
-#   puts "    #{surfcamp_total} Surfcamps to magically scrapp in #{country}"
-#   html_doc.search(".name-location a").each do |element|
-#     page_url = element.attribute('href').value
-#     complete_url = "#{base_url}#{page_url}"
+puts "Creating Surfcamps"
+# all the countries available on the website
+# If you are in development and do not want to scrapp all the crountries,
+# just comment the countries that are'nt necessary.
+# After seed uncomment, that way whe can have the proper seed on master
+countries = [
+  "portugal",
+  "morocco",
+  "canary-islands",
+  "costa-rica",
+  "indonesia",
+  "barbados",
+  "spain",
+  "france",
+  "ireland",
+  "sri-lanka",
+  "dominican-republic",
+  "mexico",
+  "australia",
+  "el-salvador",
+  "peru",
+  "south-africa",
+  "nicaragua",
+  "philippines",
+  "brazil",
+  "new-zealand",
+  "india",
+  "maldives"
+  ]
+# Showcasing the countries we will scrapp
+puts ""
+puts "    This is all the countries we will scrapp"
+countries.each_with_index do |country, index|
+  puts "    #{index +1}- #{country}"
+end
+puts ""
+# iterating over all the countries
+countries.each do |country|
+  s = 0
+  puts "    Iterating over #{country}"
+  # The url we are scrapping
+  url = "https://www.surfholidays.com/property-search?country=#{country}&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
+  base_url = "https://www.surfholidays.com"
+  html_file = open(url).read
+  html_doc = Nokogiri::HTML(html_file)
+  surfcamp_total = html_doc.search(".name-location a").count
+  # We look for all the a in the div that match our criterias
+  puts "    #{surfcamp_total} Surfcamps to magically scrapp in #{country}"
+  html_doc.search(".name-location a").each do |element|
+    page_url = element.attribute('href').value
+    complete_url = "#{base_url}#{page_url}"
 
-#     html_file = open(complete_url).read
-#     html_doc = Nokogiri::HTML(html_file)
-#     images_surfcamp = []
+    html_file = open(complete_url).read
+    html_doc = Nokogiri::HTML(html_file)
+    images_surfcamp = []
 
-#     # Initializing instance of surfcamp
-#     surfcamp = Surfcamp.new
+    # Initializing instance of surfcamp
+    surfcamp = Surfcamp.new
 
-#     # We create surfcamp with the data that has been scrapped
-#     html_doc.search("#custom-slider ul li").take(5).each do |element|
-#       images_surfcamp << element['style'][/url\((.+)\)/, 1].gsub("'","")
-#     end
-#     # creating surfcamp image
-#     surfcamp.photo_urls = images_surfcamp
-#     html_doc.search("h1.sh-navy").each do |element|
-#       name = element.text
-#       # creating surfcamp name
-#       surfcamp.name = name
-#     end
-#     # creating surfcamp description
-#     elements = []
-#     html_doc.search(".mt30 p.mt15").each do |element|
-#       elements << element.text.delete("\r").delete("\n")
-#     end
-#     surfcamp.description = elements[0]
+    # We create surfcamp with the data that has been scrapped
+    html_doc.search("#custom-slider ul li").take(5).each do |element|
+      images_surfcamp << element['style'][/url\((.+)\)/, 1].gsub("'","")
+    end
+    # creating surfcamp image
+    surfcamp.photo_urls = images_surfcamp
+    html_doc.search("h1.sh-navy").each do |element|
+      name = element.text
+      # creating surfcamp name
+      surfcamp.name = name
+    end
+    # creating surfcamp description
+    elements = []
+    html_doc.search(".mt30 p.mt15").each do |element|
+      elements << element.text.delete("\r").delete("\n")
+    end
+    surfcamp.description = elements[0]
 
-#      html_doc.search("#accom-detail-location").each do |element|
-#       address = element.text.strip
-#       # creating surfcamp address
-#       surfcamp.address = address
-#     end
-#     ratings = []
-#     html_doc.search("p.bolder.sh-orange span.bigger-font18").each do |element|
-#       ratings << element.text.strip
-#       # creating surfcamp rating
-#       surfcamp.rating = ratings[0]
-#     end
-#     # creating surfcamp capacity
-#     surfcamp.capacity = rand(6..50)
-#     # creating surfcamp price_per_night_per_person
-#     surfcamp.price_per_night_per_person = rand(30..70)
-#     surfcamp.save!
+     html_doc.search("#accom-detail-location").each do |element|
+      address = element.text.strip
+      # creating surfcamp address
+      surfcamp.address = address
+    end
+    ratings = []
+    html_doc.search("p.bolder.sh-orange span.bigger-font18").each do |element|
+      ratings << element.text.strip
+      # creating surfcamp rating
+      surfcamp.rating = ratings[0]
+    end
+    # creating surfcamp capacity
+    surfcamp.capacity = rand(6..50)
+    # creating surfcamp price_per_night_per_person
+    surfcamp.price_per_night_per_person = rand(30..70)
+    surfcamp.save!
 
-#     # getting today's weather forecast for each surfcamp
-#     # checking if surfcamp address was geocoded correctly
-#     unless surfcamp.latitude.blank?
-#       url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
-#       weather_serialized = open(url).read
-#       weather = JSON.parse(weather_serialized)
-#       # getting weather data for today at noon
-#       waves_period = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
-#       water_temp = weather['data']['weather'].first['hourly'][4]['waterTemp_C']
-#       air_temp = weather['data']['weather'].first['hourly'][4]['tempC']
-#       weather_desc = weather['data']['weather'].first['hourly'][4]['weatherDesc'][0]['value']
+    # getting today's weather forecast for each surfcamp
+    # checking if surfcamp address was geocoded correctly
+    unless surfcamp.latitude.blank?
+      url = "http://api.worldweatheronline.com/premium/v1/marine.ashx?key=#{ENV['WEATHER_API']}&format=json&q=#{surfcamp.latitude},#{surfcamp.longitude}"
+      weather_serialized = open(url).read
+      weather = JSON.parse(weather_serialized)
+      # getting weather data for today at noon
+      waves_period = weather['data']['weather'].first['hourly'][4]['swellPeriod_secs']
+      water_temp = weather['data']['weather'].first['hourly'][4]['waterTemp_C']
+      air_temp = weather['data']['weather'].first['hourly'][4]['tempC']
+      weather_desc = weather['data']['weather'].first['hourly'][4]['weatherDesc'][0]['value']
 
-#       hash = {waves_period: waves_period, water_temp: water_temp, air_temp: air_temp, weather_desc: weather_desc}
-#       surfcamp.update(hash)
-#     end
-#     s += 1
-#     puts "    #{s}/#{surfcamp_total} scrapped in #{country}"
-#   end
-#   puts ""
-# end
-# puts "Done creating surfcamps"
-
-
-# puts "Creating Discounted Prices"
-# sept_first = Date.parse("September 1st")
-
-# # creating 0 or 1 promo per surfcamp
-# Surfcamp.all.each do |surfcamp|
-
-#   # creating discount with a proba of 80%
-#   discount_occurence_probability = 80
-#   apply_discount = (1..100).to_a.sample > (100 - discount_occurence_probability)
-
-#   if apply_discount
-#     discount = Discount.new
-#     # creating discount between 20 and 50% reduction
-#     discount_rate = [20, 30, 40, 50].sample.to_f/100
-#     discounted_price = (1 - discount_rate) * surfcamp.price_per_night_per_person
-#     discount.discounted_price = discounted_price
-
-#     # Between September 1st and September 15th
-#     discount.limit_offer_date = (sept_first..(sept_first + 15.days)).to_a.sample
-
-#     discount.discount_starts_at = (sept_first..(sept_first + 15)).to_a.sample
-#     discount.discount_ends_at = discount.discount_starts_at + (7..28).to_a.sample.days
-
-#     discount.surfcamp_id = surfcamp.id
-#     discount.save!
-#   end
-# end
-
-# puts "Done Creating Discounted Prices"
+      hash = {waves_period: waves_period, water_temp: water_temp, air_temp: air_temp, weather_desc: weather_desc}
+      surfcamp.update(hash)
+    end
+    s += 1
+    puts "    #{s}/#{surfcamp_total} scrapped in #{country}"
+  end
+  puts ""
+end
+puts "Done creating surfcamps"
 
 
-# puts "Creating Bookings"
+puts "Creating Discounted Prices"
+sept_first = Date.parse("September 1st")
 
-# surfcamps = Surfcamp.all
-# surfcamps.each do |surfcamp|
-#   # creating between 2 and 10 bookings per surfcamp
-#   rand(2..10).times do
-#     # initializing instance of Booking
-#     booking = Booking.new
-#     sept_first = Date.parse("September 1st")
-#     # creating starts at and ends at and status and foreign keys
-#     booking.starts_at = sept_first + rand(3..14).days
-#     booking.ends_at = booking.starts_at + rand(3..14).days
-#     booking.status = "paid"
-#     booking.surfcamp_id = surfcamp.id
-#     users = User.all
-#     user = users.sample
-#     booking.user_id = user.id
-#     # creating pax_nb
-#     booking.pax_nb = rand(1..4)
-#     # creating total original price
-#     booking_duration = (booking.ends_at - booking.starts_at)/86400
-#     booking.total_original_price = booking.pax_nb * surfcamp.price_per_night_per_person * booking_duration
+# creating 0 or 1 promo per surfcamp
+Surfcamp.all.each do |surfcamp|
 
-#     # creating total discounted price
-#     # is there a discount for this surfcamp
-#     surfcamp.discounts.first.blank? ? discount = nil : discount = surfcamp.discounts.first
+  # creating discount with a proba of 80%
+  discount_occurence_probability = 80
+  apply_discount = (1..100).to_a.sample > (100 - discount_occurence_probability)
 
-#     # Build array of nights
-#     nights = []
-#     night = booking.starts_at.to_date
-#     booking_duration.to_i.times do |_n|
-#       nights << night
-#       night += 1
-#     end
+  if apply_discount
+    discount = Discount.new
+    # creating discount between 20 and 50% reduction
+    discount_rate = [20, 30, 40, 50].sample.to_f/100
+    discounted_price = (1 - discount_rate) * surfcamp.price_per_night_per_person
+    discount.discounted_price = discounted_price
 
-#     total_discounted_price = 0
-#     # check if surfcamp has a discount
-#     if discount.nil?
-#       total_discounted_price = booking.total_original_price
-#     else
-#       # for each night
-#       nights.each do |night|
-#         # check for each night if a discount is applicable
-#         if night >= discount.discount_starts_at.to_date && night <= discount.discount_ends_at.to_date
-#           # then apply the discount for this night
-#           night_price = discount.discounted_price * booking.pax_nb
-#         else
-#           # otherwise normal price for this night
-#           night_price = surfcamp.price_per_night_per_person * booking.pax_nb
-#         end
-#         # sum each price per night with discount
-#         total_discounted_price += night_price
-#       end
-#     end
+    # Between September 1st and September 15th
+    discount.limit_offer_date = (sept_first..(sept_first + 15.days)).to_a.sample
 
-#     booking.total_discounted_price = total_discounted_price
+    discount.discount_starts_at = (sept_first..(sept_first + 15)).to_a.sample
+    discount.discount_ends_at = discount.discount_starts_at + (7..28).to_a.sample.days
 
-#     booking.save!
-#     # puts "successfully saved a booking for #{surfcamp.name}"
-#   end
-# end
+    discount.surfcamp_id = surfcamp.id
+    discount.save!
+  end
+end
 
-# puts "Done Creating Bookings"
+puts "Done Creating Discounted Prices"
+
+
+puts "Creating Bookings"
+
+surfcamps = Surfcamp.all
+surfcamps.each do |surfcamp|
+  # creating between 2 and 10 bookings per surfcamp
+  rand(2..10).times do
+    # initializing instance of Booking
+    booking = Booking.new
+    sept_first = Date.parse("September 1st")
+    # creating starts at and ends at and status and foreign keys
+    booking.starts_at = sept_first + rand(3..14).days
+    booking.ends_at = booking.starts_at + rand(3..14).days
+    booking.status = "paid"
+    booking.surfcamp_id = surfcamp.id
+    users = User.all
+    user = users.sample
+    booking.user_id = user.id
+    # creating pax_nb
+    booking.pax_nb = rand(1..4)
+    # creating total original price
+    booking_duration = (booking.ends_at - booking.starts_at)/86400
+    booking.total_original_price = booking.pax_nb * surfcamp.price_per_night_per_person * booking_duration
+
+    # creating total discounted price
+    # is there a discount for this surfcamp
+    surfcamp.discounts.first.blank? ? discount = nil : discount = surfcamp.discounts.first
+
+    # Build array of nights
+    nights = []
+    night = booking.starts_at.to_date
+    booking_duration.to_i.times do |_n|
+      nights << night
+      night += 1
+    end
+
+    total_discounted_price = 0
+    # check if surfcamp has a discount
+    if discount.nil?
+      total_discounted_price = booking.total_original_price
+    else
+      # for each night
+      nights.each do |night|
+        # check for each night if a discount is applicable
+        if night >= discount.discount_starts_at.to_date && night <= discount.discount_ends_at.to_date
+          # then apply the discount for this night
+          night_price = discount.discounted_price * booking.pax_nb
+        else
+          # otherwise normal price for this night
+          night_price = surfcamp.price_per_night_per_person * booking.pax_nb
+        end
+        # sum each price per night with discount
+        total_discounted_price += night_price
+      end
+    end
+
+    booking.total_discounted_price = total_discounted_price
+
+    booking.save!
+    # puts "successfully saved a booking for #{surfcamp.name}"
+  end
+end
+
+puts "Done Creating Bookings"
 
 puts "Seed is done"
 puts "Happy coding!!!"
