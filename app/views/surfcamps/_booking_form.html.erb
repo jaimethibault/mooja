@@ -192,23 +192,26 @@
         let standard_nights = 0;
         let discounted_nights = 0;
         for (j = 0; j <= night; j++) {
-          let date = dates[j]
-            if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date < <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
+        let date = dates[j]
+            if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date <= <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
               // prix du jour = prix discount * nb personne
                 discounted_nights += 1;
                 discounted_price += (<%= @surfcamp.discounts.first.discounted_price %> * pax_nb.value);
-
-              } else {
+                } else if ( date < <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> || date > <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
                   // prix du jour = prix normal * nb personne
                   standard_nights += 1;
                   original_price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
                 };
               };
-          if (discounted_nights > 0) {
+          if (discounted_nights > 0 && standard_nights > 0) {
             subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
-          };
-          if (standard_nights > 0) {
             subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
+          } else if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
+            subtotal_discounted.innerHTML = "";
+          } else if (discounted_nights > 0) {
+            subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
+            subtotal_original.innerHTML = "";
           };
           price = discounted_price + original_price
           return price;
