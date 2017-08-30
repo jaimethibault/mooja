@@ -31,19 +31,17 @@
   color:$white;
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 23px 12px;
+  justify-content: space-around;
+  align-items:center;
 }
 
 .banner-bottom-price {
   font-size: 20px;
 }
 
-.banner-bottom-temperature {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.banner-bottom-element {
+  display:flex;
+  justify-content:space-around;
   font-size: 10px;
   padding: 0 15px;
   h5 {
@@ -54,9 +52,12 @@
   }
 }
 
-.banner-bottom-weather {
+.banner-bottom-icons {
   font-size: 10px;
+  margin-right: 6px;
   p {
     margin: auto!important;
   }
 }
+
+

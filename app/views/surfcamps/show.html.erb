@@ -11,16 +11,37 @@
         <% unless @surfcamp.rating.blank? %>
         <div class="rating">
           <% @surfcamp.rating.to_i.times do  %>
-            <i class="fa fa-star" style="color: black"></i>
+          <%= image_tag "surf.png" %>
+           <!--  <i class="fa fa-star" style="color: black"></i> -->
           <% end %>
           <% (5 - @surfcamp.rating).to_i.times do  %>
-            <i class="fa fa-star-o";"></i>
+           <!--  <i class="fa fa-star-o";"></i> -->
           <% end %>
         </div>
         <% end %>
+
+        <div class="weather-box">
+          <div class="banner-bottom-temperature text-center">
+            <p>air</p>
+            <h5><%= @surfcamp.air_temp.to_i %>°C</h5>
+          </div>
+        <div class="banner-bottom-temperature text-center">
+           <p> sea</p>
+           <h5><%= @surfcamp.water_temp.to_i %>°C</h5>
+        </div>
+         <div class="banner-bottom-weather text-center">
+          <%=  image_tag "sun.png" if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
+          <%=  image_tag "rain.png" if @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain") %>
+          <%=  image_tag "partly_cloudy.png" if @surfcamp.weather_desc == ("Partly cloudy") %>
+          <%=  image_tag "cloudy.png" if @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+          <p> <%= @surfcamp.weather_desc %></p>
+          </div>
+        </div>
+
         <hr>
-        <p><i class="fa fa-map-marker" aria-hidden="true"></i>
-        <%= @surfcamp.address.capitalize %></p>
+        <%= image_tag "map-location.png", id:"map-location" %>
+        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
+        <%=  @surfcamp.address.capitalize %>
         <hr>
         <h4>Description</h4>
         <p><%= @surfcamp.description %></p>
