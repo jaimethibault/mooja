@@ -138,8 +138,6 @@
 
           // Add the total price to the div Total-price in the HTML
           total_price.innerHTML = `<div class="booking-form-total"><p>Total:</p><p>${finalPrice}€</p></div>`;
-          hr_booking[0].classList.add("hr-booking-display");
-          hr_booking[1].classList.add("hr-booking-display")
 
         } else {
           // Just to log if the condition is not respected
@@ -179,6 +177,12 @@
           };
         if (standard_nights > 0) {
             subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${price}€</p>`;
+            hr_booking[0].classList.add("hr-booking-display");
+            hr_booking[1].classList.add("hr-booking-display");
+          } else if (night < 0) {
+            subtotal_original.innerHTML = "";
+            hr_booking[0].classList.remove("hr-booking-display");
+            hr_booking[1].classList.remove("hr-booking-display");
           };
         return price;
       };
@@ -191,7 +195,7 @@
         let original_price = 0
         let standard_nights = 0;
         let discounted_nights = 0;
-        console.log(night)
+        console.log(night);
         for (j = 0; j < night; j++) {
         let date = dates[j]
             if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date <= <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
@@ -207,12 +211,23 @@
           if (discounted_nights > 0 && standard_nights > 0) {
             subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
             subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
+            hr_booking[0].classList.add("hr-booking-display");
+            hr_booking[1].classList.add("hr-booking-display");
           } else if (standard_nights > 0) {
             subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
             subtotal_discounted.innerHTML = "";
+            hr_booking[0].classList.add("hr-booking-display");
+            hr_booking[1].classList.add("hr-booking-display");
           } else if (discounted_nights > 0) {
             subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
             subtotal_original.innerHTML = "";
+            hr_booking[0].classList.add("hr-booking-display");
+            hr_booking[1].classList.add("hr-booking-display");
+          } else if (night < 0) {
+            subtotal_discounted.innerHTML = "";
+            subtotal_original.innerHTML = "";
+            hr_booking[0].classList.remove("hr-booking-display");
+            hr_booking[1].classList.remove("hr-booking-display");
           };
           price = discounted_price + original_price
           return price;
