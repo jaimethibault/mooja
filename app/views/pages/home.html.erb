@@ -5,12 +5,11 @@
     </video>
     <div class="col-md-12 banner-content">
       <div>
-        <h3>Last minute surfcamps</h3>
+        <h3>Last minute booking for surfcamps</h3>
       </div>
-      <div class="text-center">
-        <%= link_to "Check deals", surfcamps_path, class: "search-home btn btn-primary" %>
+      <div class="main-CTA">
+        <%= link_to image_tag("Main_CTA.svg"), surfcamps_path %>
       </div>
-
     </div>
   </div>
 </div>
@@ -20,6 +19,7 @@
 
 <div class="home-card-container">
   <h3>Our best deals</h3>
+  <div class="wrapper pola-wrapper">
   <div class="row">
     <% @surfcamps.each do |surfcamp| %>
       <% unless surfcamp.photos[0].blank? %>
@@ -27,8 +27,28 @@
           <div class="surfcamp-card-home">
               <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
               <div class="surfcamp-card-text-description">
-                <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
+                <div class="surfcamp-card-text">
+                  <div class="surfcamp-card-text-discount">
+                    <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
+                  </div>
+                </div>
+                <div class="surfcamp-card-s-name">
+                  <p><%= surfcamp.name %></p>
+                </div>
               </div>
+          <div class="surfcamp-card-price-information">
+            <div class="surfcamp-card-text-discount-date">
+              <p><strong>From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+              <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+            </div>
+            <div class="surfcamp-card-text-price">
+              <% if surfcamp.discounts.blank? %>
+                <p><%= surfcamp.price_per_night_per_person %> €</p>
+              <% else %>
+                <p><%= surfcamp.discounts.first.discounted_price %> € <strike style="color: grey;"><%= surfcamp.price_per_night_per_person %> €</strike></p>
+              <% end %>
+            </div>
+          </div>
           </div>
         </div>
       <% end %>
@@ -45,6 +65,7 @@
               </div>
             </div>
           </div> -->
+  </div>
   </div>
 </div>
 
