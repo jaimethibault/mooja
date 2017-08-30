@@ -170,7 +170,6 @@
       function totalPrice(night, dates, pax_nb){
         let price = 0
         let standard_nights = 0;
-        console.log(night)
 
         for (j = 0; j < night; j++) {
           let date = dates[j]
@@ -192,7 +191,8 @@
         let original_price = 0
         let standard_nights = 0;
         let discounted_nights = 0;
-        for (j = 0; j <= night; j++) {
+        console.log(night)
+        for (j = 0; j < night; j++) {
         let date = dates[j]
             if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date <= <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
               // prix du jour = prix discount * nb personne
