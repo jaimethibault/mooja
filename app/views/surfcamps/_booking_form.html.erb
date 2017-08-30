@@ -9,70 +9,76 @@
   <%# f.submit "Book it!", class: "btn btn-danger btn-block" %>
 <%# end %>
 
+<% unless @surfcamp.discounts.blank? %>
+  <div class="booking-promo">
+    <% @pourcentage = ((1 - @surfcamp.discounts.first.discounted_price.to_f / @surfcamp.price_per_night_per_person.to_f) * 100).to_i %>
+    <div class="booking-promo-percentage">
+      <p><%= @pourcentage %>% OFF</p>
+    </div>
+    <div class="booking-promo-date">
+      <div class="booking-promo-from-date">
+        <p>From <strong><%= @surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %></strong> to <strong><%= @surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></strong></p>
+      </div>
+    </div>
+  </div>
+<% end %>
 <div class="booking-form">
   <div class="booking-input">
-    <%= form_tag surfcamp_bookings_path(surfcamp) do %>
-      <%= label_tag 'booking[starts_at]', 'Checkin' %>
-
-      <%= text_field_tag 'booking[starts_at]', nil, class: "datepicker", placeholder: "02/09/2017", style: "width: 100%" %>
-      <% if errors[:starts_at] %>
-       <div class= "form_error_message">
-        <%= errors[:starts_at] %>
+    <%= form_tag surfcamp_bookings_path(surfcamp), id: "booking-form-global" do %>
+    <div class="row">
+      <div class="col-xs-6 booking-form-start-date">
+        <%= label_tag 'booking[starts_at]', 'Checkin' %>
+        <div class="booking-form-start-date-input">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <%= text_field_tag 'booking[starts_at]', nil, id: "start_date", class: "datepicker", placeholder: "02/09/2017", style: "width: 100%" %>
+          <% if errors[:starts_at] %>
+           <div class= "form_error_message">
+            <%= errors[:starts_at] %>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
-      <%= label_tag 'booking[ends_at]', 'Checkout' %>
-      <%= text_field_tag 'booking[ends_at]', nil, class: "datepicker", placeholder: "10/09/2017", style: "width: 100%" %>
-      <% if errors[:ends_at] %>
-      <div class= "form_error_message">
-        <%= errors[:ends_at] %>
+      <div class="col-xs-6 booking-form-end-date">
+        <%= label_tag 'booking[ends_at]', 'Checkout' %>
+        <div class="booking-form-end-date-input">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <%= text_field_tag 'booking[ends_at]', nil, id: "end_date", class: "datepicker", placeholder: "10/09/2017", style: "width: 100%" %>
+          <% if errors[:ends_at] %>
+          <div class= "form_error_message">
+            <%= errors[:ends_at] %>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
-
-      <%= label_tag 'booking[ends_at]', 'Surfers' %>
-      <%= number_field_tag 'booking[pax_nb]', '1', style: "width: 100%", class: "form-control" %>
+    </div>
+    <%= label_tag 'booking[pax_nb]', 'Surfers' %>
+    <div class="booking-form-pax-nb">
+      <i class="fa fa-male" aria-hidden="true"></i>
+      <%= number_field_tag 'booking[pax_nb]', '1', style: "width: 100%", id: "pax_nb", class: "form-control" %>
       <% if current_user.nil? %>
       <% else %>
       <%= hidden_field_tag 'booking[user_id]', current_user.id %>
       <% end %>
       <%= hidden_field_tag 'booking[status]', 'unpaid' %>
+    </div>
+    <div class="hr-booking-hidden"><hr></div>
+    <div class="booking-form-informations">
+      <div class="booking-form-subtotal", id="subtotal-discounted">
 
-      <hr>
-      <!--<p> Total Price:</p>  -->
+      </div>
+      <div class="booking-form-subtotal", id="subtotal-original">
 
+      </div>
+    <div class="hr-booking-hidden"><hr></div>
+      <div id= "total-price">
+
+      </div>
+    </div>
       <%= submit_tag "Book now", class: "btn btn-primary", style: "width: 100%" %>
-
     <% end %>
   </div>
+
 </div>
-
-<!--
-    <form action="#" >
-      <div class="form-group">
-        <div class="row">
-          <div class="col-xs-6">
-            <input type="text" class="form-control" placeholder="Check in" id="checkin">
-          </div>
-          <div class="col-xs-6">
-            <input type="text" class="form-control" placeholder="Check out">
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <select name="" id="guests" class="form-control">
-          <option value="dormirory">Dormitory</option>
-          <option value="single bedroom">Private Room</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select name="" id="guests" class="form-control">
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-      </div>
-      <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
-    </form>
-  -->
-
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     $(".datepicker").datepicker({
@@ -80,4 +86,133 @@
     startDate: '-1d'
     });
   <% end %>
+
+  <script>
+    // definition of each variable that will need to be tested
+    let start_date = document.getElementById("start_date")
+    let end_date = document.getElementById("end_date")
+    let pax_nb = document.getElementById("pax_nb")
+    let total_price = document.getElementById("total-price")
+    let hr_booking = document.getElementsByClassName("hr-booking-hidden")
+    let subtotal_discounted = document.getElementById("subtotal-discounted")
+    let subtotal_original = document.getElementById("subtotal-original")
+
+    // Function to get the date to the right format
+    function rightDate(date){
+      var split_date = date.split('/');
+      var right_date = new Date(split_date[2],split_date[1]-1,split_date[0]);
+      return right_date
+    };
+
+    function numberOfNights(start_date, end_date) {
+      let night = ( Math.floor((end_date - start_date) / (1000*60*60*24)))
+      return night
+    };
+
+    function arrayOfDates(start_date, night) {
+      let dates = [];
+      for (i = 0; i < night; i++) {
+        let ref_date = new Date(start_date);
+        dates.push(ref_date.setDate(ref_date.getDate() + i));
+      };
+      return dates
+    };
+
+     // Function to test if all the necessary fields are filled (start, end, pax)
+      function fieldsFilled(start_date, end_date, pax_nb) {
+        if(Boolean(start_date.value) && (end_date.value) && (pax_nb.value)){
+          // execute some code to have proper date
+          let right_start_date = rightDate(start_date.value);
+          let right_end_date = rightDate(end_date.value);
+
+          // execute code to get the number of night in a given period
+          let night = numberOfNights(right_start_date, right_end_date)
+
+          // test if number of night is lower than zero
+
+          // execute some code to get an array of date
+          let dates = arrayOfDates(right_start_date, night);
+
+          // execute some code to check if there is a promotion and calculate price
+          let finalPrice = totalPrice(night, dates, pax_nb)
+
+          // Add the total price to the div Total-price in the HTML
+          total_price.innerHTML = `<div class="booking-form-total"><p>Total:</p><p>${finalPrice}€</p></div>`;
+          hr_booking[0].classList.add("hr-booking-display");
+          hr_booking[1].classList.add("hr-booking-display")
+
+        } else {
+          // Just to log if the condition is not respected
+          console.log("no");
+        };
+      };
+
+
+      $('#start_date').datepicker()
+        .on("input change", function (e) {
+        var start_date = e.target;
+        fieldsFilled(start_date, end_date, pax_nb)
+      });
+
+      $('#end_date').datepicker()
+        .on("input change", function (e) {
+        var date = e.target;
+        fieldsFilled(start_date, end_date, pax_nb)
+      });
+
+      $('#pax_nb')
+        .on("input change", function (e) {
+        var pax_nb = e.target;
+        fieldsFilled(start_date, end_date, pax_nb)
+      });
+
+    <% if @surfcamp.discounts.empty? %>
+      function totalPrice(night, dates, pax_nb){
+        let price = 0
+        let standard_nights = 0;
+
+        for (j = 0; j <= night; j++) {
+          let date = dates[j]
+          // prix du jour = prix normal * nb personne
+          standard_nights += 1;
+          price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
+          };
+        if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${price}€</p>`;
+          };
+        return price;
+      };
+
+
+    <% else %>
+      function totalPrice(night, dates, pax_nb){
+        let price = 0
+        let discounted_price = 0;
+        let original_price = 0
+        let standard_nights = 0;
+        let discounted_nights = 0;
+        for (j = 0; j <= night; j++) {
+          let date = dates[j]
+            if ( date >= <%= ((@surfcamp.discounts.first.discount_starts_at.to_i * 1000) - 7200000 ) %> && date < <%= ((@surfcamp.discounts.first.discount_ends_at.to_i * 1000) - 7200000) %> ) {
+              // prix du jour = prix discount * nb personne
+                discounted_nights += 1;
+                discounted_price += (<%= @surfcamp.discounts.first.discounted_price %> * pax_nb.value);
+
+              } else {
+                  // prix du jour = prix normal * nb personne
+                  standard_nights += 1;
+                  original_price += (<%= @surfcamp.price_per_night_per_person %> * pax_nb.value);
+                };
+              };
+          if (discounted_nights > 0) {
+            subtotal_discounted.innerHTML = `<p><%= @surfcamp.discounts.first.discounted_price %>€ x ${discounted_nights} discounted night(s)</p><div class="double-price"><p class="lined">${discounted_nights * <%= @surfcamp.price_per_night_per_person %>}€</p><p>${discounted_price}€</p></div>`;
+          };
+          if (standard_nights > 0) {
+            subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${original_price}€</p>`;
+          };
+          price = discounted_price + original_price
+          return price;
+        };
+      <% end %>
+    </script>
 <% end %>

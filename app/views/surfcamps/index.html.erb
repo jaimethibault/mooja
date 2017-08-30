@@ -27,18 +27,21 @@
             <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Ex: 120€', class: "search-box-input", id: "maxprice" %>
           </div>
           <div class="button">
-              <%= button_tag(content = "Apply Filters", class: "btn btn-primary search-box-font-size") %>
+              <%= button_tag(content = " Filter", class: "btn btn-primary search-box-font-size") %>
           </div>
         </div>
         <div class="col-xs-12 search-action">
-            <div class="reset-filters">
-              <%= link_to "reset filters", surfcamps_path %>
-            </div>
-            <div class="result">
-              <p><%= pluralize(@surfcamps.size, 'result')%> matching your criterias </p>
-            </div>
-
+          <% unless params[:maxprice].blank? && params[:address].blank? %>
+              <div class="result">
+                <p><%= pluralize(@surfcamps.size, 'result')%> matching your criterias  </p>
+              </div>
+              <div class="reset-filters">
+                <%= link_to surfcamps_path do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+              </div>
             <% end %>
+          <% end %>
         </div>
       </div>
       <!-- surfcamps cards -->
@@ -46,8 +49,8 @@
         <div class="col-xs-6">
           <div class="surfcamp-card">
             <div class="surfcamp-card-pic">
-              <% if surfcamp.photo? %>
-                <%= cl_image_tag surfcamp.photo.path, width: 510, height: 350, crop: :lfill, fetch_format: :auto %>
+              <% unless surfcamp.photos[0].blank? %>
+                <%= cl_image_tag surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto %>
               <% end %>
             </div>
             <div class="surfcamp-card-text">
@@ -58,9 +61,10 @@
                 <% else %>
                   <p>From <%= surfcamp.discounts.first.discounted_price %> € <strike style="color: grey;"><%= surfcamp.price_per_night_per_person %> €</strike> | <%= surfcamp.name %></p>
                 <% end %>
-              </div>
               <div class="surfcamp-card-text-remaining-beds">
-                <p> <%= rand(1..Surfcamp.first.capacity) %> beds remainings </p>
+
+                <p><%= (randcapacity = rand(1..surfcamp.capacity)) <= 5 ? "#{randcapacity} beds remainings" : "" %></p>
+              </div>
               </div>
               <!-- div showing the percentage of savings -->
               <% unless surfcamp.discounts.blank? %>
@@ -167,7 +171,7 @@
     }
 ];
 
-      var handler = Gmaps.build('Google');
+      var handler = Gmaps.build('Google', { markers: { clusterer: undefined  } });
       handler.buildMap({
       provider: {
         styles: dima
@@ -176,6 +180,9 @@
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
+        if (handler.getMap().getZoom() == 1){
+         handler.getMap().setZoom(2);
+        }
         if (markers.length == 0) {
           handler.getMap().setZoom(2);
         } else if (markers.length == 1) {

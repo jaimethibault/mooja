@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 booking-confirmation">
+      <div class="booking-confirmation-title">
+        <h2>Thank you for your great reservation! </h2>
+      </div>
+      <div class="booking-confirmation-details">
+        <div class="card">
+          <div class="card-title">
+            <h3>Booking confirmation</h3>
+          </div>
+          <div class="card-image">
+            <% unless @surfcamp.photos[0].blank? %>
+            <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
+            <% end %>
+          </div>
+          <div class="card-booking-details">
+            <div class="card-booking-details-address">
+              <p><strong>Address</strong> <%= @surfcamp.address %></p>
+              <p><strong>From</strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
+              <p><strong>To</strong> <%= @booking.ends_at.strftime("%A, %b %d") %></p>
+              <p><strong>Status</strong> : <%= @booking.status %></p>
+            </div>
+            <div class="card-booking-details-price">
+              <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
+              <p class="original-price"><%= @booking.total_original_price %>€</p>
+            </div>
+          </div>
+        </div>
+        <% pourcentage = ((1 - @booking.total_discounted_price.to_f / @booking.total_original_price.to_f) * 100).to_i  %>
+        <% unless pourcentage == 0 %>
+          <div class="card-booking-details-discount">
+            <div class="text">
+                <p> <%= pourcentage %>% OFF</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+
+.banner-surfcamp {
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  // background-position: center !important;
+  // height: 75vh;
+}
+
+.container {
+  position: relative;
+}
+
+
+.booking_square {
+  background-color: white;
+  padding: 0px 12px;
+
+}
+
+.banner-show {
+  .slick-prev {
+    z-index: 5;
+    left: 25px;
+  };
+}
+
+.banner-show {
+  .slick-next {
+    z-index: 5;
+    right: 25px;
+  };
+}
+
+.slick-slider {
+  margin-bottom: 0px;
+}
+
+#map-show {
+  display: flex;
+  width: 98%;
+  justify-content:center;
+  background: white;
+  height: 350px;
+  margin:auto;
+  margin-bottom: 40px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+
+    border-top: 1px solid $dark-gray;
+    margin: 1em 0 0.5em 0;
+    padding: 0;
+}
+
+@media(max-width: 720px) {
+  .banner-surfcamp {
+    height: 50vh;
+    background-position: center !important;
+  }
+}

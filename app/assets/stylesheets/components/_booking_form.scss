@@ -1,7 +1,50 @@
+.booking-promo {
+  position: relative;
+  height: 60px;
+  margin-top: -60px;
+  background-color: $blue;
+  border: solid 1px $blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  p {
+    margin: 0;
+  }
+}
+
+.booking-promo-percentage {
+  flex-grow: 1;
+  border-right: 2px solid $white;
+  p {
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.booking-promo-date {
+   flex-grow: 1;
+  p {
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    color: $white;
+    flex-grow: 1;
+  }
+}
+.booking-promo-from-date {
+  display: flex;
+  p {
+    text-align: center;
+
+  }
+}
+
 .booking-form {
   opacity:1;
   border-radius: 2px;
-  border: 1px solid lightgrey;
+  border: solid 1px $soft-gray;
   padding: 13px 20px;
   top: 0px;
   right: 0px;
@@ -13,7 +56,118 @@
   padding-bottom: 5px;
 }
 
-
-label {
+.booking-form label {
   display: block;
+  font-weight: normal;
+}
+
+.booking-form-start-date {
+  padding-right: 0px;
+  margin: 15px 0;
+}
+
+.booking-form-start-date-input {
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
+  border: solid 1px $soft-gray;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 30px;
+  color: $dark-gray;
+  i {
+    padding: 0 5px;
+  }
+  input {
+    border: none;
+    box-shadow: none;
+    outline:none;
+  }
+}
+
+.booking-form-end-date {
+  padding-left: 0px;
+  margin: 15px 0;
+}
+
+.booking-form-end-date-input{
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
+  border: solid 1px $soft-gray;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  height: 30px;
+  color: $dark-gray;
+  i {
+    padding: 0 5px;
+  }
+  input {
+    border: none;
+    box-shadow: none;
+    outline:none;
+  }
+}
+
+.booking-form-pax-nb {
+  height: 30px;
+  background-color: $white;
+  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
+  border: solid 1px $soft-gray;
+  display: flex;
+  align-items: center;
+  color: $dark-gray;
+  margin-bottom: 30px;
+  input {
+    border: none;
+    box-shadow: none;
+    outline:none;
+    height: 25px;
+    color: $dark-gray;
+
+  }
+  input:focus {
+      border: none;
+      outline:none;
+      box-shadow: none!important;
+  }
+  i {
+    padding: 0 5px;
+  }
+}
+.booking-form-subtotal {
+  display: flex;
+  justify-content: space-between;
+  p {
+    margin: 0px 5px 0px 0px;
+    font-size: 16px;
+  }
+}
+.lined {
+  text-decoration: line-through;
+  color: $medium-grey;
+}
+.double-price{
+  display: flex;
+}
+.booking-form-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  p {
+    font-weight: bold;
+    margin: 0;
+  }
+}
+.hr-booking-hidden {
+  display: none;
+}
+.hr-booking-display {
+  display: unset;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  border-color: $soft-gray;
+}
+#subtotal-discounted {
+  margin-bottom: 8px;
 }
