@@ -1,0 +1,25 @@
+<div class="weather-box">
+
+  <div class="weather-box-icons">
+    <%=  image_tag "sun-blue.png" if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
+    <%=  image_tag "rain-blue.png" if @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain") %>
+    <%=  image_tag "partly_cloudy-blue.png" if @surfcamp.weather_desc == ("Partly cloudy") %>
+    <%=  image_tag "cloudy.png" if @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+    <div class="air-temp">
+       <h5><%= @surfcamp.air_temp.to_i %>°C</h5>
+    </div>
+  </div>
+
+  <div class="weather-box-icons">
+    <% if @surfcamp.waves_period <= 5 %>
+      <%=  image_tag "low-waves-blue.png" %>
+    <% elsif @surfcamp.waves_period >= 10 %>
+      <%= image_tag "big-waves-blue.png" %>
+    <% else %>
+      <%= image_tag "fine-waves-blue.png" %>
+    <% end %>
+    <div class="water-temp">
+       <h5><%= @surfcamp.water_temp.to_i %>°C</h5>
+    </div>
+  </div>
+</div>

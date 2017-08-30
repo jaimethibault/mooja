@@ -8,6 +8,7 @@
     <div class="col-md-7">
       <div class="surfcamp-details">
         <h2> <%= @surfcamp.name %></h2>
+        <%= render 'surfcamps/weather_box' %>
         <% unless @surfcamp.rating.blank? %>
         <div class="rating">
           <% @surfcamp.rating.to_i.times do  %>
@@ -19,7 +20,7 @@
         </div>
         <% end %>
         <hr>
-        <p><i class="fa fa-map-marker" aria-hidden="true"></i>
+        <%= image_tag "map-location.png", id:"map-location" %>
         <%= @surfcamp.address.capitalize %></p>
         <hr>
         <h4>Description</h4>
@@ -29,17 +30,9 @@
       <h4>📌 Where to find us ?</h4>
       <div id="map-show">
       </div>
-       <!--<h4>Reviews</h4>
-      <div class="reviews">
-        <p> Reviews to be seeded !</p>
-      </div> -->
-
     </div>
-
     <div class="col-md-4 col-md-offset-1 booking_square">
-      <%# unless @pimped_car.promo.blank? %>
       <%= render 'surfcamps/booking_form', errors: @errors, surfcamp: @surfcamp, object: @discount %>
-      <%#end %>
     </div>
    </div>
 </div>

@@ -1,0 +1,15 @@
+.weather-box {
+  width: 150px;
+  background-color: $white;
+  color: $dark-gray;
+  margin: 2px;
+  position: absolute;
+  top: 25px;
+  right: 25spx;
+}
+
+.weather-box-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
