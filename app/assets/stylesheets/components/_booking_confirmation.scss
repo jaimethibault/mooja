@@ -20,7 +20,8 @@
 .booking-confirmation-details {
   border: solid 1px #cfcbcb;
   width: 472px;
-  height: 440px;
+  height: auto;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,19 +53,18 @@
 }
 
 .card-booking-details-discount {
-  width: 245px;
-  height: 75px;
-  position: absolute;
-  bottom: 2.5em;
+  width: 150px;
+  height: 45px;
   background-color: $white;
-  border: solid 1px $light-gray;
+  border: solid 1px $blue;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
   p {
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
-    color: $light-gray;
+    color: $blue;
     margin: 0;
   }
 }

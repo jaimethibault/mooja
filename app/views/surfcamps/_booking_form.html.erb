@@ -179,7 +179,7 @@
             subtotal_original.innerHTML = `<p><%= @surfcamp.price_per_night_per_person %>€ x ${standard_nights} night(s)</p><p>${price}€</p>`;
             hr_booking[0].classList.add("hr-booking-display");
             hr_booking[1].classList.add("hr-booking-display");
-          } else if (night < 0) {
+          } else if (night <= 0) {
             subtotal_original.innerHTML = "";
             hr_booking[0].classList.remove("hr-booking-display");
             hr_booking[1].classList.remove("hr-booking-display");
@@ -223,7 +223,7 @@
             subtotal_original.innerHTML = "";
             hr_booking[0].classList.add("hr-booking-display");
             hr_booking[1].classList.add("hr-booking-display");
-          } else if (night < 0) {
+          } else if (night <= 0) {
             subtotal_discounted.innerHTML = "";
             subtotal_original.innerHTML = "";
             hr_booking[0].classList.remove("hr-booking-display");

@@ -7,7 +7,7 @@
           <div class="card-title"><h3>🏄 <%= @surfcamp.name %> 🏄</h3></div>
           <div class="card-image text-center">
             <% unless @surfcamp.photos[0].blank? %>
-            <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
+              <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
             <% end %>
           </div>
           <div class="card-booking-details">
@@ -19,8 +19,8 @@
             </div>
             <div class="card-booking-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
-              <% unless @booking.total_discounted_price = @booking.total_original_price %>
-              <p class="original-price"><%= @booking.total_original_price %>€</p>
+              <% unless @booking.total_discounted_price == @booking.total_original_price %>
+                <p class="original-price"><%= @booking.total_original_price %>€</p>
               <% end %>
             </div>
           </div>
@@ -35,14 +35,14 @@
         <% end %>
         <div class="stripe">
           <%= form_tag booking_payments_path(@booking) do %>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-name="<%= @surfcamp.name %>"
-          data-email="<%= current_user.email %>"
-          data-description=" From <%= @booking.starts_at.strftime("%d/%m/%Y") %> to <%= @booking.ends_at.strftime("%d/%m/%Y") %>"
-          data-amount="<%= (@booking.total_discounted_price * 100).to_i %>"
-          data-currency="EUR"> <%#= @booking.total_discounted_price.currency if we decide to monetize booking model%>
-          </script>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-name="<%= @surfcamp.name %>"
+            data-email="<%= current_user.email %>"
+            data-description=" From <%= @booking.starts_at.strftime("%d/%m/%Y") %> to <%= @booking.ends_at.strftime("%d/%m/%Y") %>"
+            data-amount="<%= (@booking.total_discounted_price * 100).to_i %>"
+            data-currency="EUR"> <%#= @booking.total_discounted_price.currency if we decide to monetize booking model%>
+            </script>
           <% end %>
         </div>
       </div>
