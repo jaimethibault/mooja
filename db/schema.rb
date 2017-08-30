@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 20170828162548) do
     t.index ["surfcamp_id"], name: "index_discounts_on_surfcamp_id", using: :btree
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "price_per_night"
+    t.integer  "capacity"
+    t.integer  "surfcamp_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["surfcamp_id"], name: "index_rooms_on_surfcamp_id", using: :btree
+  end
+
   create_table "surfcamps", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -116,4 +126,5 @@ ActiveRecord::Schema.define(version: 20170828162548) do
   add_foreign_key "bookings", "surfcamps"
   add_foreign_key "bookings", "users"
   add_foreign_key "discounts", "surfcamps"
+  add_foreign_key "rooms", "surfcamps"
 end

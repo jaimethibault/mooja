@@ -1,59 +1,146 @@
 // Specific CSS for your home-page
-.banner-content h3 {
-  color:white;
+.banner-wrapper {
+  background-color: black;
 }
 
-.banner-content {
-  margin-bottom: 150px;
-}
-.search-home-square {
+.banner {
+  height: 100vh;
+  z-index: 1;
   display: flex;
-  justify-content: space-around;
-}
-.search-home-box {
-  opacity: 0.42;
-  margin: 1px;
-  background-color: #f6f5f5;
-  box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.5);
-  border: solid 2px #ffffff;
+  justify-content: center;
+  align-items: center;
 
-  .date-input {
-    display: inline-flex;
+
+  video {
+    position: absolute;
+    z-index: 0;
+    width: 100vh;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+
+  .banner-content {
+    z-index: 1;
+
+    h3 {
+      color:white;
+      font-size: 48px;
+      font-weight: lighter;
+      letter-spacing: 0.1em;
+      text-shadow: 1px 1px  #696969;
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .search-home {
+      border-radius: 15px;
+      background: none;
+      background-color: rgba(241, 246, 245, 0.6);
+      color: white;
+      letter-spacing: 0.1em;
+      border: 3px solid white;
+      padding: 10px 15px;
+      margin-top: 50px;
+      font-weight: lighter;
+      opacity: 0.6;
+    }
   }
 }
 
-.search-home-input {
-  text-align: left;
-  border: none;
-  font-size: 19px;
-}
-  input::placeholder {
-    // color: $blue;
-    // opacity: 1 !important;
-  font-weight: lighter;
-  }
 
-.search-home-label {
-  text-align: left;
-  display: block;
-  padding: 5px 10px 0;
-  font-weight: lighter;
-  font-size: 15px;
-}
 
-.search-home-btn {
-  border-radius: 20px;
-  margin: 25px 15px;
-
-  a {
-    color: white;
-    text-decoration: none;
+.home-card-container {
+  min-height: 400px;
+  margin: -15px auto 0 !important;
+  position: relative !important;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: rgba(255, 254, 236, 0.4);
+  z-index: -2;
+  padding-top: 70px;
+  padding-bottom: 80px;
+  h3 {
   }
 }
 
-.search-where {
-  display: table-cell !important;
-  vertical-align: middle !important;
+.surfcamp-card-location {
+  // position: relative;
+  position: absolute;
+  top: 5px;
+  right: 0;
+
+    background: rgba(255,255,255, 0.5);
+    color: #000;
+    overflow: hidden;
+    // float: right;
+    // margin-bottom: -70px;
+    z-index: 10;
+    // padding: 10px;
+    padding-top: 0;
+    font-weight: bolder;
+    // vertical-align: baseline;
+    margin: 0;
+    border:0;
+    width: 200px;
+    padding: 25px;
+    border-radius: 1px;
+
+}
+
+.surfcamp-card-text-description {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  width: 100px;
+  height: 35px;
+  // background-color: $white;
+  // border: solid 1px $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border-radius: 1px;
+  p {
+    font-size: 24px;
+    font-family: 'Waiting for the Sunrise', cursive;
+    color: black;
+    margin: 0;
+  }
+}
+
+
+.surfcamp-card-home {
   position: relative;
+  margin: 20px;
+  padding: 10px 10px 70px 10px;
+  background-color: white;
+
+  & img {
+    width: 100%;
+  }
 }
+
+.surfcamp-card-home:before, .surfcamp-card-home:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+.surfcamp-card-home:after
+{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+
+
 
