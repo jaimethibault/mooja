@@ -19,7 +19,6 @@
 
 .booking-confirmation-details {
   border: solid 1px #cfcbcb;
-  width: 472px;
   height: auto;
   padding-bottom: 20px;
   display: flex;
@@ -35,9 +34,14 @@
   padding-bottom: 20px;
 }
 
+.card-image {
+  padding: 0 15px;
+}
+
 .card-booking-details {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 15px;
   p {
     font-weight: 300;
     margin: 0;
@@ -45,8 +49,8 @@
 }
 
 .card-booking-details-address {
-  white-space: nowrap;
   margin: 35px 0;
+  width: 350px;
   strong {
     color: $blue;
   }

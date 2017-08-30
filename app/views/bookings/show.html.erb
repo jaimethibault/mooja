@@ -12,10 +12,8 @@
           </div>
           <div class="card-booking-details">
             <div class="card-booking-details-address">
-              <div class="row">
-                <div class="col-xs-6"><p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p></div>
-                <div class="col-xs-6"><p><strong>To </strong> <%= @booking.ends_at.strftime("%A, %b %d") %></p></div>
-              </div>
+                <p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
+                <p><strong>To </strong> <%= @booking.ends_at.strftime("%A, %b %d") %></p>
             </div>
             <div class="card-booking-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
