@@ -7,7 +7,7 @@
         <div class="banner-bottom-element">
           <div class="banner-bottom-icons ">
             <%=  image_tag "sun.png" if surfcamp.weather_desc == ("Sunny" || "Clear") %>
-            <%=  image_tag "rain.png" if surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain") %>
+            <%=  image_tag "rain.png" if surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || "Moderate or heavy rain shower") %>
             <%=  image_tag "partly_cloudy.png" if surfcamp.weather_desc == ("Partly cloudy") %>
             <%=  image_tag "cloudy.png" if surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
           </div>
