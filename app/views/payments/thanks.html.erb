@@ -11,34 +11,31 @@
           </div>
           <div class="card-image text-center">
             <% unless @surfcamp.photos[0].blank? %>
-            <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
-            <%#= image_tag "giphy-surf.gif", id: "thanks-surf" %>
+              <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
+              <%#= image_tag "giphy-surf.gif", id: "thanks-surf" %>
             <% end %>
           </div>
           <div class="card-booking-details">
             <div class="card-booking-details-address">
-             <div class="row">
-              <div class="col-xs-6"><p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p></div>
-              <div class="col-xs-6"><p><strong>To </strong><%= @booking.ends_at.strftime("%A, %b %d") %> </p></div>
-            </div>
-            <br>
+              <p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
+              <p><strong>To </strong><%= @booking.ends_at.strftime("%A, %b %d") %> </p>
               <p> <strong><i class="fa fa-location-arrow" aria-hidden="true"></i> </strong><%= @surfcamp.address %> </p>
             </div>
             <div class="card-booking-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
               <% unless @booking.total_discounted_price = @booking.total_original_price %>
-                <p class="original-price"><%= @booking.total_original_price %>€</p>
+              <p class="original-price"><%= @booking.total_original_price %>€</p>
               <% end %>
             </div>
           </div>
         </div>
         <% pourcentage = ((1 - @booking.total_discounted_price.to_f / @booking.total_original_price.to_f) * 100).to_i  %>
         <% unless pourcentage == 0 %>
-          <div class="card-booking-details-discount">
-            <div class="text">
-                <p> <%= pourcentage %>% OFF</p>
-            </div>
+        <div class="card-booking-details-discount">
+          <div class="text">
+            <p> <%= pourcentage %>% OFF</p>
           </div>
+        </div>
         <% end %>
       </div>
     </div>
@@ -100,5 +97,3 @@
     </div>
   </div>
 </div>
-
-

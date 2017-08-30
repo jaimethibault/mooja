@@ -76,7 +76,6 @@ rescue Stripe::CardError => e
         flight_hash["flight_price"] = flight["saleTotal"]
         @flights << flight_hash
       end
-
     end
   end
 
