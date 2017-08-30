@@ -46,18 +46,18 @@
         </div>
       </div>
       <!-- surfcamps cards -->
-        <% @surfcamps.each do |surfcamp| %>
-          <% unless surfcamp.photos[0].blank? %>
-            <div class="col-xs-12 col-sm-6">
-              <div class="surfcamp-card-home">
-                  <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
-                  <div class="surfcamp-card-text-description">
-                    <p> % OFF</p>
-                  </div>
+   <!--    <%# @surfcamps.each do |surfcamp| %>
+        <%# unless surfcamp.photos[0].blank? %>
+          <div class="col-xs-12 col-sm-6">
+            <div class="surfcamp-card-home">
+                <%#= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
+                <div class="surfcamp-card-text-description">
+
                 </div>
               </div>
-            <% end %>
-          <% end %>
+            </div>
+          <%# end %>
+        <%# end %> -->
 
       <% @surfcamps.each do |surfcamp| %>
         <div class="col-xs-6">
