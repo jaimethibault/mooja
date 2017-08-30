@@ -29,13 +29,15 @@ rescue Stripe::CardError => e
 
   def thanks
     @surfcamp = @booking.surfcamp
+    date_departure = "#{@booking.starts_at.strftime("%Y")}-#{@booking.starts_at.strftime("%m")}-#{@booking.starts_at.strftime("%d")}"
+    date_return = "#{@booking.ends_at.strftime("%Y")}-#{@booking.ends_at.strftime("%m")}-#{@booking.ends_at.strftime("%d")}"
     # checking if the user selected a departure city
     if @departure_city = params[:inlineRadioOptions]
       # creating the request for departure
       # need to get these infos from params from the form on the booking confirmation page
       origin = @departure_city
       destination = "LIS"
-      date = "2017-09-14" # need to add return then
+      date = date_departure # need to add return then
       max_stops = 0 # if direct
       adultCount = 1
       nb_results = 3
@@ -83,7 +85,7 @@ rescue Stripe::CardError => e
       # need to get these infos from params from the form on the booking confirmation page
       origin = "LIS"
       destination = @departure_city
-      date = "2017-09-21" # need to add return then
+      date = date_return # need to add return then
       max_stops = 0 # if direct
       adultCount = 1
       nb_results = 3
