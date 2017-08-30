@@ -3,9 +3,9 @@
 }
 #map {
   flex: 0 0 50%;
-  height: 100vh;
+  height: calc(100vh - 70px);
   position: sticky !important; /* !important to override Gmaps inline CSS */
-  top: 0px !important;
+  top: 70px !important;
   background-color: $yellow;
   margin: 0px;
 }
