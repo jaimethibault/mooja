@@ -45,16 +45,18 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <script>
-    $('.banner-show').slick({
-      dots: false,
-      arrows: true,
-      infinite: true,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear'
-  })
-  </script>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('.banner-show').slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear'
+      });
+    });
+  <% end %>
   <%= javascript_tag do %>
   var handler = Gmaps.build('Google', { markers: { clusterer: undefined } });
   handler.buildMap({ internal: { id: 'map-show' } }, function() {
