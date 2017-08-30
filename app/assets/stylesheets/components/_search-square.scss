@@ -5,6 +5,7 @@
 }
 .search-box {
   padding-top: 10px;
+  height: 70px;
   position: sticky !important; /* !important to override Gmaps inline CSS */
   top: 0 !important;
   background-color: $white;
