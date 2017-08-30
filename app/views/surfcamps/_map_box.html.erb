@@ -1,4 +1,33 @@
 <% unless surfcamp.photos[0].blank? %>
-  <%= cl_image_tag surfcamp.photos[0].path, width: 350, height: 200, crop: :fill, fetch_format: :auto %>
-  <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-infowindow-link" %>
+    <%= cl_image_tag surfcamp.photos[0].path, width: 280, height: 150, crop: :fill, fetch_format: :auto %>
+    <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-infowindow-link" %>
+  <div class="banner-bottom-window">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="banner-bottom-element">
+          <div class="banner-bottom-icons ">
+            <%=  image_tag "sun.png" if surfcamp.weather_desc == ("Sunny" || "Clear") %>
+            <%=  image_tag "rain.png" if surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain") %>
+            <%=  image_tag "partly_cloudy.png" if surfcamp.weather_desc == ("Partly cloudy") %>
+            <%=  image_tag "cloudy.png" if surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+          </div>
+            <h5><%= surfcamp.air_temp.to_i %>°C</h5>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="banner-bottom-element">
+          <div class="banner-bottom-icons ">
+            <% if surfcamp.waves_period <= 5 %>
+              <%=  image_tag "low-waves.png" %>
+            <% elsif surfcamp.waves_period >= 10 %>
+              <%= image_tag "big-waves.png" %>
+            <% else %>
+              <%= image_tag "fine-waves.png" %>
+            <% end %>
+          </div>
+            <h5><%= surfcamp.water_temp.to_i %>°C</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
