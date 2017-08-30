@@ -39,34 +39,61 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-      <!--   displaying several flight -->
-      <div class="flight-date">You will be 🛫 on the: <%= @flight_date %></div>
-      <% @flights.each do |flight_hash| %>
-      <div class="flight-container">
-        <div class="flight-infos">
-          <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
-          <div class="flight-departure">
-            <div class="flight-departure-time"><%= flight_hash["flight_departure_time"] %></div>
-            <div class="flight-departure-airport"><%= flight_hash["flight_departure_airport"] %></div>
-          </div>
-          <div class="flight-duration">
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-            <%= flight_hash["flight_duration"] %>
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-          </div>
-          <div class="flight-arrival">
-            <div class="flight-arrival-time"><%= flight_hash["flight_arrival_time"] %></div>
-            <div class="flight-arrival-airport"><%= flight_hash["flight_arrival_airport"] %></div>
-          </div>
-          <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
-          <div class="flight-button">
-            <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-          </div>
-        </div>
+    <div class="col-xs-12 col-md-6 flight-selection">
+      <div class="flight-selection-title">
+        <h2>Book your flight</h2>
       </div>
+      <!--   asking for departure city -->
+      <div class="flight-selection-details">
+        <%= form_tag booking_payment_thanks_path(@booking), method: :get, class: "info-for-flight" do %>
+          <div class="info-for-departure">
+            <h3>From which city will you be departing?</h3>
+            <div class="flying-from text-center">(You are flying to Lisbon)</div>
+            <div class="radio-buttons text-center">
+              <%= label_tag nil, nil, class: 'radio-inline' do %>
+                <%= radio_button_tag 'inlineRadioOptions', 'PAR' %>
+                Paris
+              <% end %>
+              <%= label_tag nil, nil, class: 'radio-inline' do %>
+                <%= radio_button_tag 'inlineRadioOptions', 'LON' %>
+                London
+              <% end %>
+              <%= label_tag nil, nil, class: 'radio-inline' do %>
+                <%= radio_button_tag 'inlineRadioOptions', 'BER' %>
+                Berlin
+              <% end %>
+            </div>
+          </div>
+          <div class="text-center">
+            <%= button_tag(content = "Check Flights", class: "btn btn-primary") %>
+          </div>
+        <% end %>
+      </div>
+      <!--   displaying several departure flight -->
+      <% if @departure_city %>
+        <div class="flight-date">You will be 🛫 on the: <%= @flight_date %></div>
+        <% @flights.each do |flight_hash| %>
+          <div class="flight-container">
+            <div class="flight-infos">
+              <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
+              <div class="flight-departure">
+                <div class="flight-departure-time"><%= flight_hash["flight_departure_time"] %></div>
+                <div class="flight-departure-airport"><%= flight_hash["flight_departure_airport"] %></div>
+              </div>
+              <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>  <%= flight_hash["flight_duration"] %>  <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+              <div class="flight-arrival">
+                <div class="flight-arrival-time"><%= flight_hash["flight_arrival_time"] %></div>
+                <div class="flight-arrival-airport"><%= flight_hash["flight_arrival_airport"] %></div>
+              </div>
+              <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
+              <div class="flight-button">
+                <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!--   end of flight div -->
       <% end %>
-      <!--   end of flight div -->
     </div>
   </div>
 </div>
