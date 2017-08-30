@@ -7,21 +7,18 @@
     </div>
     <div class="banner-bottom-temperature text-center">
       <p>air</p>
-      <h5><%= surfcamp.air_temp %>°C</h5>
+      <h5><%= surfcamp.air_temp.to_i %>°C</h5>
     </div>
     <div class="banner-bottom-temperature text-center">
       <p> sea</p>
-      <h5><%= surfcamp.water_temp %>°C</h5>
+      <h5><%= surfcamp.water_temp.to_i %>°C</h5>
     </div>
-    <div class="banner-bottom-weather">
-      <%=  image_tag "sun.png" if surfcamp.weather_desc == "Sunny" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Light rain shower" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Partly cloudy" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Patchy rain possible" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Cloudy" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Clear" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Light rain" %>
-      <%=  image_tag "" if surfcamp.weather_desc == "Overcast" %>
+    <div class="banner-bottom-weather text-center">
+      <%=  image_tag "sun.png" if surfcamp.weather_desc == ("Sunny" || "Clear") %>
+      <%=  image_tag "rain.png" if surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain") %>
+      <%=  image_tag "partly_cloudy.png" if surfcamp.weather_desc == ("Partly cloudy") %>
+      <%=  image_tag "cloudy.png" if surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+      <p> <%= surfcamp.weather_desc %></p>
     </div>
   </div>
 <% end %>
