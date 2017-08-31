@@ -19,6 +19,20 @@
   .navbar-wagon-link {
     color:white;
     font-weight:bolder;
+    display: none;
+  }
+  .navbar-wagon-brand img {
+    // display: none;
+  }
+  #mooja-logo-black {
+    display: none;
+  }
+  #mooja-logo-white {
+    display: unset;
+    opacity: 0.9;
+  }
+  #mooja-logo-white img {
+    height: 50px;
   }
 }
 
@@ -32,6 +46,9 @@
   height: 50px;
 }
 
+#mooja-logo-white {
+  display: none;
+}
 /* User Avatar */
 .navbar-wagon .avatar {
   height: 35px;
