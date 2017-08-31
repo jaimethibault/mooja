@@ -1,12 +1,21 @@
 .main-container {
   display: flex;
 }
-#map {
+
+.map-container {
   flex: 0 0 50%;
   height: calc(100vh - 70px);
   position: sticky !important; /* !important to override Gmaps inline CSS */
   top: 70px !important;
   background-color: $yellow;
+  margin: 0px;
+}
+
+#map {
+  flex: 0 0 50%;
+  height: calc(100vh - 70px);
+  position: sticky !important; /* !important to override Gmaps inline CSS */
+  top: 70px !important;
   margin: 0px;
 }
 
