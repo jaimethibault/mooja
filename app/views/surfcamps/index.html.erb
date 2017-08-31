@@ -90,7 +90,7 @@
     <div id="map">
     </div>
     <div class="map-legend">
-      <div class="legend-img"><%= image_tag "shaka_full.png" %></div>
+      <div class="legend-img"><%= image_tag "shaka_pink_full.png" %></div>
       <div class="legend-explanation"> Epic wave conditions for the next 10 days</div>
     </div>
   </div>
@@ -101,26 +101,8 @@
     $(document).ready(function() {
       var dima = [
     {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#444444"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#f2f2f2"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
+        "featureType": "administrative.province",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -128,29 +110,161 @@
         ]
     },
     {
-        "featureType": "road",
-        "elementType": "all",
+        "featureType": "administrative.locality",
+        "elementType": "labels",
         "stylers": [
             {
-                "saturation": -100
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
             },
             {
-                "lightness": 45
+                "saturation": "1"
+            },
+            {
+                "lightness": "1"
+            },
+            {
+                "gamma": "0.96"
+            },
+            {
+                "weight": "1.04"
             }
         ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "all",
+        "featureType": "landscape",
+        "elementType": "labels",
         "stylers": [
             {
-                "visibility": "simplified"
+                "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#faf4e5"
+            },
+            {
+                "saturation": "-20"
+            },
+            {
+                "lightness": "0"
+            },
+            {
+                "gamma": "0.73"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "saturation": "1"
+            },
+            {
+                "lightness": "1"
+            },
+            {
+                "gamma": "0.95"
+            },
+            {
+                "weight": "0.82"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#bbdcc8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#cdcaca"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -159,7 +273,7 @@
     },
     {
         "featureType": "transit",
-        "elementType": "all",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -168,13 +282,19 @@
     },
     {
         "featureType": "water",
-        "elementType": "all",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#5bbee1"
-            },
+                "color": "#bee5e0"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     }

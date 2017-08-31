@@ -67,12 +67,12 @@ class SurfcampsController < ApplicationController
     unless surfcamp.waves_period.blank?
       # check si la période est inférieure à 10s >> red
       if surfcamp.waves_period >= 10
-        return ApplicationController.helpers.asset_path("shaka_full.png")
+        return ApplicationController.helpers.asset_path("shaka_pink_full.png")
       else
-        return ApplicationController.helpers.asset_path("shaka_empty.png")
+        return ApplicationController.helpers.asset_path("shaka_pink_full.png")
       end
     else
-      return ApplicationController.helpers.asset_path("shaka_empty.png")
+      return ApplicationController.helpers.asset_path("shaka_yellow.png")
     end
   end
 
