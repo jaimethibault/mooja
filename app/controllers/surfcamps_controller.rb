@@ -30,11 +30,11 @@ class SurfcampsController < ApplicationController
       marker.lat surfcamp.latitude
       marker.lng surfcamp.longitude
       marker.infowindow render_to_string(partial: "/surfcamps/map_box", locals: { surfcamp: surfcamp })
-      marker.picture({
-        :url => "http://maps.google.com/mapfiles/ms/icons/#{marker_color(surfcamp)}.png",
-        :width   => 40,
-        :height  => 40
-      })
+      # marker.picture({
+      #   :url => marker_img(surfcamp),
+      #   :width   => 40,
+      #   :height  => 40
+      # })
     end
 
     # # Parsing weather conditions for all surfcamps - FULL
@@ -83,18 +83,18 @@ class SurfcampsController < ApplicationController
     (percentage_of_saving * 100).round
   end
 
-  def marker_color(surfcamp)
+  def marker_img(surfcamp)
     # ['green', 'red'].sample
     # check si on a des infos météo pour ce surf camp
     unless surfcamp.waves_period.blank?
       # check si la période est inférieure à 10s >> red
       if surfcamp.waves_period >= 10
-        return 'green'
+        return view_context.image_path "shaka-full.png"
       else
-        return 'red'
+        return "https://res.cloudinary.com/dlnmbo3ol/image/upload/v1504170769/shaka-empty_kpz2ok.png"
       end
     else
-      return 'grey'
+      return "https://res.cloudinary.com/dlnmbo3ol/image/upload/v1504170769/shaka-empty_kpz2ok.png"
     end
   end
 
