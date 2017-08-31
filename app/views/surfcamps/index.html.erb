@@ -69,15 +69,15 @@
                       <% end %>
                     </div>
                   </div>
+                  <div class="surfcamp-card-price-information">
+                  <% unless surfcamp.discounts.blank? %>
+                    <div class="surfcamp-card-text-discount-date">
+                      <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+                      <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+                    </div>
+                  <% end %>
+                  </div>
                 </div>
-            <div class="surfcamp-card-price-information">
-            <% unless surfcamp.discounts.blank? %>
-              <div class="surfcamp-card-text-discount-date">
-                <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
-                <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
-              </div>
-            <% end %>
-            </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
             </div>
           </div>
