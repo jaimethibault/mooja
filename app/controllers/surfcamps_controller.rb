@@ -31,12 +31,14 @@ class SurfcampsController < ApplicationController
       marker.lng surfcamp.longitude
       marker.infowindow render_to_string(partial: "/surfcamps/map_box", locals: { surfcamp: surfcamp })
       marker.picture({
-        "url" => ApplicationController.helpers.asset_path("shaka_empty.png"),
-        "width"   => 40,
-        "height"  => 40
+        "url" => marker_img(surfcamp),
+        "width"   => 32,
+        "height"  => 32
       })
     end
   end
+
+  # ApplicationController.helpers.asset_path("shaka_empty.png"),
 
   def show
     @booking = Booking.new
@@ -67,12 +69,12 @@ class SurfcampsController < ApplicationController
     unless surfcamp.waves_period.blank?
       # check si la période est inférieure à 10s >> red
       if surfcamp.waves_period >= 10
-        return view_context.image_path "shaka-full.png"
+        return ApplicationController.helpers.asset_path("shaka_full.png")
       else
-        return "https://res.cloudinary.com/dlnmbo3ol/image/upload/v1504170769/shaka-empty_kpz2ok.png"
+        return ApplicationController.helpers.asset_path("shaka_empty.png")
       end
     else
-      return "https://res.cloudinary.com/dlnmbo3ol/image/upload/v1504170769/shaka-empty_kpz2ok.png"
+      return ApplicationController.helpers.asset_path(  "shaka_empty.png")
     end
   end
 
