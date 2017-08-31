@@ -1,0 +1,81 @@
+.thanks-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.thanks-confirmation-title {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    color: $black;
+    font-weight: 300;
+  }
+
+}
+
+.thanks-confirmation-details {
+  border: solid 1px #cfcbcb;
+  height: auto;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-thanks-title h3 {
+  font-size: 24px;
+  color: $blue;
+  text-align: center!important;
+  font-weight: inherit;
+  padding-bottom: 20px;
+}
+
+.card-thanks-image {
+  padding: 0 15px;
+}
+
+.card-thanks-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  p {
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
+.card-thanks-details-address {
+  margin-top: 25px;
+  margin-bottom: 60px;
+  width: 350px;
+  strong {
+    color: $blue;
+  }
+}
+
+.card-thanks-details-discount {
+  width: 150px;
+  height: 45px;
+  background-color: $white;
+  border: solid 1px $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  p {
+    font-size: 24px;
+    font-weight: bold;
+    color: $blue;
+    margin: 0;
+  }
+}
+
+.card-thanks-details-price {
+  margin-top: 18px;
+  display: flex;
+  align-items: flex-end;
+}

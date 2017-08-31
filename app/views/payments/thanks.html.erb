@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-6 booking-confirmation">
-      <div class="booking-confirmation-title">
+    <div class="col-xs-12 col-md-6 thanks-confirmation">
+      <div class="thanks-confirmation-title">
         <h2>Your spot is booked at <b><%= @surfcamp.name %></b></h2>
       </div>
-      <div class="booking-confirmation-details">
-        <div class="card">
-          <div class="card-title">
+      <div class="thanks-confirmation-details">
+        <div class="card-thanks">
+          <div class="card-thanks-title">
             <h3>Booking confirmation</h3>
           </div>
-          <div class="card-image text-center">
+          <div class="card-thanks-image text-center">
             <% unless @surfcamp.photos[0].blank? %>
               <%= cl_image_tag @surfcamp.photos[0].path, width: 445, height: 220, crop: :fill %>
               <%#= image_tag "giphy-surf.gif", id: "thanks-surf" %>
             <% end %>
           </div>
-          <div class="card-booking-details">
-            <div class="card-booking-details-address">
+          <div class="card-thanks-details">
+            <div class="card-thanks-details-address">
               <p><strong>From </strong> <%= @booking.starts_at.strftime("%A, %b %d") %></p>
               <p><strong>To </strong><%= @booking.ends_at.strftime("%A, %b %d") %> </p>
               <p> <strong><i class="fa fa-location-arrow" aria-hidden="true"></i> </strong><%= @surfcamp.address %> </p>
             </div>
-            <div class="card-booking-details-price">
+            <div class="card-thanks-details-price">
               <p class="price-paid"><%= @booking.total_discounted_price %>€</p>
               <% unless @booking.total_discounted_price = @booking.total_original_price %>
               <p class="original-price"><%= @booking.total_original_price %>€</p>
@@ -31,7 +31,7 @@
         </div>
         <% pourcentage = ((1 - @booking.total_discounted_price.to_f / @booking.total_original_price.to_f) * 100).to_i  %>
         <% unless pourcentage == 0 %>
-        <div class="card-booking-details-discount">
+        <div class="card-thanks-details-discount">
           <div class="text">
             <p> <%= pourcentage %>% OFF</p>
           </div>
