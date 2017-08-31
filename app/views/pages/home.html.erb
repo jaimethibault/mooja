@@ -23,7 +23,7 @@
         <div class="col-xs-12 col-sm-3">
           <div class="surfcamp-card-home">
             <div class="surfcamp-card-text-discount">
-              <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
+              <p> <%= percentage_of_savings(surfcamp) %>% OFF *</p>
             </div>
             <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
             <div class="surfcamp-card-text-description">
