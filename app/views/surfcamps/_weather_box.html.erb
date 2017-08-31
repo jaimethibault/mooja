@@ -11,6 +11,7 @@
   </div>
 
   <div class="weather-box-icons">
+  <% unless @surfcamp.waves_period.nil? %>
     <% if @surfcamp.waves_period <= 5 %>
       <%=  image_tag "low-waves-blue.png" %>
     <% elsif @surfcamp.waves_period >= 10 %>
@@ -18,6 +19,7 @@
     <% else %>
       <%= image_tag "fine-waves-blue.png" %>
     <% end %>
+  <% end %>
     <div class="water-temp">
        <h5><%= @surfcamp.water_temp.to_i %>°C</h5>
     </div>
