@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     Discount.all.each do |discount|
       @surfcamps << discount.surfcamp
     end
-    @surfcamps = @surfcamps.first(6)
+    @surfcamps = @surfcamps.first(8)
 
   end
 
