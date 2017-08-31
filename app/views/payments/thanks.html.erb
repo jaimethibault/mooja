@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 booking-confirmation">
       <div class="booking-confirmation-title">
-        <h2> Your spot is booked at <%= @surfcamp.name %> !  </h2>
+        <h2>Your spot is booked at <%= @surfcamp.name %></h2>
       </div>
       <div class="booking-confirmation-details">
         <div class="card">
@@ -41,14 +41,13 @@
     </div>
     <div class="col-xs-12 col-md-6 flight-selection">
       <div class="flight-selection-title">
-        <h2>Book your flight</h2>
+        <h2>Book your flight to Lisbon</h2>
       </div>
       <!--   asking for departure city -->
       <div class="flight-selection-details">
         <%= form_tag booking_payment_thanks_path(@booking), method: :get, class: "info-for-flight" do %>
           <div class="info-for-departure">
             <h3>From which city will you be departing?</h3>
-            <div class="flying-from text-center">(You are flying to Lisbon)</div>
             <div class="radio-buttons text-center">
               <%= label_tag nil, nil, class: 'radio-inline' do %>
                 <%= radio_button_tag 'inlineRadioOptions', 'PAR' %>
@@ -64,7 +63,7 @@
               <% end %>
             </div>
           </div>
-          <div class="text-center">
+          <div class="CTA-button text-center">
             <%= button_tag(content = "Check Flights", class: "btn btn-primary") %>
           </div>
         <% end %>
@@ -75,6 +74,13 @@
         <% @flights.each do |flight_hash| %>
           <div class="flight-container">
             <div class="flight-infos">
+              <div class="flight-button">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                  </label>
+                </div>
+              </div>
               <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
               <div class="flight-departure">
                 <div class="flight-departure-time"><%= flight_hash["flight_departure_time"] %></div>
@@ -86,9 +92,6 @@
                 <div class="flight-arrival-airport"><%= flight_hash["flight_arrival_airport"] %></div>
               </div>
               <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
-              <div class="flight-button">
-                <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-              </div>
             </div>
           </div>
         <% end %>
@@ -100,6 +103,13 @@
         <% @flights_return.each do |flight_hash| %>
           <div class="flight-container">
             <div class="flight-infos">
+              <div class="flight-button">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
+                  </label>
+                </div>
+              </div>
               <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
               <div class="flight-departure">
                 <div class="flight-departure-time"><%= flight_hash["flight_departure_time"] %></div>
@@ -111,12 +121,12 @@
                 <div class="flight-arrival-airport"><%= flight_hash["flight_arrival_airport"] %></div>
               </div>
               <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
-              <div class="flight-button">
-                <button type="button" class="btn btn-primary">Select <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-              </div>
             </div>
           </div>
         <% end %>
+        <div class="CTA-button text-center">
+          <%= button_tag(content = "Choose these Flights", class: "btn btn-primary") %>
+        </div>
       <% end %>
       <!--   end of flight div -->
     </div>
