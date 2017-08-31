@@ -1,19 +1,20 @@
 .flight-date {
   margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .flight-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  width: 100%;
+  width: 472px;
 }
 
 .flight-infos {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: solid 1px $medium-grey;
+  border: solid 1px #cfcbcb;
   padding: 10px;
 }
 
@@ -29,6 +30,6 @@
   align-items: center;
 }
 
-.vertical-line-right {
-  border-right: solid 1px $medium-grey;
+.flight-price {
+  color: $blue;
 }

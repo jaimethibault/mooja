@@ -23,7 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10px;
 }
 
 .info-for-departure h3 {
@@ -32,12 +31,21 @@
   text-align: center!important;
   font-weight: inherit;
   margin-bottom: 0px;
+  padding-bottom: 20px;
 }
 
-.flying-from {
-  padding-bottom: 10px;
+.flight-duration i {
+  color: $dark-gray;
 }
 
 .radio-buttons {
-  padding-bottom: 10px;
+  padding-bottom: 30px;
+}
+
+.CTA-button {
+  padding-bottom: 15px;
+}
+
+.CTA-choose-flights {
+  margin-top: 20px;
 }
