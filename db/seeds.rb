@@ -92,27 +92,27 @@ puts "Creating Surfcamps"
 #   "maldives"
 #   ]
 countries_data = [
-  { country: "portugal", city: "Lisbon", airport_code: "LIS" },
+  # { country: "portugal", city: "Lisbon", airport_code: "LIS" },
   { country: "morocco", city: "Agadir", airport_code: "AGA" },
-  { country: "canary-islands", city: "Canary Islands", airport_code: "LPA" },
-  { country: "costa-rica", city: "San Jose", airport_code: "SYQ" },
-  { country: "indonesia", city: "Jakarta", airport_code: "CGK" },
-  { country: "barbados", city: "Bridgetown", airport_code: "BGI" },
-  { country: "spain", city: "Bilbao", airport_code: "BIO" },
-  { country: "france", city: "Paris", airport_code: "PAR" },
-  { country: "ireland", city: "Dublin", airport_code: "DUB" },
-  { country: "sri-lanka", city: "Colombo", airport_code: "CMB" },
-  { country: "dominican-republic", city: "Saint-Domingue", airport_code: "SDQ" },
-  { country: "mexico", city: "Mexico City", airport_code: "MEX" },
-  { country: "el-salvador", city: "San Salvador", airport_code: "ZSA" },
-  { country: "peru", city: "Lima", airport_code: "LIM" },
-  { country: "south-africa", city: "Pretoria", airport_code: "HPR" },
-  { country: "nicaragua", city: "Managua", airport_code: "MGA" },
-  { country: "philippines", city: "Manila", airport_code: "MNL" },
-  { country: "brazil", city: "Rio De Janeiro", airport_code: "GIG" },
-  { country: "new-zealand", city: "Wellington", airport_code: "WLG" },
-  { country: "india", city: "New Delhi", airport_code: "DEL" },
-  { country: "maldives", city: "Malé", airport_code: "MLE" }
+  # { country: "canary-islands", city: "Canary Islands", airport_code: "LPA" },
+  # { country: "costa-rica", city: "San Jose", airport_code: "SYQ" },
+  # { country: "indonesia", city: "Jakarta", airport_code: "CGK" },
+  # { country: "barbados", city: "Bridgetown", airport_code: "BGI" },
+  # { country: "spain", city: "Bilbao", airport_code: "BIO" },
+  # { country: "france", city: "Paris", airport_code: "PAR" },
+  # { country: "ireland", city: "Dublin", airport_code: "DUB" },
+  # { country: "sri-lanka", city: "Colombo", airport_code: "CMB" },
+  # { country: "dominican-republic", city: "Saint-Domingue", airport_code: "SDQ" },
+  # { country: "mexico", city: "Mexico City", airport_code: "MEX" },
+  # { country: "el-salvador", city: "San Salvador", airport_code: "ZSA" },
+  # { country: "peru", city: "Lima", airport_code: "LIM" },
+  # { country: "south-africa", city: "Pretoria", airport_code: "HPR" },
+  # { country: "nicaragua", city: "Managua", airport_code: "MGA" },
+  # { country: "philippines", city: "Manila", airport_code: "MNL" },
+  # { country: "brazil", city: "Rio De Janeiro", airport_code: "GIG" },
+  # { country: "new-zealand", city: "Wellington", airport_code: "WLG" },
+  # { country: "india", city: "New Delhi", airport_code: "DEL" },
+  # { country: "maldives", city: "Malé", airport_code: "MLE" }
 ]
 
 
@@ -189,7 +189,7 @@ countries_data.each do |data|
     surfcamp.capacity = rand(6..50)
     # creating surfcamp price_per_night_per_person
     surfcamp.price_per_night_per_person = rand(30..70)
-    surfcamp.save!
+    surfcamp.save
 
     # getting today's weather forecast for each surfcamp
     # checking if surfcamp address was geocoded correctly
