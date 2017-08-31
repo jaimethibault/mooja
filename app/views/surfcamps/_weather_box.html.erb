@@ -1,25 +1,26 @@
 <div class="weather-box">
-
-  <div class="weather-box-icons">
-    <%=  image_tag "sun-blue.png" if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
-    <%=  image_tag "rain-blue.png" if @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || " Moderate or heavy rain shower") %>
-    <%=  image_tag "partly_cloudy-blue.png" if @surfcamp.weather_desc == ("Partly cloudy") %>
-    <%=  image_tag "cloudy-blue.png" if @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
-    <div class="air-temp">
-       <h5><%= @surfcamp.air_temp.to_i %>°C</h5>
-    </div>
+  <div class="weather-element-column">
+    <%=  image_tag "sun-grey.png" if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
+    <%=  image_tag "rain-grey.png" if @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || " Moderate or heavy rain shower") %>
+    <%=  image_tag "partly_cloudy-grey.png" if @surfcamp.weather_desc == ("Partly cloudy") %>
+    <%=  image_tag "cloudy-grey.png" if @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+    <p><%= @surfcamp.weather_desc %></p>
   </div>
-
-  <div class="weather-box-icons">
-    <% if @surfcamp.waves_period <= 5 %>
-      <%=  image_tag "low-waves-blue.png" %>
-    <% elsif @surfcamp.waves_period >= 10 %>
-      <%= image_tag "big-waves-blue.png" %>
-    <% else %>
-      <%= image_tag "fine-waves-blue.png" %>
+  <div class="weather-element-column temp">
+     <h5><%= @surfcamp.air_temp.to_i %>°C</h5>
+     <p>Air</p>
+  </div>
+  <div class="weather-element-column temp">
+     <h5><%= @surfcamp.water_temp.to_i %>°C</h5>
+     <p>Sea</p>
+  </div>
+  <div class="weather-element-column">
+    <% if @surfcamp.waves_period < 10 %>
+      <%=  image_tag "mooja-show-fine.png" %>
+      <p>Fine waves</p>
+    <% else @surfcamp.waves_period >= 10 %>
+      <%= image_tag "mooja-show-epi.png" %>
+      <p id="waves">Epic waves</p>
     <% end %>
-    <div class="water-temp">
-       <h5><%= @surfcamp.water_temp.to_i %>°C</h5>
-    </div>
   </div>
 </div>

@@ -1,15 +1,26 @@
 .weather-box {
-  width: 150px;
   background-color: $white;
   color: $dark-gray;
-  margin: 2px;
-  position: absolute;
-  top: 25px;
-  right: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+
+  h5, p {
+    margin: 0;
+  }
 }
 
-.weather-box-icons {
+.weather-element-column {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  p {
+    font-size: 12px;
+  }
+}
+
+.temp {
+  padding-top: 10px;
 }

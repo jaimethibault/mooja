@@ -9,6 +9,18 @@
   position: relative;
 }
 
+.surfcamp-title {
+  margin-bottom: 25px;
+}
+
+.show-subcategory {
+  h4 {
+    padding-bottom: 10px;
+  }
+  hr {
+    padding: 10px!important;
+  }
+}
 
 .booking_square {
   background-color: white;
@@ -44,8 +56,7 @@
   justify-content:center;
   background: white;
   height: 350px;
-  margin:auto;
-  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 hr {
@@ -66,5 +77,5 @@ hr {
 }
 
 #map-location {
-  margin-right: 10px;
+  margin: 0 10px;
 }
