@@ -1,0 +1,15 @@
+
+    <title>Main_CTA (1)</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main_CTA-(1)" transform="translate(1.000000, 1.000000)">
+            <rect id="Rectangle-path" fill="#00CECB" fill-rule="nonzero" x="1" y="2" width="109" height="26"></rect>
+            <rect id="Rectangle-path" stroke="#FFFFFF" stroke-width="3" x="0.5" y="0.5" width="111" height="29" rx="6"></rect>
+            <path d="M45.1504473,28.2906261 C41.6907812,28.2906261 43.1355703,23.8721226 45.1294336,25.4999593 C45.1294336,25.4999593 45.5050742,23 43.0777969,23 C39.9569551,23 38.512166,28.2906261 35.7669648,28.2906261 C32.3072988,28.2906261 33.7520879,23.8721226 35.7459512,25.4999593 C35.7459512,25.4999593 36.1215918,23 33.6943145,23 C30.5734727,23 29.1286836,28.2906261 26.3834824,28.2906261 C22.9238164,28.2906261 24.3686055,23.8721226 26.3624687,25.4999593 C26.3624687,25.4999593 26.7381094,23 24.310832,23 C21.1899902,23 19.7452012,28.2906261 17,28.2906261 L17,30 L46,30 L46,28.2906261 L45.1504473,28.2906261 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <text id="SURF" fill="#FFFFFF" font-family="LeanOSansFY-Bold, LeanOSans FY" font-size="15" font-weight="bold" letter-spacing="1.71428573">
+                <tspan x="38" y="19">SURF</tspan>
+            </text>
+        </g>
+    </g>
+
