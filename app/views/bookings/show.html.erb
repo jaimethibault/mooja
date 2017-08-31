@@ -25,11 +25,11 @@
         </div>
         <% pourcentage = ((1 - @booking.total_discounted_price.to_f / @booking.total_original_price.to_f) * 100).to_i  %>
         <% unless pourcentage == 0 %>
-          <div class="card-booking-details-discount">
-            <div class="text">
-              <p> <%= pourcentage %>% OFF</p>
-            </div>
-          </div>
+
+            <div class="text-savings">
+              <p>🤘 Well done surfer, you are saving <strong id="price-saved"><%= @booking.total_original_price - @booking.total_discounted_price %>€</strong>🤘</p>
+           </div>
+
         <% end %>
         <div class="stripe">
           <%= form_tag booking_payments_path(@booking) do %>
