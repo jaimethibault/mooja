@@ -17,15 +17,7 @@
       <div class="col-xs-6">
         <div class="banner-bottom-element">
           <div class="banner-bottom-icons ">
-          <% unless surfcamp.waves_period.nil? %>
-            <% if surfcamp.waves_period <= 5 %>
-              <%=  image_tag "low-waves.png" %>
-            <% elsif surfcamp.waves_period >= 10 %>
-              <%= image_tag "big-waves.png" %>
-            <% else %>
               <%= image_tag "fine-waves.png" %>
-            <% end %>
-          <% end %>
           </div>
             <h5><%= surfcamp.water_temp.to_i %>°C</h5>
         </div>
