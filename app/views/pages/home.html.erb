@@ -27,23 +27,23 @@
             </div>
             <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
             <div class="surfcamp-card-text-description">
-              <div class="surfcamp-card-text">
-              </div>
-              <div class="surfcamp-card-s-name">
-                <p><%= surfcamp.name %></p>
+                <div class="surfcamp-card-s-name">
+                  <p><%= surfcamp.name %></p>
+                </div>
+                <div class="surfcamp-card-text">
+                <div class="surfcamp-card-text-price">
+                 <% if surfcamp.discounts.blank? %>
+                    <p><%= surfcamp.price_per_night_per_person %>€</p>
+                  <% else %>
+                    <p><%= surfcamp.discounts.first.discounted_price %>€</p><p class="promo-text"><%= surfcamp.price_per_night_per_person %>€</p>
+                 <% end %>
+                </div>
               </div>
             </div>
             <div class="surfcamp-card-price-information">
               <div class="surfcamp-card-text-discount-date">
-                <p><strong>From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+                <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
                 <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
-              </div>
-              <div class="surfcamp-card-text-price">
-                <% if surfcamp.discounts.blank? %>
-                  <p><%= surfcamp.price_per_night_per_person %> €</p>
-                <% else %>
-                  <p><%= surfcamp.discounts.first.discounted_price %> € <strike style="color: grey;"><%= surfcamp.price_per_night_per_person %> €</strike></p>
-                <% end %>
               </div>
             </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
