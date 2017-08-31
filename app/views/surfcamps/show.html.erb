@@ -10,16 +10,6 @@
         <h2> <%= @surfcamp.name %></h2>
         <%= render 'surfcamps/weather_box' %>
         <% unless @surfcamp.rating.blank? %>
-        <div class="rating">
-          <% @surfcamp.rating.to_i.times do  %>
-          <%#= image_tag "surf.png" %>
-              <i class="fa fa-star" style="color: black"></i>
-            <% end %>
-            <% (5 - @surfcamp.rating).to_i.times do  %>
-            <i class="fa fa-star-o";"></i>
-            <% end %>
-        </div>
-        <% end %>
 
         <hr>
         <%= image_tag "map-location.png", id:"map-location" %>
