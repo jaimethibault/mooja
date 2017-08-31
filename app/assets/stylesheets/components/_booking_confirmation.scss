@@ -78,11 +78,12 @@
 }
 
 .original-price {
-  font-size: 30px;
+  font-size: 22px;
   text-decoration: line-through;
-  font-weight: 300!important;
-  text-align: right!important;
   color: $medium-grey;
+  position: absolute;
+  bottom: 122px;
+  right: 75px;
 }
 
 .price-paid {
@@ -91,6 +92,14 @@
   color: $blue;
 }
 
+.text-savings {
+  font-weight: 300;
+}
+
+
+#price-saved {
+  color: $blue;
+}
 .stripe-button-el  {
   -webkit-box-shadow: none!important;
   span {
