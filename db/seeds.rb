@@ -21,26 +21,29 @@ User.destroy_all
 puts "Creating Users"
 i = 0
 users = [
-  "jackie@michel.com",
-  "michel@jackie.com",
-  "micheline@jackie.com"
+  "thibault@mooja.surf",
+  "clemence@mooja.surf",
+  "dima@mooja.surf",
+  "arthur@mooja.surf"
 ]
 first_names = [
   "Thibault",
   "Clemence",
-  "Dima"
+  "Dima",
+  "Arthur"
 ]
 
-3.times do
+4.times do
   user = User.new
   user.email = users[i]
-  user.password = 'password'
+  user.password = "#{first_names[i]}password"
   user.first_name = first_names[i]
   user.last_name = Faker::Name.last_name
   urls = [
-    "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/10997490_907097779334969_1284262528561985815_n.jpg?oh=c3afa5c308ce7405d109656dda4ffd50&oe=5A2F762F",
-    "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/20799136_274376209715766_7099253975910970765_n.jpg?oh=e84997278e80801d94f81ca917120c19&oe=5A1A935E",
-    "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/19875558_10155671439642176_1610883172945385131_n.jpg?oh=482cbb47e3786e5c1c813330c294645e&oe=5A16D6B7"
+    "https://avatars2.githubusercontent.com/u/28653879?v=4&s=460",
+    "https://avatars3.githubusercontent.com/u/28231166?v=4&s=460",
+    "https://avatars3.githubusercontent.com/u/29582715?v=4&s=460",
+    "https://avatars0.githubusercontent.com/u/26402932?v=4&s=460"
   ]
   user.facebook_picture_url = urls[i]
   user.save!
@@ -54,7 +57,7 @@ admin.email = "admin@admin.admin"
 admin.password = "astrongpassword"
 admin.first_name = "admin"
 admin.last_name = "ADMIN"
-admin.facebook_picture_url = "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/10997490_907097779334969_1284262528561985815_n.jpg?oh=c3afa5c308ce7405d109656dda4ffd50&oe=5A2F762F"
+admin.facebook_picture_url = "https://avatars2.githubusercontent.com/u/2471555?v=4&s=460"
 admin.admin = true
 admin.save!
 puts "Admin created"
