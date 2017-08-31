@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="114" height="32" viewBox="0 0 114 32">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="32" viewBox="0 0 114 32">
+  <defs>
+    <rect id="main_cta-a" width="114" height="32" rx="6"/>
+  </defs>
   <g fill="none" fill-rule="evenodd">
-    <rect width="109" height="26" x="2" y="3" fill="#00CECB"/>
+    <use fill="#00CECB" xlink:href="#main_cta-a"/>
     <rect width="111" height="29" x="1.5" y="1.5" stroke="#FFF" stroke-width="3" rx="6"/>
     <path fill="#FFF" fill-rule="nonzero" d="M28.1504473,5.29062612 C24.6907812,5.29062612 26.1355703,0.872122554 28.1294336,2.4999593 C28.1294336,2.4999593 28.5050742,0 26.0777969,0 C22.9569551,0 21.512166,5.29062612 18.7669648,5.29062612 C15.3072988,5.29062612 16.7520879,0.872122554 18.7459512,2.4999593 C18.7459512,2.4999593 19.1215918,0 16.6943145,0 C13.5734727,0 12.1286836,5.29062612 9.38348242,5.29062612 C5.92381641,5.29062612 7.36860547,0.872122554 9.36246875,2.4999593 C9.36246875,2.4999593 9.73810937,0 7.31083203,0 C4.18999023,0 2.74520117,5.29062612 0,5.29062612 L0,7 L29,7 L29,5.29062612 L28.1504473,5.29062612 Z" transform="translate(18 24)"/>
     <text fill="#FFF" font-family="Lato-Black, Lato" font-size="14" font-weight="700">
