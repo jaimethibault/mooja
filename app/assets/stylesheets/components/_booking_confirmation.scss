@@ -1,3 +1,19 @@
+.postcard-style{
+  display: flex;
+  justify:space-between;
+  align-items: center;
+  border: solid 1px #cfcbcb;
+  padding: 12px 0;
+  position: relative;
+}
+
+#stamp {
+  opacity: 0.9;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
 .booking-confirmation {
   display: flex;
   flex-direction: column;
@@ -18,8 +34,9 @@
 }
 
 .booking-confirmation-details {
-  border: solid 1px #cfcbcb;
-  height: auto;
+  border-left: solid 1px #cfcbcb;
+  height: 410px;
+  width: 440px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -27,8 +44,9 @@
 }
 
 .card-title h3 {
-  font-size: 24px;
-  color: $blue;
+  font-size: 28px;
+  font-family: Pacifico;
+  color: $black;
   text-align: center!important;
   font-weight: inherit;
   padding-bottom: 20px;
@@ -39,8 +57,6 @@
 }
 
 .card-booking-details {
-  display: flex;
-  justify-content: space-between;
   padding: 0 15px;
   p {
     font-weight: 300;
@@ -48,8 +64,12 @@
   }
 }
 
-.card-booking-details-address {
-  margin: 35px 0;
+.card-booking-details-dates {
+  display: flex;
+  justify:space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 16px 0;
   width: 350px;
   strong {
     color: $blue;
@@ -58,7 +78,7 @@
 
 .card-booking-details-discount {
   width: 150px;
-  height: 45px;
+  height: 35px;
   background-color: $white;
   border: solid 1px $blue;
   display: flex;
@@ -74,21 +94,31 @@
 }
 
 .card-booking-details-price {
-  margin-top: 18px;
+  display: flex;
+  justify:space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
 .original-price {
-  font-size: 30px;
+  font-size: 22px;
   text-decoration: line-through;
-  font-weight: 300!important;
-  text-align: right!important;
   color: $medium-grey;
 }
 
 .price-paid {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 400!important;
   color: $blue;
+}
+
+.text-savings {
+  font-weight: 300;
+  margin: 30px 0;
+}
+
+#price-saved {
+ color: $blue;
 }
 
 .stripe-button-el  {
