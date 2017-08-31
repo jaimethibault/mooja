@@ -5,7 +5,7 @@
 }
 .search-box {
   padding-top: 10px;
-  height: 70px;
+  height: 80px;
   position: sticky !important; /* !important to override Gmaps inline CSS */
   top: 70px !important;
   background-color: $white;
@@ -82,7 +82,7 @@
 }
 
 .search-action {
-    margin: 15px 0;
+    margin: 10px 0;
     display: flex;
     justify-content: left;
     p {
@@ -93,7 +93,7 @@
   }
 
 .result {
-  margin-left: 20px;
+  margin-left: 11px;
   a {
     font-size: 14px;
     text-decoration: none;
