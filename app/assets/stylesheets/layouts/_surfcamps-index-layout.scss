@@ -1,6 +1,9 @@
 .main-container {
   display: flex;
 }
+.cards-container {
+  z-index: -1;
+}
 
 .map-container {
   flex: 0 0 50%;
