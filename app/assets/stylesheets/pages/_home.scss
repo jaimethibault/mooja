@@ -63,13 +63,13 @@
 
 .home-card-container {
   min-height: 400px;
-  margin: -15px auto 0 !important;
+  margin: 0px auto 0 !important;
   position: relative !important;
   padding-left: 24px;
   padding-right: 24px;
   background-color: rgba(250, 252, 250, 0.6);
   // background-color: #F2FCFC;
-  z-index: -2;
+  // z-index: -2;
   padding-top: 70px;
   padding-bottom: 80px;
   h3 {
@@ -157,13 +157,12 @@
   padding: 10px 10px 30px 10px;
   background-color: $white;
 
-  & img {
+  img {
     width: 100%;
   }
 }
 
-.surfcamp-card-home:before, .surfcamp-card-home:after
-{
+.surfcamp-card-home:before, .surfcamp-card-home:after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -176,8 +175,7 @@
   box-shadow: 0 15px 10px #777;
   transform: rotate(-3deg);
 }
-.surfcamp-card-home:after
-{
+.surfcamp-card-home:after {
   transform: rotate(3deg);
   right: 10px;
   left: auto;
