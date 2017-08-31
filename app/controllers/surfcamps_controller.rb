@@ -38,8 +38,6 @@ class SurfcampsController < ApplicationController
     end
   end
 
-  # ApplicationController.helpers.asset_path("shaka_empty.png"),
-
   def show
     @booking = Booking.new
     @errors = {}
@@ -74,7 +72,7 @@ class SurfcampsController < ApplicationController
         return ApplicationController.helpers.asset_path("shaka_empty.png")
       end
     else
-      return ApplicationController.helpers.asset_path(  "shaka_empty.png")
+      return ApplicationController.helpers.asset_path("shaka_empty.png")
     end
   end
 
