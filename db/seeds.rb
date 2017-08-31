@@ -91,25 +91,51 @@ countries = [
   "india",
   "maldives"
   ]
+countries_data = [
+  { country: "portugal", city: "Lisbon", airport_code: "LIS" },
+  { country: "morocco", city: "Agadir", airport_code: "AGA" },
+  { country: "canary-islands", city: "Canary Islands", airport_code: "LPA" },
+  { country: "costa-rica", city: "San Jose", airport_code: "SYQ" },
+  { country: "indonesia", city: "Jakarta", airport_code: "CGK" },
+  { country: "barbados", city: "Bridgetown", airport_code: "BGI" },
+  { country: "spain", city: "Bilbao", airport_code: "BIO" },
+  { country: "france", city: "Paris", airport_code: "PAR" },
+  { country: "ireland", city: "Dublin", airport_code: "DUB" },
+  { country: "sri-lanka", city: "Colombo", airport_code: "CMB" },
+  { country: "dominican-republic", city: "Saint-Domingue", airport_code: "SDQ" },
+  { country: "mexico", city: "Mexico City", airport_code: "MEX" },
+  { country: "el-salvador", city: "San Salvador", airport_code: "ZSA" },
+  { country: "peru", city: "Lima", airport_code: "LIM" },
+  { country: "south-africa", city: "Pretoria", airport_code: "HPR" },
+  { country: "nicaragua", city: "Managua", airport_code: "MGA" },
+  { country: "philippines", city: "Manila", airport_code: "MNL" },
+  { country: "brazil", city: "Rio De Janeiro", airport_code: "GIG" },
+  { country: "new-zealand", city: "Wellington", airport_code: "WLG" },
+  { country: "india", city: "New Delhi", airport_code: "DEL" },
+  { country: "maldives", city: "Malé", airport_code: "MLE" }
+]
+
+
 # Showcasing the countries we will scrapp
 puts ""
 puts "    This is all the countries we will scrapp"
-countries.each_with_index do |country, index|
-  puts "    #{index +1}- #{country}"
+countries_data.each_with_index do |data, index|
+
+  puts "    #{index +1} - #{data[:country]}"
 end
 puts ""
 # iterating over all the countries
-countries.each do |country|
+countries_data.each do |data|
   s = 0
-  puts "    Iterating over #{country}"
+  puts "    Iterating over #{data[:country]}"
   # The url we are scrapping
-  url = "https://www.surfholidays.com/property-search?country=#{country}&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
+  url = "https://www.surfholidays.com/property-search?country=#{data[:country]}&town=all&checkin=&checkout=&guests=2&suitable_for=surfcamps"
   base_url = "https://www.surfholidays.com"
   html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
   surfcamp_total = html_doc.search(".name-location a").count
   # We look for all the a in the div that match our criterias
-  puts "    #{surfcamp_total} Surfcamps to magically scrapp in #{country}"
+  puts "    #{surfcamp_total} Surfcamps to magically scrapp in #{data[:country]}"
   html_doc.search(".name-location a").each do |element|
     page_url = element.attribute('href').value
     complete_url = "#{base_url}#{page_url}"
@@ -144,6 +170,15 @@ countries.each do |country|
       # creating surfcamp address
       surfcamp.address = address
     end
+    # creating surfcamp country
+    surfcamp.country = data[:country]
+
+    # creating Surfcamp city
+    surfcamp.city = data[:city]
+
+    # creating Surfcamp airport_code
+    surfcamp.airport_code = data[:airport_code]
+
     ratings = []
     html_doc.search("p.bolder.sh-orange span.bigger-font18").each do |element|
       ratings << element.text.strip
@@ -172,7 +207,7 @@ countries.each do |country|
       surfcamp.update(hash)
     end
     s += 1
-    puts "    #{s}/#{surfcamp_total} scrapped in #{country}"
+    puts "    #{s}/#{surfcamp_total} scrapped in #{data[:country]}"
   end
   puts ""
 end
