@@ -36,7 +36,7 @@ rescue Stripe::CardError => e
       # creating the request for departure
       # need to get these infos from params from the form on the booking confirmation page
       origin = @departure_city
-      destination = "LIS"
+      destination = @surfcamp.airport_code
       date = date_departure # need to add return then
       max_stops = 0 # if direct
       adultCount = 1
@@ -83,7 +83,7 @@ rescue Stripe::CardError => e
 
       # creating the request for return
       # need to get these infos from params from the form on the booking confirmation page
-      origin = "LIS"
+      origin = @surfcamp.airport_code
       destination = @departure_city
       date = date_return # need to add return then
       max_stops = 0 # if direct
