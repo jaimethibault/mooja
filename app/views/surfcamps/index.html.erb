@@ -50,14 +50,14 @@
         <% unless surfcamp.photos[0].blank? %>
           <div class="col-xs-12 col-sm-6">
             <div class="surfcamp-card-home">
+                <% unless surfcamp.discounts.blank? %>
+                  <div class="surfcamp-card-text-discount">
+                    <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
+                  </div>
+                <% end %>
                 <%= link_to cl_image_tag(surfcamp.photos[0].path, width: 510, height: 350, crop: :lfill, fetch_format: :auto), surfcamp_path(surfcamp) %>
                 <div class="surfcamp-card-text-description">
                   <div class="surfcamp-card-text">
-                  <% unless surfcamp.discounts.blank? %>
-                    <div class="surfcamp-card-text-discount">
-                      <p> <%= percentage_of_savings(surfcamp) %>% OFF</p>
-                    </div>
-                  <% end %>
                   </div>
                   <div class="surfcamp-card-s-name">
                     <p><%= surfcamp.name %></p>
