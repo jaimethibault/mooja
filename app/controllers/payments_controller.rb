@@ -77,7 +77,7 @@ rescue Stripe::CardError => e
         flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
         flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
         flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
-        flight_hash["flight_price"] = flight["saleTotal"]
+        flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
         @flights << flight_hash
       end
 
@@ -125,7 +125,7 @@ rescue Stripe::CardError => e
         flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
         flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
         flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
-        flight_hash["flight_price"] = flight["saleTotal"]
+        flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
         @flights_return << flight_hash
       end
     end
