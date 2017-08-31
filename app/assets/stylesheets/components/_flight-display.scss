@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: solid 1px $medium-grey;
+  border: solid 1px #cfcbcb;
   padding: 10px;
 }
 
@@ -27,8 +27,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.vertical-line-right {
-  border-right: solid 1px $medium-grey;
 }
