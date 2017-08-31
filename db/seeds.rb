@@ -189,7 +189,7 @@ countries_data.each do |data|
     surfcamp.capacity = rand(6..50)
     # creating surfcamp price_per_night_per_person
     surfcamp.price_per_night_per_person = rand(30..70)
-    surfcamp.save!
+    surfcamp.save
 
     # getting today's weather forecast for each surfcamp
     # checking if surfcamp address was geocoded correctly
