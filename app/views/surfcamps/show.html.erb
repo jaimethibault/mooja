@@ -6,37 +6,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <div class="surfcamp-details">
+      <div class="surfcamp-title">
         <h2> <%= @surfcamp.name %></h2>
+      </div>
+      <div class="show-subcategory">
+        <h4> Weather forecast in the next 10 days</h4>
         <%= render 'surfcamps/weather_box' %>
-        <% unless @surfcamp.rating.blank? %>
-        <div class="rating">
-          <% @surfcamp.rating.to_i.times do  %>
-          <%#= image_tag "surf.png" %>
-              <i class="fa fa-star" style="color: black"></i>
-            <% end %>
-            <% (5 - @surfcamp.rating).to_i.times do  %>
-            <i class="fa fa-star-o";"></i>
-            <% end %>
-        </div>
-        <% end %>
-
-        <hr>
-        <%= image_tag "map-location.png", id:"map-location" %>
-        <%= @surfcamp.address.capitalize %></p>
-        <hr>
+      </div>
+      <hr>
+      <div class="show-subcategory">
         <h4>Description</h4>
         <p><%= @surfcamp.description %></p>
       </div>
       <hr>
-      <h4>📌 Where to find us ?</h4>
+      <div class="show-subcategory">
+        <h4> Where to find us ?</h4>
+        <%= image_tag "map-location.png", id:"map-location" %>
+        <%= @surfcamp.address.capitalize %></p>
+      </div>
       <div id="map-show">
       </div>
     </div>
     <div class="col-md-4 col-md-offset-1 booking_square">
       <%= render 'surfcamps/booking_form', errors: @errors, surfcamp: @surfcamp, object: @discount %>
     </div>
-   </div>
+  </div>
 </div>
 
 <% content_for(:after_js) do %>
