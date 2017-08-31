@@ -117,14 +117,11 @@
 }
 
 .surfcamp-card-text-discount{
-  border: 3px solid $white;
   background-color: $blue;
   max-width: 120px;
   padding: 3px 10px;
-  border-radius: 6px;
   position: absolute;
   top: 20px;
-  left: 20px;
   p {
     font-size: 15px;
     // font-family: 'Waiting for the Sunrise', cursive;
@@ -205,7 +202,11 @@
 .surfcamp-card-text-price {
   padding: 0 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  position: absolute;
+  top: -8px;
+  left: -29px;
   p {
     margin: 0;
     font-size: 16px;
@@ -216,13 +217,14 @@
     opacity: 0.8;
     text-decoration: line-through;
     font-weight: normal;
+
   }
 }
 .surfcamp-card-price-information {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 25px;
   position: absolute;
 }
 

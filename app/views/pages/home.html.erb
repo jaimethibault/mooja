@@ -39,11 +39,11 @@
                  <% end %>
                 </div>
               </div>
-            </div>
-            <div class="surfcamp-card-price-information">
-              <div class="surfcamp-card-text-discount-date">
-                <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
-                <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+              <div class="surfcamp-card-price-information">
+                <div class="surfcamp-card-text-discount-date">
+                  <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+                  <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+                </div>
               </div>
             </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
