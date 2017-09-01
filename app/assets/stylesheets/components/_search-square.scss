@@ -79,7 +79,14 @@
     box-shadow: none;
     outline:none;
   }
+
+  &::-webkit-input-placeholder {
+   color: $soft-gray;
+ }
+
 }
+
+
 
 .search-action {
     margin: 10px 0;

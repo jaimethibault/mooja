@@ -9,7 +9,7 @@
           <!-- first line of search box -->
           <div class="search-box-where">
             <i class="fa fa-search" aria-hidden="true"></i>
-            <%= text_field_tag 'address', nil, value: params[:address], placeholder: 'Ex: Lisbonne, Portugal', class: "search-box-input", id: "surfcamp_address" %>
+            <%= text_field_tag 'address', nil, value: params[:address], placeholder: 'Where to?', class: "search-box-input", id: "surfcamp_address" %>
           </div>
           <!-- Here start the div for the waves search ;-)
           <div class="search-box-waves">
@@ -25,7 +25,7 @@
           <!-- second line of search box -->
           <div class="search-box-budget">
             <i class="fa fa-money" aria-hidden="true"></i>
-            <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Ex: 120€', class: "search-box-input", id: "maxprice" %>
+            <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Max price per night', class: "search-box-input", id: "maxprice" %>
           </div>
           <div class="button">
               <%= button_tag(content = " Filter", class: "btn btn-primary search-box-font-size") %>
