@@ -48,7 +48,7 @@
 
       <% @surfcamps.each do |surfcamp| %>
         <% unless surfcamp.photos[0].blank? %>
-          <div class="col-xs-12 col-sm-6">
+          <div class="no-padding-middle col-xs-12 col-sm-6">
             <div class="surfcamp-card-home">
                 <% unless surfcamp.discounts.blank? %>
                   <div class="surfcamp-card-text-discount">
@@ -90,13 +90,14 @@
     <div id="map">
     </div>
     <div class="map-legend">
-      <div class="legend-oneline">
-        <div class="legend-img"><%= image_tag "shaka_blue_final.png" %></div>
-        <div class="legend-explanation"> <b>Epic waves</b> for the next 10 days</div>
+      <div class="legend-firstline">
+        <div class="legend-explanation"> Forecast for the next 10 days</div>
       </div>
-      <div class="legend-oneline">
+      <div class="legend-secondline">
         <div class="legend-img"><%= image_tag "shaka_pink_final.png" %></div>
-        <div class="legend-explanation"> <b>Fine waves</b> for the next 10 days</div>
+        <div class="legend-explanation"> <b>Fine waves </b></div>
+        <div class="legend-img"><%= image_tag "shaka_blue_final.png" %></div>
+        <div class="legend-explanation"> <b>Epic waves</b></div>
       </div>
     </div>
   </div>

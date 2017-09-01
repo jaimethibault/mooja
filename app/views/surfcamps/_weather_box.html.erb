@@ -1,9 +1,16 @@
 <div class="weather-box">
   <div class="weather-element-column">
-    <%=  image_tag "sun-grey.png" if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
-    <%=  image_tag "rain-grey.png" if @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || " Moderate or heavy rain shower") %>
-    <%=  image_tag "partly_cloudy-grey.png" if @surfcamp.weather_desc == ("Partly cloudy") %>
-    <%=  image_tag "cloudy-grey.png" if @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+    <% if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
+    <%=  image_tag "sun-grey.png"  %>
+    <% elsif @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || " Moderate or heavy rain shower") %>
+    <%=  image_tag "rain-grey.png" %>
+    <% elsif @surfcamp.weather_desc == ("Partly cloudy") %>
+    <%=  image_tag "partly_cloudy-grey.png"  %>
+    <% else @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+    <%=  image_tag "cloudy-grey.png" %>
+    <% end %>
+
+
     <p><%= @surfcamp.weather_desc %></p>
   </div>
   <div class="weather-element-column temp">
