@@ -23,32 +23,36 @@
   }
 
 
-  .banner-content {
-    z-index: 1;
 
-    h3 {
-      color: $white;
-      font-size: 48px;
-      font-weight: lighter;
-      letter-spacing: 0.1em;
-      text-shadow: 2px 2px  #696969;
-      text-align: center;
-      font-family: 'Pacifico', cursive;
-      padding-right: 240px;
-      padding-left: 240px;
-    }
+.banner-content {
+  z-index: 1;
 
-    // .search-home {
-    //   border-radius: 8px;
-    //   background: none;
-    //   // background-color: rgba(241, 246, 245, 0.6);
-    //   color: white;
-    //   letter-spacing: 0.1em;
-    //   border: 3px solid white;
-    //   padding: 10px 15px;
-    //   margin-top: 50px;
-    //   font-weight: lighter;
-    //   opacity: 0.6;
+  h3 {
+    color: $white;
+    font-size: 48px;
+    font-weight: lighter;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px  #696969;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    max-width: 100vh;
+  }
+
+.banner-home-title {
+  display: flex;
+  justify-content: center;
+}
+  // .search-home {
+  //   border-radius: 8px;
+  //   background: none;
+  //   // background-color: rgba(241, 246, 245, 0.6);
+  //   color: white;
+  //   letter-spacing: 0.1em;
+  //   border: 3px solid white;
+  //   padding: 10px 15px;
+  //   margin-top: 50px;
+  //   font-weight: lighter;
+  //   opacity: 0.6;
 
     .main-CTA {
       text-align: center;
@@ -58,7 +62,6 @@
         height: 50px;
       }
     }
-
   }
 }
 
