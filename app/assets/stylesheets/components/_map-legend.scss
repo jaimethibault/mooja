@@ -1,6 +1,6 @@
 .map-legend {
-  width: 260px;
-  height: 80px;
+  width: 270px;
+  height: 60px;
   position: absolute;
   bottom: 30px;
   left: 10px;
@@ -10,10 +10,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+}
+
+.legend-firstline {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
-.legend-oneline {
+.legend-secondline {
+  width: 250px;
   display: flex;
   align-items: center;
   justify-content: space-between;
