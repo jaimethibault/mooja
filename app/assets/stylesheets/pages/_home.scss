@@ -34,9 +34,15 @@
       text-shadow: 2px 2px  #696969;
       text-align: center;
       font-family: 'Pacifico', cursive;
-      padding-right: 240px;
-      padding-left: 240px;
+      // padding-right: 240px;
+      // padding-left: 240px;
+      max-width: 100vh;
     }
+
+  .home-banner-title {
+    display: flex;
+    justify-content: center;
+  }
 
     // .search-home {
     //   border-radius: 8px;
