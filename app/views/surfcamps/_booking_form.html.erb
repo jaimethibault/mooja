@@ -54,7 +54,7 @@
     <%= label_tag 'booking[pax_nb]', 'Surfers' %>
     <div class="booking-form-pax-nb">
       <i class="fa fa-male" aria-hidden="true"></i>
-      <%= number_field_tag 'booking[pax_nb]', '1', style: "width: 100%", id: "pax_nb", class: "form-control" %>
+      <%= number_field_tag 'booking[pax_nb]', '1', min: 1, style: "width: 100%", id: "pax_nb", class: "form-control" %>
       <% if current_user.nil? %>
       <% else %>
       <%= hidden_field_tag 'booking[user_id]', current_user.id %>
@@ -83,7 +83,8 @@
   <%= javascript_tag do %>
     $(".datepicker").datepicker({
     format: 'dd/mm/yyyy',
-    startDate: '-1d'
+    startDate: '-1d',
+    autoclose: true
     });
   <% end %>
 

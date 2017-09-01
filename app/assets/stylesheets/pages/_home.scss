@@ -23,7 +23,6 @@
   }
 
 
-
 .banner-content {
   z-index: 1;
 
@@ -38,21 +37,22 @@
     max-width: 100vh;
   }
 
-.banner-home-title {
-  display: flex;
-  justify-content: center;
-}
-  // .search-home {
-  //   border-radius: 8px;
-  //   background: none;
-  //   // background-color: rgba(241, 246, 245, 0.6);
-  //   color: white;
-  //   letter-spacing: 0.1em;
-  //   border: 3px solid white;
-  //   padding: 10px 15px;
-  //   margin-top: 50px;
-  //   font-weight: lighter;
-  //   opacity: 0.6;
+
+  .banner-home-title {
+    display: flex;
+    justify-content: center;
+  }
+    // .search-home {
+    //   border-radius: 8px;
+    //   background: none;
+    //   // background-color: rgba(241, 246, 245, 0.6);
+    //   color: white;
+    //   letter-spacing: 0.1em;
+    //   border: 3px solid white;
+    //   padding: 10px 15px;
+    //   margin-top: 50px;
+    //   font-weight: lighter;
+    //   opacity: 0.6;
 
     .main-CTA {
       text-align: center;
