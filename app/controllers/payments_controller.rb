@@ -36,11 +36,12 @@ rescue Stripe::CardError => e
       # creating the request for departure
       # need to get these infos from params from the form on the booking confirmation page
       origin = @departure_city
-      destination = "LIS"
+      destination = @surfcamp.airport_code
       date = date_departure # need to add return then
       max_stops = 0 # if direct
       adultCount = 1
       nb_results = 3
+      saleCountry = "FR"
 
       request = {
         request: {
@@ -55,7 +56,8 @@ rescue Stripe::CardError => e
           passengers: {
             adultCount: adultCount
           },
-          solutions: nb_results
+          solutions: nb_results,
+          saleCountry: saleCountry
         }
       }
 
@@ -65,30 +67,32 @@ rescue Stripe::CardError => e
 
       # using the response to display flight info
       # getting the flights date
-      @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
+      unless parsed_resp["trips"]["tripOption"].nil?
+        @flight_date = parsed_resp["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
 
-      # building an array of flight hashes to pass to the view
-      @flights = []
-      parsed_resp["trips"]["tripOption"].each do |flight|
-        flight_hash = {}
-        flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
-        flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
-        flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
-        flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
-        flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
-        flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
-        flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
-        @flights << flight_hash
+        # building an array of flight hashes to pass to the view
+        @flights = []
+        parsed_resp["trips"]["tripOption"].each do |flight|
+          flight_hash = {}
+          flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
+          flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
+          flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
+          flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
+          flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
+          flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
+          flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
+          @flights << flight_hash
+        end
       end
-
       # creating the request for return
       # need to get these infos from params from the form on the booking confirmation page
-      origin = "LIS"
+      origin = @surfcamp.airport_code
       destination = @departure_city
       date = date_return # need to add return then
       max_stops = 0 # if direct
       adultCount = 1
       nb_results = 3
+      saleCountry = "FR"
 
       request_return = {
         request: {
@@ -103,7 +107,8 @@ rescue Stripe::CardError => e
           passengers: {
             adultCount: adultCount
           },
-          solutions: nb_results
+          solutions: nb_results,
+          saleCountry: saleCountry
         }
       }
 
@@ -113,20 +118,23 @@ rescue Stripe::CardError => e
 
       # using the response to display flight info
       # getting the flights date
-      @flight_date_return = parsed_resp_return["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
+      unless parsed_resp_return["trips"]["tripOption"].nil?
 
-      # building an array of flight hashes to pass to the view
-      @flights_return = []
-      parsed_resp_return["trips"]["tripOption"].each do |flight|
-        flight_hash = {}
-        flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
-        flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
-        flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
-        flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
-        flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
-        flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
-        flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
-        @flights_return << flight_hash
+        @flight_date_return = parsed_resp_return["trips"]["tripOption"].first["slice"].first["segment"].first["leg"].first["departureTime"][0..9]
+
+        # building an array of flight hashes to pass to the view
+        @flights_return = []
+        parsed_resp_return["trips"]["tripOption"].each do |flight|
+          flight_hash = {}
+          flight_hash["flight_number"] = flight["slice"].first["segment"].first["flight"]["carrier"] + flight["slice"].first["segment"].first["flight"]["number"]
+          flight_hash["flight_departure_time"] = flight["slice"].first["segment"].first["leg"].first["departureTime"][11..15]
+          flight_hash["flight_departure_airport"] = flight["slice"].first["segment"].first["leg"].first["origin"]
+          flight_hash["flight_duration"] = Time.at(flight["slice"].first["duration"]*60).utc.strftime("%-Hh%M")
+          flight_hash["flight_arrival_time"] = flight["slice"].first["segment"].first["leg"].first["arrivalTime"][11..15]
+          flight_hash["flight_arrival_airport"] = flight["slice"].first["segment"].first["leg"].first["destination"]
+          flight_hash["flight_price"] = "#{flight["saleTotal"][0..-4].gsub("EUR","").gsub("GBP","")} €"
+          @flights_return << flight_hash
+        end
       end
     end
   end

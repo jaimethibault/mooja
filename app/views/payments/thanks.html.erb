@@ -41,7 +41,7 @@
     </div>
     <div class="col-xs-12 col-md-6 flight-selection">
       <div class="flight-selection-title">
-        <h2>✈️ Book your flight to <b>Lisbon</b> ✈️</h2>
+        <h2>✈️ Book your flight to <b><%= @surfcamp.city %></b> ✈️</h2>
       </div>
       <!--   asking for departure city -->
       <div class="flight-selection-details">
@@ -70,63 +70,76 @@
       </div>
       <!--   displaying several departure flight -->
       <% if @departure_city %>
-        <div class="flight-date">You will be 🛫 on the: <%= @booking.starts_at.strftime("%A, %b %d") %></div>
-        <% @flights.each do |flight_hash| %>
-          <div class="flight-container">
-            <div class="flight-infos">
-              <div class="flight-button">
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                  </label>
+      <div class="flight-date">You will be 🛫 on the: <%= @booking.starts_at.strftime("%A, %b %d") %></div>
+        <% unless @flights.nil? %>
+          <% @flights.each do |flight_hash| %>
+            <div class="flight-container">
+              <div class="flight-infos">
+                <div class="flight-button">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                    </label>
+                  </div>
                 </div>
+                <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
+                <div class="flight-departure">
+                  <div class="flight-departure-time"><b><%= flight_hash["flight_departure_time"] %></b></div>
+                  <div class="flight-departure-airport"><b><%= flight_hash["flight_departure_airport"] %></b></div>
+                </div>
+                <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> <%= flight_hash["flight_duration"] %> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+                <div class="flight-arrival">
+                  <div class="flight-arrival-time"><b><%= flight_hash["flight_arrival_time"] %></b></div>
+                  <div class="flight-arrival-airport"><b><%= flight_hash["flight_arrival_airport"] %></b></div>
+                </div>
+                <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
               </div>
-              <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
-              <div class="flight-departure">
-                <div class="flight-departure-time"><b><%= flight_hash["flight_departure_time"] %></b></div>
-                <div class="flight-departure-airport"><b><%= flight_hash["flight_departure_airport"] %></b></div>
-              </div>
-              <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> <%= flight_hash["flight_duration"] %> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
-              <div class="flight-arrival">
-                <div class="flight-arrival-time"><b><%= flight_hash["flight_arrival_time"] %></b></div>
-                <div class="flight-arrival-airport"><b><%= flight_hash["flight_arrival_airport"] %></b></div>
-              </div>
-              <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
             </div>
+          <% end %>
+        <% else %>
+          <div class="no-flights">
+            <h5>😱 Sorry but no flights ✈️  are available for this destination 🤗</h5>
           </div>
         <% end %>
       <% end %>
       <!--   end of flight div -->
       <!--   displaying several return flight -->
       <% if @departure_city %>
-        <div class="flight-date">You will be 🛬 on the: <%= @booking.ends_at.strftime("%A, %b %d") %></div>
-        <% @flights_return.each do |flight_hash| %>
-          <div class="flight-container">
-            <div class="flight-infos">
-              <div class="flight-button">
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
-                  </label>
+      <div class="flight-date">You will be 🛬 on the: <%= @booking.ends_at.strftime("%A, %b %d") %></div>
+        <% unless @flights_return.nil? %>
+          <% @flights_return.each do |flight_hash| %>
+            <div class="flight-container">
+              <div class="flight-infos">
+                <div class="flight-button">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option2">
+                    </label>
+                  </div>
                 </div>
+                <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
+                <div class="flight-departure">
+                  <div class="flight-departure-time"><b><%= flight_hash["flight_departure_time"] %></b></div>
+                  <div class="flight-departure-airport"><b><%= flight_hash["flight_departure_airport"] %></b></div>
+                </div>
+                <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> <%= flight_hash["flight_duration"] %> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+                <div class="flight-arrival">
+                  <div class="flight-arrival-time"><b><%= flight_hash["flight_arrival_time"] %></b></div>
+                  <div class="flight-arrival-airport"><b><%= flight_hash["flight_arrival_airport"] %></b></div>
+                </div>
+                <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
               </div>
-              <div class="flight-number verticalLineRight"><%= flight_hash["flight_number"] %></div>
-              <div class="flight-departure">
-                <div class="flight-departure-time"><b><%= flight_hash["flight_departure_time"] %></b></div>
-                <div class="flight-departure-airport"><b><%= flight_hash["flight_departure_airport"] %></b></div>
-              </div>
-              <div class="flight-duration"><i class="fa fa-long-arrow-right" aria-hidden="true"></i> <%= flight_hash["flight_duration"] %> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
-              <div class="flight-arrival">
-                <div class="flight-arrival-time"><b><%= flight_hash["flight_arrival_time"] %></b></div>
-                <div class="flight-arrival-airport"><b><%= flight_hash["flight_arrival_airport"] %></b></div>
-              </div>
-              <div class="flight-price"><%= flight_hash["flight_price"]  %></div>
             </div>
+          <% end %>
+          <div class="CTA-choose-flights text-center">
+            <button type="button" class="btn btn-primary">Choose these Flights <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        <% else %>
+          <div class="no-flights">
+            <h5>😱 Sorry but no flights ✈️  are available for this destination 🤗</h5>
           </div>
         <% end %>
-        <div class="CTA-choose-flights text-center">
-          <button type="button" class="btn btn-primary">Choose these Flights <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-        </div>
+
       <% end %>
       <!--   end of flight div -->
     </div>
