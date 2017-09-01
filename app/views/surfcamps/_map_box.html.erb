@@ -6,10 +6,15 @@
       <div class="col-xs-6">
         <div class="banner-bottom-element">
           <div class="banner-bottom-icons ">
-            <%=  image_tag "sun.png" if surfcamp.weather_desc == ("Sunny" || "Clear") %>
-            <%=  image_tag "rain.png" if surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || "Moderate or heavy rain shower") %>
-            <%=  image_tag "partly_cloudy.png" if surfcamp.weather_desc == ("Partly cloudy") %>
-            <%=  image_tag "cloudy.png" if surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+            <% if @surfcamp.weather_desc == ("Sunny" || "Clear") %>
+            <%=  image_tag "sun-grey.png"  %>
+            <% elsif @surfcamp.weather_desc == ("Light rain shower" || "Patchy rain possible" || "Light rain" || " Moderate or heavy rain shower") %>
+            <%=  image_tag "rain-grey.png" %>
+            <% elsif @surfcamp.weather_desc == ("Partly cloudy") %>
+            <%=  image_tag "partly_cloudy-grey.png"  %>
+            <% else @surfcamp.weather_desc == ("Cloudy" || "Overcast") %>
+            <%=  image_tag "cloudy-grey.png" %>
+            <% end %>
           </div>
             <h5><%= surfcamp.air_temp.to_i %>°C</h5>
         </div>
