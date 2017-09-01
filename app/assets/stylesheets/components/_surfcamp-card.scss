@@ -75,3 +75,11 @@
   margin-top: 20px;
   font-size: 20px;
 }
+
+.no-padding-middle:nth-child(even) {
+  padding-right: 0px;
+}
+
+.no-padding-middle:nth-child(odd) {
+  padding-left: 0px;
+}
