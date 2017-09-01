@@ -1,3 +1,13 @@
+.datepicker {
+  &::-webkit-input-placeholder {
+   color: $soft-gray;
+  }
+}
+.placeholder-color {
+  &::-webkit-input-placeholder {
+    color: $soft-gray;
+  }
+}
 .booking-promo {
   position: relative;
   height: 60px;
@@ -85,7 +95,6 @@
     box-shadow: none;
     outline:none;
   }
-
 }
 
 .booking-form-end-date {
@@ -110,6 +119,7 @@
     box-shadow: none;
     outline:none;
   }
+
 }
 
 .booking-form-pax-nb {
