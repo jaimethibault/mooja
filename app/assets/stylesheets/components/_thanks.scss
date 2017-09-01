@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
+  position: sticky;
+  top: 10px;
 }
 
 .thanks-confirmation-title {
@@ -24,6 +26,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .card-thanks-title h3 {
@@ -78,4 +81,11 @@
   margin-top: 18px;
   display: flex;
   align-items: flex-end;
+}
+
+@media(max-width: 990px) {
+  .thanks-confirmation {
+  position: relative;
+  top: 0;
+  }
 }
