@@ -9,7 +9,7 @@
           <!-- first line of search box -->
           <div class="search-box-where">
             <i class="fa fa-search" aria-hidden="true"></i>
-            <%= text_field_tag 'address', nil, value: params[:address], placeholder: 'Ex: Lisbonne, Portugal', class: "search-box-input", id: "surfcamp_address" %>
+            <%= text_field_tag 'address', nil, value: params[:address], placeholder: 'Where to?', class: "search-box-input", id: "surfcamp_address" %>
           </div>
           <!-- Here start the div for the waves search ;-)
           <div class="search-box-waves">
@@ -25,7 +25,7 @@
           <!-- second line of search box -->
           <div class="search-box-budget">
             <i class="fa fa-money" aria-hidden="true"></i>
-            <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Ex: 120€', class: "search-box-input", id: "maxprice" %>
+            <%= text_field_tag 'maxprice', nil, value: params[:maxprice], placeholder: 'Max price per night', class: "search-box-input", id: "maxprice" %>
           </div>
           <div class="button">
               <%= button_tag(content = " Filter", class: "btn btn-primary search-box-font-size") %>
@@ -69,15 +69,15 @@
                       <% end %>
                     </div>
                   </div>
+                  <div class="surfcamp-card-price-information">
+                  <% unless surfcamp.discounts.blank? %>
+                    <div class="surfcamp-card-text-discount-date">
+                      <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+                      <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+                    </div>
+                  <% end %>
+                  </div>
                 </div>
-            <div class="surfcamp-card-price-information">
-            <% unless surfcamp.discounts.blank? %>
-              <div class="surfcamp-card-text-discount-date">
-                <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
-                <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
-              </div>
-            <% end %>
-            </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>
             </div>
           </div>
@@ -90,8 +90,14 @@
     <div id="map">
     </div>
     <div class="map-legend">
-      <div class="legend-img"><%= image_tag "shaka_full.png" %></div>
-      <div class="legend-explanation"> Epic wave conditions for the next 10 days</div>
+      <div class="legend-oneline">
+        <div class="legend-img"><%= image_tag "shaka_blue_final.png" %></div>
+        <div class="legend-explanation"> <b>Epic waves</b> for the next 10 days</div>
+      </div>
+      <div class="legend-oneline">
+        <div class="legend-img"><%= image_tag "shaka_pink_final.png" %></div>
+        <div class="legend-explanation"> <b>Fine waves</b> for the next 10 days</div>
+      </div>
     </div>
   </div>
 </div>
@@ -101,26 +107,8 @@
     $(document).ready(function() {
       var dima = [
     {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#444444"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#f2f2f2"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
+        "featureType": "administrative.province",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -128,29 +116,161 @@
         ]
     },
     {
-        "featureType": "road",
-        "elementType": "all",
+        "featureType": "administrative.locality",
+        "elementType": "labels",
         "stylers": [
             {
-                "saturation": -100
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
             },
             {
-                "lightness": 45
+                "saturation": "1"
+            },
+            {
+                "lightness": "1"
+            },
+            {
+                "gamma": "0.96"
+            },
+            {
+                "weight": "1.04"
             }
         ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "all",
+        "featureType": "landscape",
+        "elementType": "labels",
         "stylers": [
             {
-                "visibility": "simplified"
+                "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#faf4e5"
+            },
+            {
+                "saturation": "-20"
+            },
+            {
+                "lightness": "0"
+            },
+            {
+                "gamma": "0.73"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "saturation": "1"
+            },
+            {
+                "lightness": "1"
+            },
+            {
+                "gamma": "0.95"
+            },
+            {
+                "weight": "0.82"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#bbdcc8"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#cdcaca"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -159,7 +279,7 @@
     },
     {
         "featureType": "transit",
-        "elementType": "all",
+        "elementType": "labels",
         "stylers": [
             {
                 "visibility": "off"
@@ -168,13 +288,19 @@
     },
     {
         "featureType": "water",
-        "elementType": "all",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#5bbee1"
-            },
+                "color": "#bee5e0"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     }

@@ -5,7 +5,7 @@
       <source src="http://res.cloudinary.com/dlnmbo3ol/video/upload/v1504175268/S%C3%A9quence_01_5_d0flkq.mp4" type="video/mp4">
     </video>
     <div class="col-md-12 banner-content">
-      <div class="home-banner-title">
+      <div class="banner-home-title">
         <h3>Last minute booking for surfcamps</h3>
       </div>
       <div class="main-CTA">
@@ -39,11 +39,11 @@
                  <% end %>
                 </div>
               </div>
-            </div>
-            <div class="surfcamp-card-price-information">
-              <div class="surfcamp-card-text-discount-date">
-                <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
-                <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+              <div class="surfcamp-card-price-information">
+                <div class="surfcamp-card-text-discount-date">
+                  <p><strong>* From</strong> <%= surfcamp.discounts.first.discount_starts_at.strftime("%d %b") %> </p>
+                  <p><strong>To</strong> <%= surfcamp.discounts.first.discount_ends_at.strftime("%d %b") %></p>
+                </div>
               </div>
             </div>
             <%= link_to "", surfcamp_path(surfcamp), class: "surfcamp-card-link" %>

@@ -57,7 +57,7 @@ admin.email = "admin@admin.admin"
 admin.password = "astrongpassword"
 admin.first_name = "admin"
 admin.last_name = "ADMIN"
-admin.facebook_picture_url = "https://avatars2.githubusercontent.com/u/2471555?v=4&s=460"
+admin.facebook_picture_url = "https://avatars0.githubusercontent.com/u/26402932?v=4&s=460"
 admin.admin = true
 admin.save!
 puts "Admin created"
@@ -189,7 +189,7 @@ countries_data.each do |data|
     surfcamp.capacity = rand(6..50)
     # creating surfcamp price_per_night_per_person
     surfcamp.price_per_night_per_person = rand(30..70)
-    surfcamp.save!
+    surfcamp.save
 
     # getting today's weather forecast for each surfcamp
     # checking if surfcamp address was geocoded correctly
